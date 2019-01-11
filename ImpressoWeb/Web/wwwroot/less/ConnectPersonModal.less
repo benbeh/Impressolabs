@@ -1,0 +1,134 @@
+﻿@import "Variables.less";
+
+#ConnectPersonModal {
+    .modal-body {
+        padding: 35px 90px;
+
+        .company {
+            img {
+                width: 75px;
+                height: 75px;
+                display: inline-block;
+                float: left;
+            }
+
+            .company-information {
+                display: inline-block;
+                margin-left: 20px;
+
+                .company-name {
+                    font-size: 18px;
+                    font-weight: 800;
+                }
+
+                .company-industry {
+                    font-weight: 500;
+                }
+
+                .company-location {
+                    font-size: 12px;
+                    font-weight: 100;
+                    color: @light-gray-color;
+                }
+            }
+        }
+
+        .invitation-text {
+            margin-top: 40px;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .connect-purposes {
+            margin-top: 45px;
+
+            .connect-purpose {
+                padding: 10px 15px;
+                border: 2px solid @light-gray-color;
+                border-radius: 15px;
+                font-weight: bold;
+                font-size: 17px;
+
+                .title {
+                    margin-bottom: 0px;
+                }
+
+                .extra-text {
+                    font-size: 14px;
+                    font-weight: 100;
+                    color: @light-gray-color;
+                    vertical-align: top;
+                }
+            }
+
+            .active {
+                border: 2px solid @main-color;
+            }
+        }
+
+        .job-dropdown {
+            width: 100%;
+            position: relative;
+            margin-top: 45px;
+
+            select {
+                -webkit-appearance: none;
+                width: 100%;
+                padding: 15px 25px;
+                border: 0;
+                border-radius: 15px;
+                font-weight: 500;
+                background: @main-background-color;
+
+                &:focus {
+                    outline: unset;
+                }
+            }
+
+            img {
+                position: absolute;
+                top: 21px;
+                right: 30px;
+                width: 20px;
+            }
+        }
+
+        .connect-cancel-buttons {
+            width: 100%;
+
+            .connect-button, .cancel-button {
+                width: 70%;
+                padding: 10px 25px;
+                border-radius: 25px;
+            }
+
+            .connect-button {
+                color: white;
+                margin-top: 50px;
+                border: 0;
+                background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+                background-size: 180% auto;
+                transition: .8s;
+                background-color: transparent;
+
+                &:hover {
+                    background-position: right center;
+                }
+            }
+
+            .cancel-button {
+                color: @black-color;
+                margin-top: 15px;
+                border: 2px solid @light-gray-color;
+                background: @white-color;
+            }
+        }
+    }
+}
+
+/* media queries */
+@media (max-width: @screen-exs-max) {
+    #ConnectPersonModal .modal-body {
+        padding: 35px;
+    }
+}

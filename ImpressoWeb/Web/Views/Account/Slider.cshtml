@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_AccountLayout";
+}
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/account.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Account.css" />
+    </environment>
+}
+
+<div class="vertical-center">
+  
+    <div class="slider container">
+        <div class="row">
+
+            <div class="text-white invitation-text offset-1 col-10 offset-lg-3 col-lg-6">
+                <p class="title">Branding you</p>
+                <p class="content">"It's about you - The next step of Professional Networking"</p>
+            </div>
+            
+            <div class="buttons justify-content-end d-flex flex-column align-items-center col-12">
+                <div class="slider-dots">
+                    <div class="slider-number-of-page active"></div>
+                    <div class="slider-number-of-page"></div>
+                    <div class="slider-number-of-page"></div>
+                    <div class="slider-number-of-page"></div>
+                </div>
+                <button class="change-slide" type="submit">Continue</button>
+                <a asp-action="RegistrationFirstStep" asp-controller="Account" class="text-white small-text" asp-route-returnurl="@ViewData["ReturnUrl"]">Skip</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section JsFiles {
+    <script src="~/js/Slider.js" type="text/javascript"></script>
+
+}

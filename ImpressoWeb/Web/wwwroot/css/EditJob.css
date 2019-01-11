@@ -1,0 +1,193 @@
+/* colors */
+/* fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+/* media queries */
+.job-header {
+  padding: 40px 0px;
+}
+.job-header .job-header-name {
+  font-weight: 900;
+  font-size: 36px;
+  margin-bottom: 0px;
+}
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+.information {
+  background: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.information .name-label,
+.information .description-label {
+  margin: 0px;
+  color: #9E9E9E;
+  text-transform: uppercase;
+}
+.information .name,
+.information .description {
+  font-weight: 600;
+  color: #080808;
+  margin-bottom: 1rem;
+  width: 100%;
+  border: unset;
+}
+.information .name:focus,
+.information .description:focus {
+  outline: unset;
+}
+.job-detailed-information {
+  margin-top: 55px;
+}
+.job-detailed-information .edit-times {
+  padding-right: 20px;
+  margin-bottom: 40px;
+}
+.job-detailed-information .edit-times p {
+  margin: 0px;
+  color: #9E9E9E;
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+.job-detailed-information .edit-times .mdy {
+  border-radius: 7px 7px 0px 0px;
+  border: 0px;
+}
+.job-detailed-information .edit-times .time {
+  border-radius: 0px 0px 7px 7px;
+  border: 0px;
+}
+.job-detailed-information .edit-image {
+  padding: 0px;
+  margin: 0px;
+}
+.job-detailed-information .edit-image p {
+  margin: 0px;
+  color: #9E9E9E;
+  text-transform: uppercase;
+}
+.job-detailed-information .edit-image label {
+  width: 100%;
+}
+.job-detailed-information .edit-image label #NameEventPhoto {
+  margin-top: 5px;
+  margin-bottom: 12px;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  border-radius: 22px;
+  height: 37px;
+  padding: 8px;
+  background: white;
+  display: block;
+}
+.job-detailed-information .edit-image label .uploat-photo-button {
+  border-radius: 20px;
+  padding: 8px 25px 8px 25px;
+  color: white;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+  font-size: 13px;
+}
+.job-detailed-information .job-item {
+  margin: 0 -15px 20px -15px;
+}
+.job-detailed-information .job-item .title {
+  color: #9E9E9E;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.job-detailed-information .job-item .content {
+  background: white;
+  padding: 12px 25px;
+  margin-bottom: 5px;
+  border: 2px solid silver;
+  border-radius: 15px;
+  font-weight: 600;
+  width: 100%;
+}
+.job-detailed-information .job-item .content:focus {
+  outline: unset;
+}
+.job-detailed-information .job-item .add-item {
+  float: right;
+  color: white;
+  border: 0;
+  border-radius: 20px;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+  font-size: 13px;
+  padding: 7px 35px;
+  margin-bottom: 5px;
+}
+.job-detailed-information .job-item .add-item:hover {
+  background-position: right center;
+}
+.job-detailed-information .job-item .add-item:focus {
+  outline: unset;
+}
+.job-detailed-information .job-item .certificate-item,
+.job-detailed-information .job-item .skill-item {
+  position: relative;
+}
+.job-detailed-information .job-item .certificate-item .close-select,
+.job-detailed-information .job-item .skill-item .close-select {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+.job-detailed-information .job-item .certificate-item .close-select .close-select-button,
+.job-detailed-information .job-item .skill-item .close-select .close-select-button {
+  float: right;
+  color: white;
+  border: 0;
+  border-radius: 20px;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+  font-size: 14px;
+  padding: 4px 18px;
+}
+.job-detailed-information .job-item .certificate-item .close-select .close-select-button:hover,
+.job-detailed-information .job-item .skill-item .close-select .close-select-button:hover {
+  background-position: right center;
+}
+.job-detailed-information .job-item .certificate-item .close-select .close-select-button:focus,
+.job-detailed-information .job-item .skill-item .close-select .close-select-button:focus {
+  outline: unset;
+}
+.update-button {
+  margin: 25px 0px 75px;
+  color: white;
+  border: 0;
+  border-radius: 20px;
+  width: 80%;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+  font-size: 13px;
+  padding: 12px 25px;
+}
+.update-button:hover {
+  background-position: right center;
+}
+.update-button:focus {
+  outline: unset;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="22px" viewBox="0 0 15 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>profileFill</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="1.02962428%" y1="48.9703757%" x2="98.9703757%" y2="48.9703757%" id="linearGradient-1">
+            <stop stop-color="#AC34AB" offset="0%"></stop>
+            <stop stop-color="#8A13D2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-2264.000000, -307.000000)" fill="url(#linearGradient-1)">
+            <path d="M2271.5,320.75 C2274.88932,320.75 2277.63636,317.671375 2277.63636,313.875 C2277.63636,310.078625 2274.88932,307 2271.5,307 C2268.11068,307 2265.36364,310.078625 2265.36364,313.875 C2265.36364,317.671375 2268.11068,320.75 2271.5,320.75 L2271.5,320.75 Z M2277.43386,318.906813 C2276.06205,320.860687 2273.91773,322.125 2271.5,322.125 C2269.08227,322.125 2266.93795,320.860687 2265.56614,318.906813 C2264.61636,319.657562 2264,320.812563 2264,322.125 L2264,324.875 C2264,327.152688 2265.83205,329 2268.09091,329 L2274.90909,329 C2277.16795,329 2279,327.152688 2279,324.875 L2279,322.125 C2279,320.812563 2278.38364,319.657562 2277.43386,318.906813 L2277.43386,318.906813 Z" id="profileFill"></path>
+        </g>
+    </g>
+</svg>

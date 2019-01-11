@@ -1,0 +1,32 @@
+﻿@model CompanyProfileViewModel
+
+<div class="row">
+    <div class="offset-1 col-10 offset-lg-2 col-lg-8">
+        <div class="row">
+            
+            @foreach (var project in Model.Projects)
+            {
+                <div class="col-12 col-lg-6">
+                    <form asp-action="ProjectDetails" class="project-description-form" method="get">
+                        <input type="hidden" name="projectId" value="@project.Id" />
+                        <div class="row project-description align-items-center">
+                            <div class="col information">
+                                <p id="name">@project.Name</p>
+                                @{
+                                    var projectDescription = !String.IsNullOrEmpty(project.Description) ? project.Description : "&nbsp;";
+                                }
+                                <div id="description-project">@Html.Raw(projectDescription)</div>
+                                <span class="project-start-date" title="@project.StartDate.ToISOString()"></span>
+                                <span>@project.AmountOfCandidates candidates connected</span>
+                            </div>
+                            <div class="col-auto ml-auto mr-5 button-next">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </form>  
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

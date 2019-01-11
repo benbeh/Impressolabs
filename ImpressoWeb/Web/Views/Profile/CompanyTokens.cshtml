@@ -1,0 +1,45 @@
+﻿@model CompanyProfileViewModel
+
+
+
+<div class="row">
+    <div class="offset-1 col-10 offset-lg-2 col-lg-8">
+        <div class="general-information">
+            <p id="title">Total</p>
+            <p id="count">IMP @Model.TotalTokens</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="offset-1 col-10 offset-lg-2 col-lg-8">
+        <div class="row">
+            
+            @foreach (var token in Model.Tokens)
+            {
+                <div class="col-12 col-lg-6">
+                    <div class="row token-description">
+                        <div class="col-3 token-date">
+                            <p>@token.DepartureDate.ToString("yyyy/MM/dd")</p>
+                        </div>
+                        <div class="col-9 information">
+                            <p id="title">Received @token.Count IMP</p>
+                            @{ 
+                                var message = "";
+                                if (!string.IsNullOrEmpty(token.Message))
+                                {
+                                    message = "for " + token.Message;
+                                }
+                            }
+                            <p id="description">@token.Sender sent you @token.Count IMP's for @message</p>
+                        </div>
+                    </div>
+                </div>   
+            }
+
+        </div>
+    </div>
+</div>

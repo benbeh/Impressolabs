@@ -1,0 +1,121 @@
+/* colors */
+/* fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+/* media queries */
+.applicants .title,
+.jobs .title {
+  text-align: center;
+  margin-top: 70px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.project-header {
+  padding: 40px 0px;
+}
+.project-header .project-header-text {
+  font-weight: 900;
+  font-size: 36px;
+}
+.project-header .edit-project-button {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 10px;
+  color: #080808;
+  border: 2px solid #9E9E9E;
+  background: #EFEFF4;
+}
+.project-header .edit-project-button:focus {
+  outline: unset;
+}
+.information {
+  background: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.information input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+}
+.information input::placeholder {
+  color: #080808;
+}
+.information .name-label {
+  margin: 0px;
+  color: #9E9E9E;
+  text-transform: uppercase;
+}
+.job-item,
+.person-item {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: white;
+}
+.job-item {
+  padding: 10px;
+  cursor: pointer;
+}
+.job-item .job-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+}
+.job-item .project-name {
+  color: #9E9E9E;
+  font-size: 14px;
+  margin-right: 26px;
+}
+.job-item .count-applicants {
+  color: #9E9E9E;
+  font-size: 14px;
+}
+.job-item i {
+  color: #7E20C8;
+}
+.applicants {
+  margin-bottom: 40px;
+}
+.applicants .person-item {
+  padding: 0px 15px;
+}
+.applicants .person-item img {
+  margin: 5px;
+  width: 60px;
+  height: 60px;
+}
+.applicants .person-item .connect-button-person-modal,
+.applicants .person-item .connected-button-person-modal {
+  width: 100%;
+  border: 0;
+  border-radius: 20px;
+  padding: 4px 5px;
+}
+.applicants .person-item .connect-button-person-modal {
+  color: white;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+.applicants .person-item .connect-button-person-modal:hover {
+  background-position: right center;
+}
+.applicants .person-item .connected-button-person-modal {
+  color: #080808;
+  border: 2px solid #9E9E9E;
+  background: white;
+}
+.applicants .person-item .user-name {
+  margin: 0;
+  font-weight: 600;
+}
+.applicants .person-item .user-profession {
+  font-size: 14px;
+  color: #9E9E9E;
+}

@@ -1,0 +1,25 @@
+﻿<div class="modal fade" id="CreateModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-body text-center">
+                
+                <h4 class="create-text">Create</h4>
+
+                <input class="create-button" type="button" value="Create project" data-toggle="modal" data-target="#CreateProjectModal" data-dismiss="modal" />
+
+                <input class="create-button" type="button" value="Create job" data-toggle="modal" data-target="#CreateJobModal" data-dismiss="modal" />
+                
+                <a asp-controller="Event" asp-action="Create">
+                    <input class="create-button" type="button" value="Create event" />
+                </a>
+                
+                <button class="cancel-button" data-dismiss="modal">Cancel</button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

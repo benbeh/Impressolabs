@@ -1,0 +1,121 @@
+﻿@model CompanyProfileViewModel
+@{
+    ViewBag.Page = "Profile";
+}
+
+@if (Model == null)
+{
+    <h2 class="text-center m-5">You are not in a company</h2>
+    return;
+}
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/profileCompany.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/CompanyProfile.css" />
+    </environment>
+}
+
+<!-- Create -->
+@Html.Partial("Create")
+
+<!-- Create project -->
+@Html.Partial("CreateProject")
+
+<!-- Create project -->
+@Html.Partial("CreateJob", Model.Projects)
+
+<div class="container">
+    <div class="company-profile-nav">
+        <div class="row justify-content-center">
+
+            <div class="form-group company-photo">
+                @{
+                    var userPhoto = "../images/Profile.jpg";
+                    if (!String.IsNullOrEmpty(Model.Photo))
+                    {
+                        userPhoto = Model.Photo;
+                    }
+                }
+                <img src="@userPhoto" class="rounded-circle company-photo-image" id="UserPhoto" />
+                <div class="image-upload">
+                    <label for="FileInput">
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                    </label>
+
+                    <input type="file" id="FileInput" />
+                </div>
+            </div>
+
+        </div>
+        <div class="row company-information">
+            <div class="col-12">
+                <p id="name">@Model.Name</p>
+            </div>
+            @if (Model.Industry != IndustryEnum.None)
+            {
+                <div class="col-12">
+                    <p id="industry">@Model.Industry.GetDescription()</p>
+                </div>
+            }
+        </div>
+
+        <div class="row align-items-center">
+
+            <div class="col-12 company-profile-full-information">
+                <div class="create-item">
+                    <button class="create-button" data-toggle="modal" data-target="#CreateModal">Create</button>
+                </div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-company-profile justify-content-center text-center" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#projects">
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#jobs">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tokens">Tokens</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-content">
+        <div class="row">
+            <!-- Tab panes -->
+            <div class="tab-content tab-content-company-profile">
+                <div id="projects" class="container tab-pane active">
+                    @Html.Partial("CompanyProjects", Model)
+                </div>
+                <div id="jobs" class="container tab-pane fade">
+                    @Html.Partial("CompanyJobs", Model)
+                </div>
+                <div id="tokens" class="container tab-pane fade">
+                    @Html.Partial("CompanyTokens", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section JsFiles {
+
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/profileCompany.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="~/lib/tether.js" type="text/javascript"></script>
+        <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+        <script src="~/lib/ExtraLibraries/jquery.timeago.js" type="text/javascript"></script>
+        <script src="~/js/ProfileCompany.js" type="text/javascript"></script>
+    </environment>
+}

@@ -1,0 +1,210 @@
+﻿@import "Variables.less";
+
+.job-header {
+    padding: 40px 0px;
+
+    .job-header-name {
+        font-weight: 900;
+        font-size: 36px;
+        margin-bottom: 0px;
+    }
+}
+
+input:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
+
+    &:hover, &:focus, &:active {
+        transition: background-color 5000s ease-in-out 0s;
+    }
+}
+
+.information {
+    background: @white-color;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    .name-label, .description-label {
+        margin: 0px;
+        color: @light-gray-color;
+        text-transform: uppercase;
+    }
+
+    .name, .description {
+        font-weight: 600;
+        color: @black-color;
+        margin-bottom: 1rem;
+        width: 100%;
+        border: unset;
+
+        &:focus {
+            outline: unset;
+        }
+    }
+}
+
+.job-detailed-information {
+    margin-top: 55px;
+
+    .edit-times {
+        padding-right: 20px;
+        margin-bottom: 40px;
+
+        p {
+            margin: 0px;
+            color: @light-gray-color;
+            text-transform: uppercase;
+            margin-left: 4px;
+        }
+
+        .mdy {
+            border-radius: 7px 7px 0px 0px;
+            border: 0px;
+        }
+
+        .time {
+            border-radius: 0px 0px 7px 7px;
+            border: 0px;
+        }
+    }
+
+
+    .edit-image {
+        padding: 0px;
+        margin: 0px;
+
+        p {
+            margin: 0px;
+            color: @light-gray-color;
+            text-transform: uppercase;
+        }
+
+        label {
+            width: 100%;
+
+            #NameEventPhoto {
+                margin-top: 5px;
+                margin-bottom: 12px;
+                border: 0;
+                outline: 0;
+                width: 100%;
+                border-radius: 22px;
+                height: 37px;
+                padding: 8px;
+                background: @white-color;
+                display: block;
+            }
+
+            .uploat-photo-button {
+                border-radius: 20px;
+                padding: 8px 25px 8px 25px;
+                color: white;
+                background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+                background-size: 180% auto;
+                transition: .8s;
+                background-color: transparent;
+                font-size: 13px;
+            }
+        }
+    }
+
+
+    .job-item {
+        margin: 0 -15px 20px -15px;
+
+        .title {
+            color: @light-gray-color;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .content {
+            background: @white-color;
+            padding: 12px 25px;
+            margin-bottom: 5px;
+            border: 2px solid silver;
+            border-radius: 15px;
+            font-weight: 600;
+            width: 100%;
+
+            &:focus {
+                outline: unset;
+            }
+        }
+
+        .add-item {
+            float: right;
+            color: @white-color;
+            border: 0;
+            border-radius: 20px;
+            background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+            font-size: 13px;
+            padding: 7px 35px;
+            margin-bottom: 5px;
+
+            &:hover {
+                background-position: right center;
+            }
+
+            &:focus {
+                outline: unset;
+            }
+        }
+
+        .certificate-item, .skill-item {
+            position: relative;
+
+            .close-select {
+                position: absolute;
+                top: 10px;
+                right: 5px;
+
+                .close-select-button {
+                    float: right;
+                    color: @white-color;
+                    border: 0;
+                    border-radius: 20px;
+                    background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+                    background-size: 180% auto;
+                    transition: .8s;
+                    background-color: transparent;
+                    font-size: 14px;
+                    padding: 4px 18px;
+
+                    &:hover {
+                        background-position: right center;
+                    }
+
+                    &:focus {
+                        outline: unset;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.update-button {
+    margin: 25px 0px 75px;
+    color: @white-color;
+    border: 0;
+    border-radius: 20px;
+    width: 80%;
+    background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+    background-size: 180% auto;
+    transition: .8s;
+    background-color: transparent;
+    font-size: 13px;
+    padding: 12px 25px;
+
+    &:hover {
+        background-position: right center;
+    }
+
+    &:focus {
+        outline: unset;
+    }
+}

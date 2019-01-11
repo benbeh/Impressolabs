@@ -1,0 +1,642 @@
+﻿@import "Variables.less";
+
+/* nav in the top of the page*/
+.feeds-nav {
+    background-color: @white-color;
+    border-radius: 8px;
+    margin: 20px 0;
+
+    .people-nav-item, .notifications-nav-item {
+        padding: 15px;
+        color: @main-color;
+        position: relative;
+
+        a {
+            padding: 15px 5px;
+        }
+
+        &:hover .people-nav-item-bottom-border {
+            position: absolute;
+            height: 2px;
+            width: 20px;
+            background: @main-color;
+            bottom: 0px;
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
+    }
+
+    .checked {
+        .people-nav-item-bottom-border {
+            position: absolute;
+            height: 2px;
+            width: 20px;
+            background: @main-color;
+            bottom: 0px;
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
+    }
+}
+
+/* feed on the people page*/
+.feed {
+    margin-bottom: 20px;
+    background-color: @white-color;
+    border-radius: 6px;
+}
+
+.shown {
+    display: flex;
+}
+
+.closed {
+    display: none;
+}
+
+.closed-feed {
+    .description {
+        padding-left: 0px;
+    }
+
+    .undo {
+        margin: 15px 0;
+
+        > button {
+            color: @white-color;
+            border: 0;
+            border-radius: 10px;
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+            font-size: 13px;
+            padding: 3px 18px;
+
+            &:hover {
+                background-position: right center;
+            }
+
+            &:focus {
+                outline: unset;
+            }
+        }
+    }
+
+    .close-feed-anchor > i {
+        font-size: 1em;
+        cursor: pointer;
+    }
+}
+
+.open-feed {
+    padding: 0px 10px;
+    cursor: pointer;
+
+    .person-image {
+        padding: 15px;
+
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    .person-name {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .person-profession, .person-location, .person-job, .person-experience {
+        font-weight: 400;
+        font-size: 0.8em;
+        color: @light-gray-color;
+    }
+
+    .more-menu {
+        padding: 0px 10px;
+    }
+
+    .more-menu-image {
+        width: 6px;
+    }
+
+    .person-invite {
+        margin: 20px 0;
+
+        .save-for-project-button, .connect-button-person-modal, .connected-button-person-modal {
+            width: 100%;
+            border: 0;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .save-for-project-button, .connect-button-person-modal {
+            color: white;
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+
+            &:hover {
+                background-position: right center;
+            }
+        }
+
+        .connected-button-person-modal {
+            color: @black-color;
+            border: 2px solid @light-gray-color;
+            background: @white-color;
+        }
+    }
+
+    .more-menu-popover {
+        display: none;
+        background: white;
+        padding: 40px 30px;
+        border-radius: 10px;
+        top: 4px;
+        right: -186px;
+        z-index: 1;
+        width: 330px;
+        position: absolute;
+        margin: 3em;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0px 0px 15px 0px rgba(158,158,158,0.8);
+        -moz-box-shadow: 0px 0px 15px 0px rgba(158,158,158,0.8);
+        box-shadow: 0px 0px 15px 0px rgba(158,158,158, 0.8);
+
+        ::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            margin-left: 20px;
+            top: 0;
+            left: 50%;
+            box-sizing: border-box;
+            border: 1em solid black;
+            border-color: transparent transparent @white-color @white-color;
+            transform-origin: 0 0;
+            transform: rotate(135deg);
+            box-shadow: -4px 5px 9px 0 rgba(158, 158, 158, 0.1);
+        }
+
+        .hide-profile-button, .copy-link-button {
+            padding: 12px 90px;
+            border: 0;
+            margin: 0;
+            border-radius: 20px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .hide-profile-button {
+            color: white;
+            margin-bottom: 10px;
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+
+            &:hover {
+                color: white;
+                background-position: right center;
+            }
+        }
+
+        .copy-link-button {
+            color: black;
+            background-color: @main-background-color;
+        }
+    }
+}
+
+/* notification page*/
+.notification {
+    margin-bottom: 12px;
+    background-color: @white-color;
+    border-radius: 6px;
+    padding: 15px 30px;
+    cursor: pointer;
+
+    .description-first-part {
+        padding: 0 5px 0 15px;
+    }
+
+    .description-date {
+        font-weight: 400;
+        font-size: 0.8em;
+        color: @light-gray-color;
+    }
+}
+
+.notification-date-type-text {
+    margin: 20px 0 10px;
+    font-weight: 600;
+    font-size: 0.8em;
+    color: @light-gray-color;
+
+    &:first-child {
+        margin-top: 0px;
+    }
+}
+
+/* person profile */
+.person-profile-header {
+    padding: 40px 0;
+
+    .profile-header-text {
+        font-weight: 900;
+        font-size: 36px;
+    }
+}
+
+.profile-card {
+    padding: 20px 15px 30px 35px;
+
+    .person-image {
+        padding: 10px 25px 0 25px;
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .profile-general-information {
+        padding-top: 10px;
+
+        .person-name {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .person-profession {
+            font-size: 14px;
+            color: @light-gray-color;
+        }
+
+        .person-status {
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .person-location {
+            margin-top: 5px;
+
+            img {
+                width: 14px;
+            }
+
+            .person-location-text {
+                font-size: 12px;
+                margin-left: 5px;
+            }
+        }
+
+        .person-connections {
+            margin-top: 5px;
+
+            img {
+                width: 22px;
+            }
+
+            .person-connections-text {
+                font-size: 12px;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .description {
+        margin-top: 10px;
+
+        .title {
+            font-weight: 800;
+        }
+
+        .last-update {
+            float: right;
+            font-size: 12px;
+            color: @light-gray-color;
+        }
+
+        .text-container {
+            margin-top: 10px;
+            line-height: 26px;
+
+            .hideContent {
+                overflow: hidden;
+                height: 52px;
+            }
+
+            .showContent {
+                height: auto;
+            }
+        }
+    }
+
+    .person-rating {
+        padding-top: 10px;
+
+        .person-rating-image {
+            width: 30px;
+        }
+    }
+
+    .person-invite {
+        margin-top: 25px;
+
+        .save-for-project-button, .connect-button-person-modal, .connected-button-person-modal {
+            width: 100%;
+            border: 0;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .save-for-project-button, .connect-button-person-modal {
+            color: white;
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+
+            &:hover {
+                background-position: right center;
+            }
+        }
+
+        .connected-button-person-modal {
+            color: @black-color;
+            border: 2px solid @light-gray-color;
+            background: @white-color;
+        }
+    }
+}
+
+/* naviagtion in the bottom of the page */
+.person-profile-full-information {
+    margin-top: 25px;
+    margin-bottom: 45px;
+    background: @white-color;
+    /* navigation tabs */
+    .nav-person-profile {
+        border: 0;
+
+        .nav-item {
+            width: 33%;
+
+            .nav-link {
+                margin: 15px auto;
+                padding: 10px 0;
+                background: transparent;
+                border: 0;
+                width: min-content;
+                font-size: 18px;
+                font-weight: 800;
+                color: @black-color;
+            }
+
+            .active {
+                border-bottom: 2px solid @main-color;
+                color: @main-color;
+            }
+        }
+    }
+    /* tabs content */
+    .tab-content-person-profile {
+        margin: 40px 0;
+
+        .professional-item, .experience-item, .recommendation-item, .accomplishment-item {
+            margin-bottom: 15px;
+        }
+
+        .recommendation-item, .accomplishment-item {
+            .title {
+                display: inline-block;
+            }
+
+            .content {
+                margin-bottom: 15px;
+            }
+        }
+
+        .view-all {
+            display: none;
+            float: right;
+            font-weight: 600;
+        }
+
+        .title {
+            color: @light-gray-color;
+            text-transform: uppercase;
+        }
+
+        .content {
+            padding: 12px 25px;
+            margin-bottom: 5px;
+            border: 2px solid silver;
+            border-radius: 15px;
+            font-weight: 600;
+
+            /* for reccomendation card */
+            .profession {
+                font-weight: 900;
+                font-size: 18px;
+            }
+
+            .date {
+                float: right;
+                color: @light-gray-color;
+                font-size: 14px;
+                font-weight: lighter;
+            }
+
+            .message {
+                margin: 15px 0 30px;
+                font-weight: 500;
+            }
+
+            .verify {
+
+                button {
+                    width: 20%;
+                    border-radius: 9px;
+                    padding: 2px 10px;
+                    font-size: 14px;
+                }
+
+                .verified-button {
+                    color: white;
+                    border: 0;
+                    background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+                    background-size: 180% auto;
+                    transition: .8s;
+                    background-color: transparent;
+
+                    &:hover {
+                        background-position: right center;
+                    }
+                }
+
+                .verify-button {
+                    color: @main-color;
+                    border: 2px solid @main-color;
+                    background: @white-color;
+                }
+
+                .verify-images {
+                    display: inline-block;
+                    margin-left: 80px;
+                    position: relative;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    .verify-image-person-2 {
+                        position: absolute;
+                        right: 38px;
+                        top: 0;
+                        z-index: 2;
+                    }
+
+                    .verify-image-person-1 {
+                        position: absolute;
+                        right: 19px;
+                        top: 0;
+                        z-index: 1;
+                    }
+                }
+
+                .verify-amount-of-people {
+                    margin-left: 5px;
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: @light-gray-color;
+                }
+            }
+        }
+
+        .accomplishment-item {
+            .accomplishment-text {
+                font-weight: 500;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+/* media queries */
+@media (max-width: @screen-exs-max) {
+    .open-feed .person-invite .save-for-project-button {
+        margin-top: 10px;
+    }
+
+    .person-invite .row {
+        justify-content: unset!important;
+    }
+
+    .profile-card .last-update {
+        display: none;
+    }
+
+    .nav-person-profile .nav-item .nav-link {
+        font-size: 14px!important;
+    }
+
+    .person-profile-full-information .tab-content-person-profile .content .verify {
+        button {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .verify-images {
+            display: none;
+        }
+
+        .verify-amount-of-people {
+            display: block;
+            margin-top: 7px;
+        }
+    }
+}
+
+@media (max-width: @screen-xs-max) {
+    .profile-card {
+        margin-left: 0px;
+        margin-right: 0px;
+
+        .person-image {
+            padding-left: 0;
+            padding-right: 15px;
+        }
+
+        .profile-general-information {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .person-rating-container {
+            padding-left: 0;
+        }
+
+        .save-for-project-button {
+            margin-top: 15px;
+        }
+    }
+
+    .person-profile-full-information-row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+@media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+    .open-feed .person-invite .save-for-project-button {
+        margin-top: 10px;
+    }
+
+    .person-invite .row {
+        justify-content: unset !important;
+    }
+
+    .person-profile-full-information .tab-content-person-profile .content .verify {
+        button {
+            width: 25%;
+        }
+
+        .verify-images {
+            margin-left: 40px;
+        }
+
+        .verify-amount-of-people {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media (max-width: @screen-sm-max) {
+    .closed-feed .description {
+        padding-right: unset;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: @screen-lg-min) {
+    .profile-card .description {
+        padding-left: 40px;
+    }
+}
+
+@media (max-width: @screen-md-max) {
+    .person-profile-full-information .tab-content-person-profile .content .date {
+        float: unset;
+        display: block;
+    }
+}

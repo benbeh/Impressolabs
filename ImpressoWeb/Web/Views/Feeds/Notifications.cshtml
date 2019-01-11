@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Page = "Feeds";
+}
+
+@model IEnumerable<NotificationViewModel>
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/feeds.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Feeds.css" />
+    </environment>
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-12">
+            @Html.Partial("Menu", "Notifications")
+        </div>
+
+        <div class="offset-1 col-10 offset-md-2 col-md-8">
+
+            @{
+                var newestNotifications = Model.Where(notification => notification.IsNewest);
+                if (newestNotifications.Count() != 0)
+                {
+                    <div class="row">
+                        <div class="notification-date-type-text">Newest</div>
+                    </div>
+                }
+            }
+
+            @foreach (var notification in Model.Where(notification => notification.IsNewest))
+            {
+                <div class="notification row align-items-center">
+
+                    <div class="col">
+                        <div class="row">
+                            <span class="col description-first-part">@notification.Description</span>
+                            <span class="col-auto description-second-part"></span>
+                            <span class="col-12 description-date" title="@notification.DateOfPost.ToISOString()"></span>
+                        </div>
+                    </div>
+
+                    <a title="close notification" class="col-auto close-notification-anchor text-center ml-auto" asp-action="CloseNotification" asp-route-id="@notification.Id">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+            }
+
+
+            @{
+                var earlyNotifications = Model.Where(notification => !notification.IsNewest).ToList();
+                if (earlyNotifications.Count() != 0)
+                {
+                    <div class="row">
+                        <div class="notification-date-type-text">Early</div>
+                    </div>
+                }
+            }
+            @foreach (var notification in earlyNotifications)
+            {
+                <div class="notification row align-items-center">
+
+                    <div class="col">
+                        <div class="row">
+                            <span class="col description-first-part">@notification.Description</span>
+                            <span class="col-auto description-second-part"></span>
+                            <span class="col-12 description-date" title="@notification.DateOfPost.ToISOString()"></span>
+                        </div>
+                    </div>
+
+                    <a title="close notification" class="col-auto close-notification-anchor text-center ml-auto" asp-action="CloseNotification" asp-route-id="@notification.Id">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section JsFiles {
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/feedsNotifications.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery.timeago.js" type="text/javascript"></script>
+        <script src="~/js/FeedsNotifications.js" type="text/javascript"></script>
+    </environment>
+}

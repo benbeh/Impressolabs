@@ -1,0 +1,183 @@
+/* colors */
+/* fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+/* media queries */
+/* person profile */
+.company-profile-header {
+  padding: 40px 0;
+}
+.company-profile-header .profile-header-text {
+  font-weight: 900;
+  font-size: 36px;
+}
+.profile-card {
+  padding: 20px 15px 30px 35px;
+  background-color: white;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.profile-card .company-image {
+  padding: 0 25px;
+}
+.profile-card .company-image img {
+  width: 100px;
+  height: 100px;
+  box-shadow: 2px 2px 24px grey;
+}
+.profile-card .company-image .image-upload {
+  margin-left: -20px;
+  display: inline;
+}
+.profile-card .company-image .image-upload label {
+  margin: 0;
+}
+.profile-card .company-image .image-upload label i {
+  -moz-border-radius: 50%;
+  border-radius: 26px;
+  padding: 7px;
+  background: white;
+  color: #7E20C8;
+  box-shadow: 2px 2px 24px grey;
+}
+.profile-card .company-image .image-upload > input {
+  display: none;
+}
+.profile-card .profile-general-information {
+  padding-top: 25px;
+}
+.profile-card .profile-general-information input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
+.profile-card .profile-general-information input:-webkit-autofill:hover,
+.profile-card .profile-general-information input:-webkit-autofill:focus,
+.profile-card .profile-general-information input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+.profile-card .profile-general-information .company-name {
+  border: 0;
+  font-size: 17px;
+  font-weight: 700;
+  display: block;
+}
+.profile-card .profile-general-information .company-name:focus {
+  outline: unset;
+}
+.profile-card .profile-general-information .company-industry {
+  font-size: 14px;
+  color: #9E9E9E;
+  border: 0;
+  margin-left: -4px;
+}
+.profile-card .profile-general-information .company-industry:focus {
+  outline: unset;
+}
+.profile-card .profile-general-information .location-tokens-block {
+  margin-top: 50px;
+}
+.profile-card .profile-general-information .location-tokens-block .location-block .company-location img {
+  width: 14px;
+}
+.profile-card .profile-general-information .location-tokens-block .location-block .company-location .company-location-text {
+  font-size: 12px;
+  margin-left: 5px;
+  border: 0;
+}
+.profile-card .profile-general-information .location-tokens-block .location-block .company-location .company-location-text:focus {
+  outline: unset;
+}
+.profile-card .profile-general-information .location-tokens-block .location-block .company-employees {
+  margin-top: 10px;
+}
+.profile-card .profile-general-information .location-tokens-block .location-block .company-employees img {
+  width: 22px;
+}
+.profile-card .profile-general-information .location-tokens-block .location-block .company-employees .company-employees-text {
+  font-size: 12px;
+  margin-left: 5px;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .title {
+  font-weight: 700;
+  color: #080808;
+  margin-bottom: 5px;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .content {
+  font-size: 12px;
+  color: #9E9E9E;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .switch-light {
+  margin-bottom: 0px;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .switch-light input:focus {
+  outline: 0 !important;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .switch-light a {
+  background-color: white;
+  border-radius: 30px;
+  border-color: #7E20C8;
+  border: 0px;
+  outline: unset;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .switch-light a:hover {
+  background-color: white;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .switch-light a:active {
+  background-color: white;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .switch-light > span {
+  background-color: #7E20C8;
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+.profile-card .profile-general-information .location-tokens-block .tokens-block .switch-light .alert-light {
+  border-radius: 30px;
+}
+.profile-card .profile-general-information .divider-description {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+.profile-card .profile-general-information .description {
+  margin-top: 10px;
+}
+.profile-card .profile-general-information .description .title {
+  font-weight: 800;
+}
+.profile-card .profile-general-information .description .last-update {
+  float: right;
+  font-size: 12px;
+  color: #9E9E9E;
+}
+.profile-card .profile-general-information .description .text-container {
+  margin-top: 10px;
+  line-height: 26px;
+  height: auto;
+}
+.profile-card .profile-general-information .description .text-container textarea {
+  width: 100%;
+  border: 0;
+}
+.profile-card .profile-general-information .description .text-container textarea:focus {
+  outline: unset;
+}
+.profile-card .update-button {
+  width: 100%;
+  margin-top: 30px;
+  border: 0;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+.profile-card .update-button:hover {
+  background-position: right center;
+}
+.profile-card .update-button:focus {
+  outline: unset;
+}

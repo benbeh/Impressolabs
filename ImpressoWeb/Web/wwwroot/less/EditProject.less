@@ -1,0 +1,77 @@
+﻿@import "Variables.less";
+
+.project-header {
+    padding: 40px 0px;
+
+    .project-header-text {
+        font-weight: 900;
+        font-size: 36px;
+    }
+}
+
+.information {
+    background: @white-color;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+
+        &::placeholder {
+            color: @black-color;
+        }
+    }
+
+    .name-label {
+        margin: 0px;
+        color: @light-gray-color;
+        text-transform: uppercase;
+    }
+}
+
+.delete-project-form {
+    margin: 0px 10px;
+
+    .delete-project {
+        border-radius: 20px;
+        padding: 7px 15px;
+        color: white;
+        border: 0;
+        background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+        background-size: 180% auto;
+        transition: .8s;
+        background-color: transparent;
+
+        &:hover {
+            background-position: right center;
+        }
+
+        &:focus {
+            outline: unset;
+        }
+    }
+}
+
+.update-button {
+    margin-top: 25px;
+    color: @white-color;
+    border: 0;
+    border-radius: 20px;
+    width: 80%;
+    background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+    background-size: 180% auto;
+    transition: .8s;
+    background-color: transparent;
+    font-size: 13px;
+    padding: 12px 25px;
+
+    &:hover {
+        background-position: right center;
+    }
+
+    &:focus {
+        outline: unset;
+    }
+}

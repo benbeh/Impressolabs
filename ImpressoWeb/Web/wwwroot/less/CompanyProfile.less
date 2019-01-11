@@ -1,0 +1,451 @@
+﻿@import "Variables.less";
+
+.company-profile-nav {
+    background-color: @white-color;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding-top: 30px;
+
+    .company-photo {
+        margin-bottom: 0px;
+        margin-left: 12px;
+
+        img {
+            width: 105px;
+            height: 105px;
+            box-shadow: 2px 2px 24px grey;
+        }
+
+        .image-upload {
+            margin-left: -20px;
+            display: inline;
+
+            label {
+                margin: 0;
+
+                i {
+                    -moz-border-radius: 50%;
+                    border-radius: 26px;
+                    padding: 7px;
+                    background: @white-color;
+                    color: @main-color;
+                    box-shadow: 2px 2px 24px grey;
+                }
+            }
+        }
+
+        .image-upload > input {
+            display: none;
+        }
+    }
+
+    .company-information {
+        text-align: center;
+
+        #name {
+            font-size: 34px;
+            font-weight: bold;
+            padding-top: 9px;
+            margin-bottom: 0px;
+        }
+
+        #industry {
+            font-size: 13px;
+            margin-bottom: 11px;
+        }
+    }
+
+    .create-item {
+        position: absolute;
+        left: 50px;
+        top: 25px;
+
+        .create-button {
+            color: white;
+            border: 0;
+            border-radius: 20px;
+            background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+            font-size: 13px;
+            padding: 5px 25px;
+
+            &:hover {
+                background-position: right center;
+            }
+        }
+    }
+
+    .company-profile-full-information {
+
+        .nav-company-profile {
+            border: 0;
+            margin-bottom: 3px;
+
+            .nav-item {
+                padding-right: 30px;
+                padding-left: 30px;
+
+                .nav-link {
+                    padding: 18px 0;
+                    background: transparent;
+                    border: 0;
+                    width: min-content;
+                    font-size: 18px;
+                    font-weight: 800;
+                    color: @black-color;
+                }
+
+                .active {
+                    border-bottom: 2px solid @main-color;
+                    color: @main-color;
+                }
+            }
+        }
+    }
+}
+
+
+//tabs
+.tab-content-company-profile {
+    margin-bottom: 20px;
+    //projects
+    .project-description {
+        background: @white-color;
+        margin: 20px 5px 0px 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 0;
+
+        .information {
+            #name {
+                font-weight: bold;
+                font-size: 19px;
+                margin: 0px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 30px;
+            }
+
+            #description-project {
+                padding: 0px 0px 0px 0px;
+                margin: 0px;
+                font-size: 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 40px;
+            }
+
+            span {
+                font-size: 11px;
+                color: @light-gray-color;
+                margin-right: 10px;
+            }
+        }
+
+        .button-next {
+            i {
+                font-size: 14px;
+                color: @main-color;
+            }
+        }
+    }
+    //jobs
+    .job-description {
+        background: @white-color;
+        margin: 20px 5px 0px 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 0;
+
+        .information {
+            #name {
+                font-weight: bold;
+                font-size: 17px;
+                margin: 0px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 30px;
+            }
+
+            span {
+                font-size: 13px;
+                color: @light-gray-color;
+                margin-right: 10px;
+            }
+        }
+
+        .button-next {
+            i {
+                font-size: 14px;
+                color: @main-color;
+            }
+        }
+    }
+
+    .divider {
+        margin-top: 82px;
+    }
+
+    .jobs-applicants {
+        margin: 20px 0px;
+
+        p {
+            margin-bottom: 0px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .view-all-applicants-button {
+            cursor: pointer;
+            width: 100%;
+            color: @black-color;
+            padding: 13px 20px 14px 20px;
+            border-radius: 14px;
+            background: @white-color;
+            border: 0px;
+
+            &:focus {
+                outline: unset;
+            }
+
+            &:hover {
+                color: @main-color;
+            }
+        }
+    }
+    //tokens
+    .general-information {
+        background: @white-color;
+        border-radius: 10px;
+        margin-top: 20px;
+        text-align: center;
+
+        #title {
+            font-size: 17px;
+            padding-top: 20px;
+            margin-bottom: 0px;
+        }
+
+        #count {
+            padding-bottom: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    }
+
+    .token-description {
+        background: @white-color;
+        margin: 20px 0px 0px 0px;
+        border-radius: 10px;
+
+        .token-date {
+            p {
+                padding-top: 10px;
+            }
+        }
+
+        .information {
+            padding-left: 30px;
+
+            #title {
+                padding-top: 10px;
+                font-weight: bold;
+                margin-bottom: 2px;
+            }
+
+            #description {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+#CreateModal, #CreateProjectModal, #CreateJobModal {
+    .create-text {
+        font-weight: 600;
+    }
+
+    .create-button, .cancel-button {
+        width: 70%;
+        padding: 13px 25px 13px 25px;
+        border-radius: 25px;
+
+        &:focus {
+            outline: unset;
+        }
+    }
+
+    .create-button {
+        margin-top: 20px;
+        color: white;
+        border: 0;
+        background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+        background-size: 180% auto;
+        transition: .8s;
+        background-color: transparent;
+
+        &:hover {
+            background-position: right center;
+        }
+    }
+
+    .cancel-button {
+        color: @black-color;
+        border: 2px solid @light-gray-color;
+        background: @white-color;
+    }
+}
+
+#CreateProjectModal, #CreateJobModal {
+    overflow-y: hidden;
+
+    .modal-body {
+        padding: 20px 45px;
+    }
+}
+
+#CreateModal {
+    overflow-y: hidden;
+
+    .modal-body {
+        padding: 45px;
+    }
+
+    .create-text {
+        margin-bottom: 20px;
+    }
+
+    .cancel-button {
+        margin-top: 40px;
+    }
+}
+
+#CreateProjectModal {
+    .create-text {
+        margin-bottom: 50px;
+    }
+
+    .cancel-button {
+        margin-top: 20px;
+    }
+
+    .project-title {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        margin-bottom: 20px;
+        border: 0;
+        border-bottom: 1px solid silver;
+        font-weight: 600;
+
+        &:focus {
+            outline: unset;
+        }
+    }
+
+    .project-description {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        margin-bottom: 20px;
+        border: 0;
+        color: @light-gray-color;
+        font-weight: 400;
+
+        &:focus {
+            outline: unset;
+        }
+    }
+}
+
+#CreateJobModal {
+    .create-text {
+        margin-bottom: 50px;
+    }
+
+    .cancel-button {
+        margin-top: 20px;
+    }
+
+    .job-title {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        margin-bottom: 20px;
+        border: 0;
+        border-bottom: 1px solid silver;
+        font-weight: 600;
+
+        &:focus {
+            outline: unset;
+        }
+    }
+
+    .project {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+
+        select {
+            width: 100%;
+            padding: 10px 15px;
+
+            &:focus {
+                outline: unset;
+            }
+        }
+
+        .create-project-anchor {
+            margin: 20px 0px;
+            color: @main-color;
+        }
+    }
+}
+
+/* media queries */
+@media (max-width: @screen-exs-max) {
+    .project-description .project-start-date {
+        display: block;
+    }
+
+    .job-description .number-of-candidates {
+        display: block;
+    }
+}
+
+@media (max-width: @screen-exs-max) {
+    .project-description .project-start-date {
+        display: block;
+    }
+
+    .job-description .number-of-candidates {
+        display: block;
+    }
+}
+
+@media (max-width: @screen-exs-max) {
+    .project-description .project-start-date {
+        display: block;
+    }
+
+    .job-description .number-of-candidates {
+        display: block;
+    }
+}
+
+@media (max-width: @screen-sm-max) {
+    .company-profile-nav .create-item {
+        position: initial;
+        text-align: center;
+        margin: 10px 0;
+
+        .create-button {
+            padding: 7px 50px;
+        }
+    }
+}

@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model SavePersonForProjectViewModel
+
+<environment include="Staging, Production">
+    <link type="text/css" rel="stylesheet" href="~/css/bundles/save-person-for-project.min.css" />
+</environment>
+
+<environment include="Development">
+    <link type="text/css" rel="stylesheet" href="~/css/SavePersonForProject.css" />
+</environment>
+
+<div class="modal fade" id="SavePersonForProjectModal" role="dialog">
+    <div class="modal-dialog">
+
+        <form asp-action="SavePersonForProject" asp-controller="Relationship" method="post">
+            @Html.AntiForgeryToken()
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    @if (Model == null)
+                    {
+                        <h3 class="text-center">You cannot connect people as you are not in a company</h3>
+                        <div class="connect-cancel-buttons text-center">
+                            <button class="cancel-button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <input type="hidden" name="userId" id="ChosenSaveUserId" />
+                        <input type="hidden" name="returnUrl" value="@Context.Request.GetDisplayUrl()" />
+
+                        <p class="invitation-text text-center">
+                            Save candidate for<br />
+                            the project
+                        </p>
+
+                        <div class="user text-center">
+                            <img class="rounded-circle user-image" alt="user image" src="~/images/profile.jpg" />
+                            <div class="user-information">
+                                <div class="user-name text-left"></div>
+                                <div class="user-industry text-left"></div>
+                                <div class="user-location text-left"></div>
+                            </div>
+                        </div>
+
+                        <div class="project-dropdown">
+                            <img alt="arrow down" src="~/images/Black/arrowDown.svg" />
+                            <select name="projectId"></select>
+                        </div>
+
+                        <div class="connect-cancel-buttons text-center">
+                            <button class="connect-button" type="submit">Connect</button>
+                            <button class="cancel-button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<environment include="Staging, Production">
+    <script src="~/js/bundles/save-person-for-project.min.js" type="text/javascript"></script>
+</environment>
+
+<environment include="Development">
+    <script type="text/javascript" src="~/js/SavePersonForProject.js"></script>
+</environment>

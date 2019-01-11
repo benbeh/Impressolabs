@@ -1,0 +1,157 @@
+﻿@model ProjectViewModel
+
+@{
+    ViewBag.Page = "Profile";
+    var jobs = ((ConnectPersonCompanyViewModel)ViewBag.ConnectPerson).Jobs.ToList();
+}
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/project-details.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/ProjectDetails.css" />
+    </environment>
+}
+
+<div class="container">
+    
+    <!-- Connect modal -->
+    @Html.Partial("ConnectPerson", (ConnectPersonCompanyViewModel)ViewBag.ConnectPerson)
+
+    <div class="row project-header">
+        <div class="col-2">
+            <a title="Profile" asp-action="Company">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+
+        <div class="col-8 text-center">
+            <h2 class="project-header-text">@Model.Name</h2>
+        </div>
+
+        <div class="col-2">
+            <a title="Edit project" asp-action="EditProject" asp-route-projectId="@Model.Id" class="edit-project">
+                <input type="button" class="edit-project-button" value="Edit" />
+            </a>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <div class="row align-items-center information">
+                <div class="offset-1 col-10">
+                    <p class="name-label">Title</p>
+                    <p>@Model.Name</p>
+                </div>
+                @if (!String.IsNullOrEmpty(Model.Description))
+                {
+                    <div class="offset-1 col-10">
+                        <p class="name-label">Description</p>
+                        <p>@Model.Description</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="row jobs">
+        <div class="offset-2 col-8">
+
+            @if (Model.Jobs != null && Model.Jobs.Count != 0)
+            {
+                <p class="title">Jobs</p>
+
+                foreach (var job in Model.Jobs)
+                {
+                    <form asp-action="JobDetails" class="job-description-form" method="get">
+                        <input type="hidden" name="jobId" value="@job.Id" />
+
+                        <div class="row job-item align-items-center">
+                            <div class="col-11">
+                                <p class="job-name">@job.Title</p>
+                                <span class="project-name">@job.ProjectName</span>
+                                <span class="count-applicants">@job.ApplicantsCount applicants</span>
+                            </div>
+                            <div class="col-1">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                    </form>
+                }
+            }
+            else
+            {
+                <p class="title">This project doesn't have jobs</p>
+            }
+
+        </div>
+    </div>
+    
+
+    <div class="row applicants">
+        <div class="offset-2 col-8">
+
+            @if (Model.ProjectAppUsers != null && Model.ProjectAppUsers.Count != 0)
+            {
+                <p class="title">Applicants not connected with the job</p>
+
+
+                foreach (var projectAppUser in Model.ProjectAppUsers)
+                {
+                    var user = projectAppUser.AppUser;
+                    var userPhoto = "../images/Profile.jpg";
+                    if (!string.IsNullOrEmpty(user.Photo))
+                    {
+                        userPhoto = user.Photo;
+                    }
+
+                    <div class="row person-item align-items-center">
+                        <div class="col-auto">
+                            <img src="@userPhoto" class="rounded-circle"/>
+                        </div>
+                        <div class="col">
+                            <p class="user-name">@user.UserName</p>
+                            <span class="user-profession">@user.Profession</span>
+                        </div>
+                        <div class="col-2">
+                            @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == user.Id)))
+                            {
+                                <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-button-person-modal" data-user-name="@user.UserName" data-user-id="@user.Id">Connect</button>
+                            }
+                            else
+                            {
+                                <button class="connected-button-person-modal">Connected</button>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="title">This project doesn't have applicants not connected with the job</p>
+            }
+
+
+        </div>
+    </div>
+    
+
+</div>
+
+@section JsFiles {
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/project-details.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="~/lib/tether.js" type="text/javascript"></script>
+        <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+        <script src="~/js/ProjectDetails.js" type="text/javascript"></script>
+    </environment>
+}

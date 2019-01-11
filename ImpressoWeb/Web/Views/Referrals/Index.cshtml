@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TestimonialViewModel>
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/recommendations.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Recommendations.css" />
+    </environment>
+}
+
+<div class="container">
+    <div class="row recommendations">
+        <div class="offset-1 col-10">
+
+            <p class="title">Recommendations</p>
+
+            @if (Model != null && Model.Count() != 0)
+            {
+                <!-- recommendations -->
+                foreach (var testimonial in Model)
+                {
+                    var userPhoto = "../images/Profile.jpg";
+                    if (!string.IsNullOrEmpty(testimonial.RecommendedUserPhoto))
+                    {
+                        userPhoto = testimonial.RecommendedUserPhoto;
+                    }
+
+                    <div class="row testimonial-item align-items-center">
+                        <div class="col-3">
+                            <img src="@userPhoto" class="rounded-circle" />
+                            <span class="user-name">@testimonial.RecommendedUserName</span>
+                        </div>
+                        <div class="col">
+                            <span class="user-profession">@testimonial.RecommendedUserCompanyPosition</span>
+                            <span class="position-content-divider">-</span>
+                            <span class="content">@testimonial.RecommenderName is recommending @testimonial.RecommendedUserName</span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="description-date" title="@testimonial.DateOfPost.ToISOString()"></span>
+                        </div>
+                        <div class="col-2">
+                            <form asp-action="Delete" asp-route-id="@testimonial.Id">
+                                <button class="delete-button" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h3 class="text-center">This user doesn't have recommendations</h3>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+@section JsFiles {
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/recommendations.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery.timeago.js" type="text/javascript"></script>
+        <script src="~/js/Recommendations.js" type="text/javascript"></script>
+    </environment>
+}

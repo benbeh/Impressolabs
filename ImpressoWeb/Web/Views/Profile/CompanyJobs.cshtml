@@ -1,0 +1,52 @@
+﻿@model CompanyProfileViewModel
+
+<div class="row">
+    <div class="offset-1 col-10 offset-lg-2 col-lg-8">
+        <div class="row">
+            
+            @foreach (var job in Model.Jobs)
+            {
+                <div class="col-12 col-lg-6">
+                    <form asp-action="JobDetails" class="job-description-form" method="get">
+                        <input type="hidden" name="jobId" value="@job.Id" />
+
+                        <div class="row job-description align-items-center">
+                            <div class="col information">
+                                <p id="name">@job.Title</p>
+                                <span>@job.ProjectName</span>
+                                <span class="number-of-candidates">@job.ApplicantsCount candidates</span>
+                            </div>
+                            <div class="col-auto ml-auto mr-5 button-next">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            }
+
+        </div>
+    </div>
+   
+</div>
+
+<div class="row">
+    <div class="offset-1 col-10 offset-lg-2 col-lg-8">
+        <hr class="divider" />
+    </div>
+</div>
+
+<div class="row jobs-applicants align-items-center text-center">
+    <div class="offset-1 col-10 offset-lg-2 col-lg-8">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <p>Applicants</p>
+            </div>
+            <div class="col-12 col-sm-6">
+                <a asp-action="Applicants">
+                    <input type="button" class="view-all-applicants-button" value="View All Applicants"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

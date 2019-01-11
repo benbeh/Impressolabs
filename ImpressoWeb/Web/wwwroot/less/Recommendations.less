@@ -1,0 +1,60 @@
+﻿@import "Variables.less";
+
+.recommendations {
+    margin-bottom: 40px;
+
+    .title {
+        text-align: center;
+        font-weight: 900;
+        font-size: 36px;
+        color: @black-color;
+        margin: 25px 0px;
+    }
+
+    .testimonial-item {
+        padding: 15px 15px 15px 0px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        background: @white-color;
+
+        img {
+            margin: 5px;
+            width: 45px;
+        }
+
+        .delete-button {
+            width: 100%;
+            border: 0;
+            border-radius: 20px;
+            padding: 4px 5px;
+            color: white;
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+
+            &:hover {
+                background-position: right center;
+            }
+        }
+
+        .user-name {
+            margin-left: 10px;
+            font-weight: 800;
+            color: @black-color;
+        }
+
+        .user-profession, .content, .position-content-divider, .description-date {
+            font-size: 14px;
+            color: @light-gray-color;
+        }
+
+        .position-content-divider {
+            margin: 0px 5px;
+        }
+
+        .description-date {
+            margin-right: 20px;
+        }
+    }
+}

@@ -1,0 +1,223 @@
+﻿@model ApplicantsListsViewModel
+@{
+    ViewBag.Page = "Profile";
+    var jobs = ((ConnectPersonCompanyViewModel)ViewBag.ConnectPerson).Jobs.ToList();
+}
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/apllicants.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Applicants.css" />
+    </environment>
+}
+
+<!-- use scripts without section and before content
+in order to allow filter use own jquery library and do not have conflicts with bootstrap -->
+<environment include="Staging, Production">
+    <script src="~/js/bundles/applicants.min.js" type="text/javascript"></script>
+</environment>
+
+<environment include="Development">
+    <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/lib/tether.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+    <script src="~/js/Applicants.js" type="text/javascript"></script>
+</environment>
+
+<div class="container">
+
+    <!-- Connect modal -->
+    @Html.Partial("ConnectPerson", (ConnectPersonCompanyViewModel)ViewBag.ConnectPerson)
+    <!-- Filter modal -->
+    @Html.Partial("Filter", (PersonFilterValuesViewModel)ViewBag.Filter)
+
+    <div class="row applicants-header">
+        <div class="col-2">
+            <a title="Profile" asp-action="Company">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+
+        <div class="col-8 text-center">
+            <h2 class="applicants-title">All Applicants</h2>
+        </div>
+    </div>
+
+    <div class="row applicants">
+        <div class="offset-2 col-8">
+
+            <!-- search -->
+            <div class="row search-nav">
+                <div class="col-12 filter">
+                    <input type="text" placeholder="Name" id="FilterNameInput" />
+                    <img class="search-image" src="~/images/Black/search.svg" alt="search" />
+                    <img class="filter-image" src="~/images/Black/filter.svg" alt="filter" data-toggle="modal" data-target="#FilterModal" />
+                </div>
+            </div>
+
+            @if ((Model.TodayApplicants != null && Model.TodayApplicants.Any()) ||
+              (Model.EarlierApplicants != null && Model.EarlierApplicants.Any()) ||
+              (Model.EarlierApplicants != null && Model.EarlierApplicants.Any()))
+            {
+                <!-- today -->
+                if (Model.TodayApplicants != null && Model.TodayApplicants.Any())
+                {
+                    <div class="row applicants-list">
+
+                        <p class="title">Today</p>
+
+                        @foreach (var user in Model.TodayApplicants)
+                        {
+                            var userPhoto = "../images/Profile.jpg";
+                            if (!string.IsNullOrEmpty(user.Photo))
+                            {
+                                userPhoto = user.Photo;
+                            }
+                            <div class="col-12">
+
+                                <div class="row person-item align-items-center">
+
+                                    <div class="col-auto">
+                                        <img src="@userPhoto" class="rounded-circle" />
+                                    </div>
+
+                                    <div class="col col-md-3">
+                                        <p class="user-name">@user.UserName</p>
+                                        <span class="user-profession">@user.Profession</span>
+                                    </div>
+
+                                    <div class="col-12 col-md">
+                                        <span class="user-profession"><b>@user.JobName</b> in <b>@user.ProjectName</b> is assign to this person</span>
+                                    </div>
+
+                                    <div class="col-12 offset-sm-2 col-sm-8 offset-md-0 col-md-auto">
+                                        @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == user.Id)))
+                                        {
+                                            <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-button-person-modal" data-user-name="@user.UserName" data-user-id="@user.Id">Connect</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="connected-button-person-modal">Connected</button>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                <!-- this week -->
+                if (Model.ThisWeekApplicants != null && Model.ThisWeekApplicants.Any())
+                {
+                    <div class="row applicants-list">
+
+                        <p class="title">This week</p>
+
+                        @foreach (var user in Model.ThisWeekApplicants)
+                        {
+                            var userPhoto = "../images/Profile.jpg";
+                            if (!string.IsNullOrEmpty(user.Photo))
+                            {
+                                userPhoto = user.Photo;
+                            }
+                            <div class="col-12">
+
+                                <div class="row person-item align-items-center">
+
+                                    <div class="col-auto">
+                                        <img src="@userPhoto" class="rounded-circle" />
+                                    </div>
+
+                                    <div class="col col-md-3">
+                                        <p class="user-name">@user.UserName</p>
+                                        <span class="user-profession">@user.Profession</span>
+                                    </div>
+
+                                    <div class="col-12 col-md">
+                                        <span class="user-profession"><b>@user.JobName</b> in <b>@user.ProjectName</b> is assign to this person</span>
+                                    </div>
+
+                                    <div class="col-12 offset-sm-2 col-sm-8 offset-md-0 col-md-auto">
+                                        @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == user.Id)))
+                                        {
+                                            <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-button-person-modal" data-user-name="@user.UserName" data-user-id="@user.Id">Connect</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="connected-button-person-modal">Connected</button>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                <!-- earlier -->
+                if (Model.EarlierApplicants != null && Model.EarlierApplicants.Any())
+                {
+                    <div class="row applicants-list">
+
+                        <p class="title">Earlier</p>
+
+                        @foreach (var user in Model.EarlierApplicants)
+                        {
+                            var userPhoto = "../images/Profile.jpg";
+                            if (!string.IsNullOrEmpty(user.Photo))
+                            {
+                                userPhoto = user.Photo;
+                            }
+                            <div class="col-12">
+
+                                <div class="row person-item align-items-center">
+
+                                    <div class="col-auto">
+                                        <img src="@userPhoto" class="rounded-circle" />
+                                    </div>
+
+                                    <div class="col col-md-3">
+                                        <p class="user-name">@user.UserName</p>
+                                        <span class="user-profession">@user.Profession</span>
+                                    </div>
+
+                                    <div class="col-12 col-md">
+                                        <span class="user-profession"><b>@user.JobName</b> in <b>@user.ProjectName</b> is assign to this person</span>
+                                    </div>
+
+                                    <div class="col-12 offset-sm-2 col-sm-8 offset-md-0 col-md-auto">
+                                        @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == user.Id)))
+                                        {
+                                            <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-button-person-modal" data-user-name="@user.UserName" data-user-id="@user.Id">Connect</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="connected-button-person-modal">Connected</button>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+            }
+            else
+            {
+                <h3 class="text-center no-items">This company doesn't have applicants</h3>
+            }
+
+
+        </div>
+    </div>
+
+
+</div>

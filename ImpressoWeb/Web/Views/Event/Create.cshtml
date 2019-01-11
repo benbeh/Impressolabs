@@ -1,0 +1,129 @@
+﻿@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/event.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Event.css" />
+    </environment>
+}
+
+
+@model CreateEventViewModel
+
+<div class="container">
+    <form asp-action="Create" class="form" enctype="multipart/form-data">
+
+        <div class="row events-header">
+            <div class="col-1">
+                <a title="Event" asp-action="Index">
+                    <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+                </a>
+            </div>
+
+            <div class="col-10 text-center">
+                <h2 class="events-header-text">Create Event</h2>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="offset-2 col-8">
+                <div class="row align-items-center edit-event-information">
+                    <div class="offset-1 col-11">
+                        <p class="name-label">Title</p>
+                        <input asp-for="Title" placeholder="Enter name of event" />
+                    </div>
+
+                    <div class="offset-1 col-11 edit-event-desctiption">
+                        <p class="name-label">Description</p>
+                        <textarea rows='1' asp-for="Description" placeholder='Enter description of event'></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-8 text-center edit-location">
+                <p class="location-label">Location</p>
+                <input asp-for="Country" placeholder="Enter country of event" />
+                <input asp-for="City" placeholder="Enter city of event" />
+                <input asp-for="Address" placeholder="Enter address of event" />
+            </div>
+        </div>
+
+        <div class="row edit-times justify-content-center">
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4">
+                <p>Start</p>
+                <input type="hidden" asp-for="StartDate" id="StartDateInput" />
+                <input type="date" class="form-control mdy start-date" />
+                <input type="time" class="form-control time start-date" />
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4">
+                <p>Finish</p>
+                <input type="hidden" asp-for="EndDate" id="EndDateInput" />
+                <input type="date" class="form-control mdy end-date" />
+                <input type="time" class="form-control time end-date" />
+            </div>
+        </div>
+
+
+        <div class="row edit-type justify-content-center">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-8">
+                <p>Type</p>
+                @foreach (var type in Enum.GetValues(typeof(PrivacyTypeEnum)))
+                {
+                    if ((PrivacyTypeEnum)type == 0)
+                    {
+                        continue;
+                    }
+                    <input asp-for="PrivacyType" type="radio" value="@type" id="RadioButton_@type" />
+                    <label for="RadioButton_@type">@type</label>
+                }
+            </div>
+        </div>
+
+        <div class="row edit-image justify-content-center">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-8">
+                <p>Image</p>
+                <div class="image-upload">
+                    <label for="PhotoFile">
+                        <span readonly id="NameEventPhoto">Path of the photo</span>
+                        <span class="uploat-photo-button">Upload</span>
+                    </label>
+                    <input hidden type="file" id="PhotoFile" name="PhotoFile" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row control-buttons">
+            <div class="offset-4 col-4">
+                <button type="submit" class="update-button create-button">Create</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+@section JsFiles {
+    <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/lib/tether.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+    <script src="~/js/Event.js" type="text/javascript"></script>
+    <script>
+        var textarea = document.querySelector('textarea');
+
+        textarea.addEventListener('keydown', autosize);
+
+        function autosize() {
+            var el = this;
+            setTimeout(function () {
+                el.style.cssText = 'height:auto; padding:0';
+                // for box-sizing other than "content-box" use:
+                // el.style.cssText = '-moz-box-sizing:content-box';
+                el.style.cssText = 'height:' + el.scrollHeight + 'px';
+            }, 0);
+        }
+    </script>
+}

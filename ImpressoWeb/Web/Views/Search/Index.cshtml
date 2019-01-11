@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Page = "Search";
+    var jobs = ((ConnectPersonCompanyViewModel)ViewBag.ConnectPerson).Jobs.ToList();
+}
+
+@model IEnumerable<Core.Entities.AppUser>
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/search.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Search.css">
+    </environment>
+}
+
+<!-- use scripts without section and before content
+in order to allow filter use own jquery library and do not have conflicts with bootstrap -->
+<environment include="Staging, Production">
+    <script src="~/js/bundles/search.min.js" type="text/javascript"></script>
+</environment>
+
+<environment include="Development">
+    <script src="~/lib/tether.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/js/Search.js"></script>
+</environment>
+
+<div class="container">
+
+    <!-- menu -->
+    <div class="row search-nav">
+        <div class="offset-1 col-10 offset-md-2 col-md-8 offset-lg-3 col-lg-6 filter">
+            <input type="text" placeholder="Name" id="FilterNameInput" />
+            <img class="search-image" src="~/images/Black/search.svg" alt="search" />
+            <img class="filter-image" src="~/images/Black/filter.svg" alt="filter" data-toggle="modal" data-target="#FilterModal" />
+        </div>
+    </div>
+
+    <!-- Filter modal -->
+    @Html.Partial("Filter", (PersonFilterValuesViewModel)ViewBag.Filter)
+    <!-- Connect modal -->
+    @Html.Partial("ConnectPerson", (ConnectPersonCompanyViewModel)ViewBag.ConnectPerson)
+
+
+    <div class="row">
+
+        <div class="offset-1 col-10 offset-lg-2 col-lg-8">
+            <div class="row" id="ListCards">
+                @foreach (var user in Model)
+                {
+                    <div class="col-12 col-lg-6 person-card align-items-center">
+
+                        <div class="row align-items-center">
+                            <div class="col-2 person-image">
+                                @{
+                                    var userPhoto = "../images/Profile.jpg";
+                                    if (!string.IsNullOrEmpty(user.Photo))
+                                    {
+                                        userPhoto = user.Photo;
+                                    }
+                                }
+                                <img src="@userPhoto" alt="proflie" class="rounded-circle" />
+                            </div>
+
+                            <div class="col-6 col-md-7 col-lg-6 person-information">
+                                <div class="person-name">@user.UserName</div>
+                                <p class="person-profession">@user.Profession</p>
+                            </div>
+
+                            <div class="col-4 col-md-3 col-lg-4">
+                                @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == user.Id)))
+                                {
+                                    <div class="connect text-center">
+                                        <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-person-modal-button" data-user-name="@user.UserName" data-user-id="@user.Id">Connect</button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="connected text-center">
+                                        <button class="connect-person-modal-button">Connected</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

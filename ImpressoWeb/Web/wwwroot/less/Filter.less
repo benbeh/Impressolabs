@@ -1,0 +1,89 @@
+﻿@import "Variables.less";
+
+#FilterModal {
+
+    .modal-header {
+        .close {
+            img {
+                width: 24px;
+            }
+        }
+
+        .modal-title {
+            margin-left: 20px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .confirm {
+            color: white;
+            border-radius: 25px;
+            padding: 5px 25px;
+            border: 0;
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+
+            &:hover {
+                background-position: right center;
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 30px 15px;
+
+        .filter-item {
+            margin-bottom: 15px;
+        }
+
+        .title {
+            color: @light-gray-color;
+            text-transform: uppercase;
+        }
+
+        .content {
+            padding: 12px 25px;
+            margin-bottom: 5px;
+            border: 2px solid silver;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 16px;
+
+            .tagit-choice {
+                color: white;
+                border-radius: 25px;
+                padding: 2px 32px 2px 18px;
+                border: 0;
+                margin: 0px 10px 10px 0px;
+                background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+                background-size: 180% auto;
+                transition: .8s;
+                background-color: transparent;
+
+                &:hover {
+                    background-position: right center;
+                }
+
+                .tagit-close {
+                    padding-right: 10px;
+                }
+            }
+
+            .tagit-new {
+                padding-top: 0;
+                padding-bottom: 0;
+                color: black;
+            }
+        }
+
+        .location {
+            width: 100%;
+
+            &:focus {
+                outline: unset;
+            }
+        }
+    }
+}

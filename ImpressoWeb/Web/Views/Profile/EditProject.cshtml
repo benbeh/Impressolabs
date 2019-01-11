@@ -1,0 +1,86 @@
+﻿@model ProjectViewModel
+
+@{
+    ViewBag.Page = "Profile";
+}
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/edit-project.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/EditProject.css" />
+    </environment>
+}
+
+<div class="container">
+
+    <div class="row project-header">
+        <div class="col-2">
+            <a title="Profile" asp-action="ProjectDetails" asp-route-ProjectId="@Model.Id">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+
+        <div class="col-8 text-center">
+            <h2 class="project-header-text">@Model.Name</h2>
+        </div>
+        
+        <div class="col-2">
+            @using (Html.BeginForm("DeleteProject", "Profile", FormMethod.Post, new {@class = "delete-project-form text-center"}))
+            {
+                <input type="hidden" name="id" value="@Model.Id"/>
+                <button type="submit" class="delete-project">Delete project</button>
+            }
+        </div>
+    </div>
+
+    
+    <form asp-action="EditProject" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CompanyId" />
+
+        <div class="row">
+            
+            <div class="offset-2 col-8">
+                <div class="row align-items-center information">
+                    
+                    <div class="offset-1 col-10">
+                        <div>
+                            <p class="name-label">Title</p>
+                            <input placeholder="Enter name of project" id="ChangeProjectNameInput" data-id="@Model.Id" asp-for="Name" required="required"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <p class="name-label">Description</p>
+                            <input placeholder="Enter description of project" asp-for="Description"/>
+                        </div>
+                    </div>
+
+                    <div class="offset-4 col-4 text-center">
+                        <input type="submit" value="Update" class="update-button"/>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+@section JsFiles {
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/edit-project.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="~/lib/tether.js" type="text/javascript"></script>
+        <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+        <script src="~/js/EditProject.js" type="text/javascript"></script>
+    </environment>
+}

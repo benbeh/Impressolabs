@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>searchSolid</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="1.02962428%" y1="48.9703757%" x2="98.9703757%" y2="48.9703757%" id="linearGradient-1">
+            <stop stop-color="#AC34AB" offset="0%"></stop>
+            <stop stop-color="#8A13D2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-2115.000000, -308.000000)" fill="url(#linearGradient-1)">
+            <path d="M2136.79112,328.803376 L2131.11159,323.212254 C2132.59835,321.596124 2133.51227,319.464208 2133.51227,317.112223 C2133.51227,312.078149 2129.36833,308 2124.25614,308 C2119.14394,308 2115,312.078149 2115,317.112223 C2115,322.139419 2119.14394,326.217568 2124.25614,326.217568 C2126.46496,326.217568 2128.49085,325.454204 2130.08214,324.181932 L2135.78436,329.793686 C2136.06287,330.068771 2136.5133,330.068771 2136.79112,329.793686 C2137.06963,329.525477 2137.06963,329.078462 2136.79112,328.803376" id="searchSolid"></path>
+        </g>
+    </g>
+</svg>

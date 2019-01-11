@@ -1,0 +1,62 @@
+﻿<div class="container-fluid header-menu-fluid">
+    <div class="container header-menu">
+        <div class="row align-items-center">
+
+            <div class="col-md-1 col-2 logo">
+                <a asp-action="People" asp-controller="Feeds">
+                    <img src="~/images/tabbar/logo.svg" alt="logo"/>
+                </a>
+            </div>
+
+            <div class="col-md-10 col-8">
+                <div class="row justify-content-center menu-items">
+
+                    @{
+                        string isActive(string page)
+                        {
+                            if (ViewBag.Page == page)
+                            {
+                                return "active";
+                            }
+                            return "";
+                        };
+                    }
+
+                    <div class="menu-item">
+                        <a asp-action="People" asp-controller="Feeds" class="@isActive("Feeds")" title="search page">
+                            <img class="passive-image" src="~/images/tabbar/feedsOutline.svg" alt="feed outline" />
+                            <img class="active-image" src="~/images/tabbar/feedSolid.svg" alt="feed solid" />
+                        </a>
+                    </div>
+
+                    <div class="menu-item">
+                        <a asp-action="Index" asp-controller="Search" class="@isActive("Search")" title="search page">
+                            <img class="passive-image" src="~/images/tabbar/searchOutline.svg" alt="search outline" />
+                            <img class="active-image" src="~/images/tabbar/searchSolid.svg" alt="search solid" />
+                        </a>
+                    </div>
+
+                    <div class="menu-item">
+                        <a asp-action="Index" asp-controller="Messages" class="@isActive("Messages")" title="messages page">
+                            <img class="passive-image" src="~/images/tabbar/messageOutline.svg" alt="message outline" />
+                            <img class="active-image" src="~/images/tabbar/messageFill.svg" alt="message solid" />
+                        </a>
+                    </div>
+
+                    <div class="menu-item">
+                        <a asp-action="Company" asp-controller="Profile" class="@isActive("Profile")" title="profile page">
+                            <img class="passive-image" src="~/images/tabbar/profileOutline.svg" alt="profile outline" height="22" width="22" />
+                            <img class="active-image" src="~/images/tabbar/profileFill.svg" alt="profile solid" height="22" width="22" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-1 col-2 text-right more-menu menu-item">
+                <img class="passive-image" src="~/images/tabbar/hambBlack.svg" alt="more menu" />
+                <img class="active-image" src="~/images/tabbar/hambColor.svg" alt="more menu" />
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+﻿@{
+    ViewBag.Page = "Feeds";
+    var jobs = ((ConnectPersonCompanyViewModel)ViewBag.ConnectPerson).Jobs.ToList();
+    var projects = ((SavePersonForProjectViewModel)ViewBag.SavePersonForProject).Projects.ToList();
+}
+
+@model PersonProfileViewModel
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/feeds.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Feeds.css" />
+    </environment>
+}
+
+<div class="container">
+    
+    <!-- Connect modal -->
+    @Html.Partial("ConnectPerson", (ConnectPersonCompanyViewModel)ViewBag.ConnectPerson)
+    
+    <!-- Save person for project modal -->
+    @Html.Partial("SavePersonForProject", (SavePersonForProjectViewModel)ViewBag.SavePersonForProject)
+
+    <div class="row person-profile-header">
+        <div class="col-1">
+            <a title="People" asp-action="People">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+
+        <div class="col-10 text-center">
+            <h2 class="profile-header-text">Profile</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 offset-md-1 col-md-10 offset-xl-2 col-xl-8">
+
+            <div class="feed profile-card row">
+
+                <div class="col-auto person-image">
+                    @{
+                        var userPhoto = "../images/Profile.jpg";
+                        if (!string.IsNullOrEmpty(Model.Photo))
+                        {
+                            userPhoto = Model.Photo;
+                        }
+                    }
+                    <img src="@userPhoto" alt="proflie" class="rounded-circle" />
+                </div>
+
+                <div class="col profile-general-information">
+                    @if (!string.IsNullOrEmpty(Model.FirstName) || !string.IsNullOrEmpty(Model.LastName))
+                    {
+                        <div class="person-name">@Model.FirstName @Model.LastName</div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.CompanyPosition))
+                    {
+                        <div class="person-profession">@Model.CompanyPosition</div>
+                    }
+                    @if (Model.Status != StatusEnum.None)
+                    {
+                        <div class="person-status">@Model.Status.GetDescription()</div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Location))
+                    {
+                        <div class="person-location">
+                            <img src="~/images/Black/pin.svg" alt="location"/>
+                            <span class="person-location-text">@Model.Location</span>
+                        </div>
+                    }
+                    <div class="person-connections">
+                        <img src="~/images/Black/people.svg" alt="connections"/>
+                        <span class="person-connections-text">@Model.Connections+ connections</span>
+                    </div>
+                </div>
+
+                <div class="col-1 person-rating-container">
+                    <div title="rating" class="text-center person-rating">
+                        <img src="~/images/Color/diamond.svg" alt="rating" class="person-rating-image" />
+                    </div>
+                </div>
+                
+                @if (!string.IsNullOrEmpty(Model.Intro))
+                {
+                    <div class="col-12 offset-lg-2 col-lg-10 description">
+                        <span class="title">Who am I</span>
+                        <span class="last-update">Last update on @Model.LastUpdate.ToString("MM/dd/yyyy")</span>
+                            
+                        <div class="text-container">
+                            <div class="content hideContent">
+                                @Model.Intro
+                            </div>
+                            <div class="show-more">
+                                <a href="#">more</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="person-invite col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == Model.Id)))
+                            {
+                                <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-button-person-modal" data-user-name="@Model.UserName" data-user-id="@Model.Id">Connect</button>
+                            }
+                            else
+                            {
+                                <button class="connected-button-person-modal">Connected</button>
+                            }
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            @if (!projects.All(project => project.ProjectAppUsers.Any(projectAppUser => projectAppUser.AppUserId == Model.Id)))
+                            {
+                                <button data-toggle="modal" data-target="#SavePersonForProjectModal" class="save-for-project-button" data-user-name="@Model.UserName" data-user-id="@Model.Id" data-user-industry="@Model.Industry">Save for project</button>
+                            }
+                            else
+                            {
+                                <button class="connected-button-person-modal">Saved for project</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="person-profile-full-information-row row">
+        <div class="col-12 offset-md-1 col-md-10 offset-xl-2 col-xl-8 person-profile-full-information">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-person-profile justify-content-center text-center" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#professional">
+                        <span>Professional</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#experience">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#recommendations">Recommendations</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content tab-content-person-profile">
+                <div id="professional" class="container tab-pane active">
+                    @Html.Partial("Professional", Model)
+                </div>
+                <div id="experience" class="container tab-pane fade">
+                    @Html.Partial("Experience", Model)
+                </div>
+                <div id="recommendations" class="container tab-pane fade">
+                    @Html.Partial("Recommendations", Model)
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section JsFiles {
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/feedsPerson.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="~/lib/tether.js" type="text/javascript"></script>
+        <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+        <script src="~/js/FeedsPerson.js" type="text/javascript"></script>
+    </environment>
+}
