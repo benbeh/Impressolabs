@@ -1,0 +1,56 @@
+﻿@{ 
+    Layout = "_AccountLayout";
+}
+
+@model AuthorizationViewModel
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/account.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Account.css" />
+    </environment>
+}
+
+<div class="vertical-center">
+    <div class="container">
+        <div class="row">
+
+            <div class="authentification-form">
+
+                <div class="text-white invitation-text">
+                    <h5>Log in</h5>
+                </div>
+
+                <div class="text-danger" asp-validation-summary="All"></div>
+
+                <form action="/Account/Login" method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+                    <div class="form-group">
+                        <input asp-for="Email" placeholder="Email" />
+                        <input asp-for="Password" placeholder="Password" />
+                        <p>
+                            <a asp-action="ForgotPassword" class="text-white small-text">Forgot your password?</a>
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Log in</button>
+                        <p>
+                            <a asp-action="Slider" class="text-white small-text" asp-route-returnurl="@ViewData["ReturnUrl"]">Sign up</a>
+                        </p>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+/* colors */
+/* fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+/* media queries */
+#FilterModal .modal-header .close img {
+  width: 24px;
+}
+#FilterModal .modal-header .modal-title {
+  margin-left: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+#FilterModal .modal-header .confirm {
+  color: white;
+  border-radius: 25px;
+  padding: 5px 25px;
+  border: 0;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+#FilterModal .modal-header .confirm:hover {
+  background-position: right center;
+}
+#FilterModal .modal-body {
+  padding: 30px 15px;
+}
+#FilterModal .modal-body .filter-item {
+  margin-bottom: 15px;
+}
+#FilterModal .modal-body .title {
+  color: #9E9E9E;
+  text-transform: uppercase;
+}
+#FilterModal .modal-body .content {
+  padding: 12px 25px;
+  margin-bottom: 5px;
+  border: 2px solid silver;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 16px;
+}
+#FilterModal .modal-body .content .tagit-choice {
+  color: white;
+  border-radius: 25px;
+  padding: 2px 32px 2px 18px;
+  border: 0;
+  margin: 0px 10px 10px 0px;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+#FilterModal .modal-body .content .tagit-choice:hover {
+  background-position: right center;
+}
+#FilterModal .modal-body .content .tagit-choice .tagit-close {
+  padding-right: 10px;
+}
+#FilterModal .modal-body .content .tagit-new {
+  padding-top: 0;
+  padding-bottom: 0;
+  color: black;
+}
+#FilterModal .modal-body .location {
+  width: 100%;
+}
+#FilterModal .modal-body .location:focus {
+  outline: unset;
+}

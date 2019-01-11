@@ -1,0 +1,99 @@
+/* colors */
+/* fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+/* media queries */
+#SavePersonForProjectModal .modal-body {
+  padding: 35px 90px;
+}
+#SavePersonForProjectModal .modal-body .user {
+  width: 75%;
+  margin: auto;
+  min-height: 75px;
+}
+#SavePersonForProjectModal .modal-body .user .user-image {
+  width: 75px;
+  height: 75px;
+  float: left;
+}
+#SavePersonForProjectModal .modal-body .user .user-information {
+  display: inline-block;
+  margin-left: 10px;
+}
+#SavePersonForProjectModal .modal-body .user .user-information .user-name {
+  font-size: 21px;
+  font-weight: 800;
+}
+#SavePersonForProjectModal .modal-body .user .user-information .user-industry {
+  font-weight: 600;
+}
+#SavePersonForProjectModal .modal-body .user .user-information .user-location {
+  font-size: 12px;
+  font-weight: 100;
+  color: #9E9E9E;
+}
+#SavePersonForProjectModal .modal-body .invitation-text {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+#SavePersonForProjectModal .modal-body .project-dropdown {
+  width: 100%;
+  position: relative;
+  margin-top: 55px;
+}
+#SavePersonForProjectModal .modal-body .project-dropdown select {
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 15px 25px;
+  border: 0;
+  border-radius: 15px;
+  font-weight: 500;
+  background: #EFEFF4;
+}
+#SavePersonForProjectModal .modal-body .project-dropdown select:focus {
+  outline: unset;
+}
+#SavePersonForProjectModal .modal-body .project-dropdown img {
+  position: absolute;
+  top: 21px;
+  right: 30px;
+  width: 20px;
+}
+#SavePersonForProjectModal .modal-body .connect-cancel-buttons {
+  width: 100%;
+}
+#SavePersonForProjectModal .modal-body .connect-cancel-buttons .connect-button,
+#SavePersonForProjectModal .modal-body .connect-cancel-buttons .cancel-button {
+  width: 70%;
+  padding: 10px 25px;
+  border-radius: 25px;
+}
+#SavePersonForProjectModal .modal-body .connect-cancel-buttons .connect-button {
+  color: white;
+  margin-top: 50px;
+  border: 0;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+#SavePersonForProjectModal .modal-body .connect-cancel-buttons .connect-button:hover {
+  background-position: right center;
+}
+#SavePersonForProjectModal .modal-body .connect-cancel-buttons .cancel-button {
+  color: #080808;
+  margin-top: 15px;
+  border: 2px solid #9E9E9E;
+  background: white;
+}
+/* media queries */
+@media (max-width: 480.9px) {
+  #SavePersonForProjectModal .modal-body {
+    padding: 35px;
+  }
+}

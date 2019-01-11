@@ -1,0 +1,36 @@
+﻿@model string
+
+<div class="feeds-nav row">
+
+    @{
+        var checkedClass = "";
+        var notificationImageSrc = "../images/Black/notification.svg";
+        if (Model == "Notifications")
+        {
+            checkedClass = "checked";
+            notificationImageSrc = "../images/Color/notification.svg";
+        }
+    }
+    <div class="col-auto notifications-nav-item text-center @checkedClass">
+        <a title="Notifications" asp-action="Notifications">
+            <img src="@notificationImageSrc" alt="Notifications" width="24" />
+        </a>
+        <div class="people-nav-item-bottom-border"></div>
+    </div>
+
+    @{
+        if (Model == "People")
+        {
+            checkedClass = "checked";
+        }
+        else
+        {
+            checkedClass = "";
+        }
+    }
+    <div class="col-auto ml-auto people-nav-item text-center @checkedClass">
+        <a title="People" asp-action="People">People</a>
+        <div class="people-nav-item-bottom-border"></div>
+    </div>
+
+</div>

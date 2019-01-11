@@ -1,0 +1,327 @@
+﻿// Configure bundling and minification for the project.
+// More info at https://go.microsoft.com/fwlink/?LinkId=808241
+[
+  // CSS Files
+  // layout
+  {
+    "outputFileName": "wwwroot/css/bundles/layout.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "wwwroot/css/Layout.css"
+    ]
+  },
+  // Account
+  {
+    "outputFileName": "wwwroot/css/bundles/account.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Account.css"
+    ]
+  },
+  // RegistrationFirstStep
+  {
+    "outputFileName": "wwwroot/css/bundles/registrationFirstStep.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Account.css",
+      "node_modules/css-toggle-switch/dist/toggle-switch.css"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+  // RegistrationSecondStepCompany
+  {
+    "outputFileName": "wwwroot/css/bundles/registrationSecondStepCompany.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Account.css",
+      "node_modules/css-toggle-switch/dist/toggle-switch.css"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+  // Feeds
+  {
+    "outputFileName": "wwwroot/css/bundles/feeds.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Feeds.css"
+    ]
+  },
+  //ProfileCompany
+  {
+    "outputFileName": "wwwroot/css/bundles/profileCompany.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/CompanyProfile.css"
+    ]
+  },
+  // Search
+  {
+    "outputFileName": "wwwroot/css/bundles/search.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Search.css"
+    ]
+  },
+  // Filter
+  {
+    "outputFileName": "wwwroot/css/bundles/filter.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Filter.css",
+      "wwwroot/lib/ExtraLibraries/jquery-ui.1.10.4.css",
+      "node_modules/tag-it/css/jquery.tagit.css"
+    ]
+  },
+  // ProjectDetails
+  {
+    "outputFileName": "wwwroot/css/bundles/project-details.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/ProjectDetails.css"
+    ]
+  },
+  // EditProject
+  {
+    "outputFileName": "wwwroot/css/bundles/edit-project.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/EditProject.css"
+    ]
+  },
+  // JobDetails
+  {
+    "outputFileName": "wwwroot/css/bundles/job-details.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/JobDetails.css"
+    ]
+  },
+  // EditJob
+  {
+    "outputFileName": "wwwroot/css/bundles/edit-job.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/EditJob.css",
+      "wwwroot/lib/ExtraLibraries/jquery-ui.1.10.4.css"
+    ]
+  },
+  // Applicants
+  {
+    "outputFileName": "wwwroot/css/bundles/apllicants.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Applicants.css"
+    ]
+  },
+  // ConnectPerson
+  {
+    "outputFileName": "wwwroot/css/bundles/connect-person.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/ConnectPersonModal.css"
+    ]
+  },
+  // Event
+  {
+    "outputFileName": "wwwroot/css/bundles/event.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Event.css"
+    ]
+  },
+  // SavePersonForProject
+  {
+    "outputFileName": "wwwroot/css/bundles/save-person-for-project.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/SavePersonForProject.css"
+    ]
+  },
+  // Recommendations
+  {
+    "outputFileName": "wwwroot/css/bundles/recommendations.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/Recommendations.css"
+    ]
+  },
+  // EditCompanyProfile
+  {
+    "outputFileName": "wwwroot/css/bundles/edit-company-profile.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/css/EditCompanyProfile.css",
+      "node_modules/css-toggle-switch/dist/toggle-switch.css",
+      "wwwroot/lib/ExtraLibraries/jquery-ui.1.10.4.css"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+  // JS Files
+  // layout
+  {
+    "outputFileName": "wwwroot/js/bundles/layout.min.js",
+    "inputFiles": [
+      "node_modules/jquery/dist/jquery.js",
+      "wwwroot/js/Layout.js"
+    ]
+  },
+  // account layout
+  {
+    "outputFileName": "wwwroot/js/bundles/accountLayout.min.js",
+    "inputFiles": [
+      "node_modules/jquery/dist/jquery.js"
+    ]
+  },
+  // registrationSecondStepCompany
+  {
+    "outputFileName": "wwwroot/js/bundles/registrationSecondStepCompany.min.js",
+    "inputFiles": [
+      "wwwroot/js/RegistrationSecondStepCompany.js"
+    ]
+  },
+  // feedsNotifications
+  {
+    "outputFileName": "wwwroot/js/bundles/feedsNotifications.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery.timeago.js",
+      "wwwroot/js/FeedsNotifications.js"
+    ]
+  },
+  // feedsPeople
+  {
+    "outputFileName": "wwwroot/js/bundles/feedsPeople.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery-ui.min.js",
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/FeedsPeople.js"
+    ]
+  },
+  // feedsPerson
+  {
+    "outputFileName": "wwwroot/js/bundles/feedsPerson.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery-ui.min.js",
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/FeedsPerson.js"
+    ]
+  },
+  // profileCompany
+  {
+    "outputFileName": "wwwroot/js/bundles/profileCompany.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery-ui.min.js",
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/lib/ExtraLibraries/jquery.timeago.js",
+      "wwwroot/js/ProfileCompany.js"
+    ]
+  },
+  // searchFilter
+  {
+    "outputFileName": "wwwroot/js/bundles/searchFilter.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery.1.5.2.min.js",
+      "wwwroot/lib/ExtraLibraries/jquery-ui.1.8.12.min.js",
+      "node_modules/tag-it/js/tag-it.js",
+      "wwwroot/js/PersonFilter.js"
+    ]
+  },
+  // search
+  {
+    "outputFileName": "wwwroot/js/bundles/search.min.js",
+    "inputFiles": [
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/Search.js"
+    ]
+  },
+  // connectPerson
+  {
+    "outputFileName": "wwwroot/js/bundles/connect-person.min.js",
+    "inputFiles": [
+      "wwwroot/js/ConnectPersonModal.js"
+    ]
+  },
+  // savePersonForProject
+  {
+    "outputFileName": "wwwroot/js/bundles/save-person-for-project.min.js",
+    "inputFiles": [
+      "wwwroot/js/SavePersonForProject.js"
+    ]
+  },
+  // ProjectDetails
+  {
+    "outputFileName": "wwwroot/js/bundles/project-details.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery-ui.min.js",
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/ProjectDetails.js"
+    ]
+  },
+  // EditProject
+  {
+    "outputFileName": "wwwroot/js/bundles/edit-project.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery-ui.min.js",
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/EditProject.js"
+    ]
+  },
+  // JobDetails
+  {
+    "outputFileName": "wwwroot/js/bundles/job-details.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery-ui.min.js",
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/JobDetails.js"
+    ]
+  },
+  // EditJob
+  {
+    "outputFileName": "wwwroot/js/bundles/edit-job.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery.1.5.2.min.js",
+      "wwwroot/lib/ExtraLibraries/jquery-ui.1.8.12.min.js",
+      "wwwroot/js/EditJob.js"
+    ]
+  },
+  // Applicants
+  {
+    "outputFileName": "wwwroot/js/bundles/applicants.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery-ui.min.js",
+      "node_modules/tether/dist/js/tether.min.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/Applicants.js"
+    ]
+  },
+  // Recommendations
+  {
+    "outputFileName": "wwwroot/js/bundles/recommendations.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery.timeago.js",
+      "wwwroot/js/Recommendations.js"
+    ]
+  },
+  // EditCompanyProfile
+  {
+    "outputFileName": "wwwroot/js/bundles/edit-company-profile.min.js",
+    "inputFiles": [
+      "wwwroot/lib/ExtraLibraries/jquery.1.5.2.min.js",
+      "wwwroot/lib/ExtraLibraries/jquery-ui.1.8.12.min.js",
+      "wwwroot/js/EditCompanyProfile.js"
+    ]
+  }
+]

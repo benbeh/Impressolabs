@@ -1,0 +1,156 @@
+﻿@model CompanyViewModel
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/edit-company-profile.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/EditCompanyProfile.css" />
+        <link type="text/css" rel="stylesheet" href="~/lib/toggle-switch.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/ExtraLibraries/jquery-ui.1.10.4.css">
+    </environment>
+}
+
+<div class="container">
+
+    <div class="row company-profile-header">
+        <div class="col-1">
+            <a title="Company" asp-action="Company">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+
+        <div class="col-10 text-center">
+            <h2 class="profile-header-text">Company Profile Edit</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            
+            <form asp-action="EditCompanyProfile" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                
+                <input type="hidden" asp-for="Id" />
+
+                <div class="profile-card row">
+
+                    <div class="col-auto company-image">
+                        @{
+                            var companyPhoto = "../images/Profile.jpg";
+                            if (!string.IsNullOrEmpty(Model.CompanyLogoSource))
+                            {
+                                companyPhoto = Model.CompanyLogoSource;
+                            }
+                        }
+                        <img src="@companyPhoto" alt="proflie" class="rounded-circle" />
+                        <div class="image-upload">
+                            <label for="PhotoFile">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                            </label>
+
+                            <input type="file" id="PhotoFile" name="PhotoFile" />
+                        </div>
+                    </div>
+
+                    <div class="col profile-general-information">
+                        
+                        <input type="text" class="company-name" value="@Model.CompanyName" asp-for="CompanyName" placeholder="Name"/>
+
+                        <select class="company-industry" asp-for="CompanyArea">
+                            @foreach (IndustryEnum industry in ViewBag.Industries)
+                            {
+                                if (industry == Model.CompanyArea)
+                                {
+                                    <option value="@industry" selected>@industry.GetDescription()</option>
+                                }
+                                else
+                                {
+                                    <option value="@industry">@industry.GetDescription()</option>
+                                }
+                            }
+                        </select>
+                        
+                        <div class="location-tokens-block row">
+                            
+                            <div class="col-5 location-block">
+                                <div class="company-location">
+                                    <img src="~/images/Black/pin.svg" alt="location"/>
+                                    <input type="text" class="company-location-text" value="@Model.Location" asp-for="Location" placeholder="Location"/>
+                                </div>
+                                <div class="company-employees">
+                                    <img src="~/images/Black/people.svg" alt="connections"/>
+                                    <span class="company-employees-text">@Model.EmployeesCount+ employees</span>
+                                </div>
+                            </div>
+
+                            <div class="col-7 tokens-block">
+                                <div class="row">
+                                    
+                                    <div class="col-9">
+                                        <p class="title">Earn Tokens</p>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label class="switch-light" onclick="">
+                                            <input type="checkbox">
+
+                                            <span class="alert alert-light">
+                                                <span></span>
+                                                <span></span>
+                                                <a></a>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    
+                                    <p class="content col-12">
+                                        Earn Tokens<br/>
+                                        Receive Tokens by promotiong your profile to
+                                        advertises and companies
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <hr class="divider-description"/>
+                        
+
+
+                        <div class="description">
+                            <span class="title">Who we are</span>
+                            <span class="last-update">Last update on @Model.LastUpdate.ToString("MM/dd/yyyy")</span>
+
+                            <div class="text-container">
+                                <textarea rows="4" asp-for="WhoWeAreText" placeholder="Company description">@Model.WhoWeAreText</textarea>
+                            </div>
+                        </div>
+                                                
+                    </div>
+                    
+                    <div class="offset-4 col-4">
+                        <input type="submit" value="Update" class="update-button" />
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section JsFiles {
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/edit-company-profile.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery.1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="~/lib/ExtraLibraries/jquery-ui.1.8.12.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="~/js/EditCompanyProfile.js" type="text/javascript"></script>
+    </environment>
+}

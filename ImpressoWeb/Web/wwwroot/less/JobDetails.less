@@ -1,0 +1,165 @@
+﻿@import "Variables.less";
+
+.job-header {
+    padding: 40px 0px;
+
+    .job-header-name {
+        font-weight: 900;
+        font-size: 36px;
+        margin-bottom: 0px;
+    }
+
+    .edit-job-button {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 25px;
+        padding: 10px;
+        color: @black-color;
+        border: 2px solid @light-gray-color;
+        background: @main-background-color;
+
+        &:focus {
+            outline: unset;
+        }
+    }
+}
+
+.information {
+    background: @white-color;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    .name-label, .description-label {
+        margin: 0px;
+        color: @light-gray-color;
+        text-transform: uppercase;
+    }
+
+    .name, .description {
+        font-weight: 600;
+        color: @black-color;
+    }
+}
+
+.job-detailed-information {
+    margin-top: 55px;
+
+    .job-item {
+        margin: 0 -15px 20px -15px;
+
+        .title {
+            color: @light-gray-color;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            background: @white-color;
+            padding: 12px 25px;
+            margin-bottom: 5px;
+            border: 2px solid silver;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+    }
+}
+
+.applicants {
+    margin-bottom: 40px;
+
+    .title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .person-item {
+        padding: 0px 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background: @white-color;
+
+        img {
+            margin: 5px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .connect-button-person-modal, .connected-button-person-modal {
+            width: 100%;
+            border: 0;
+            border-radius: 20px;
+            padding: 4px 5px;
+        }
+
+        .connect-button-person-modal {
+            color: white;
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+
+            &:hover {
+                background-position: right center;
+            }
+        }
+
+        .connected-button-person-modal {
+            color: @black-color;
+            border: 2px solid @light-gray-color;
+            background: @white-color;
+        }
+
+        .user-name {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .user-profession {
+            font-size: 14px;
+            color: @light-gray-color;
+        }
+    }
+
+    // filter
+    .search-nav {
+        border-radius: 8px;
+        margin-bottom: 25px;
+
+        .filter {
+            padding-left: 0px;
+            padding-right: 0px;
+
+            input {
+                position: relative;
+                width: 100%;
+                border-radius: 25px;
+                border: 0;
+                padding: 13px 15px 13px 40px;
+                background-color: @white-color;
+
+                &:focus {
+                    outline: unset;
+                }
+            }
+
+            img {
+                position: absolute;
+                opacity: 0.4;
+                height: 16px;
+                top: 15px;
+            }
+
+            .search-image {
+                left: 15px;
+                top: 17px;
+            }
+
+            .filter-image {
+                right: 35px;
+                top: 17px;
+                cursor: pointer;
+            }
+        }
+    }
+}

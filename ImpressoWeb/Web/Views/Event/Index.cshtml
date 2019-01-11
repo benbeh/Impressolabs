@@ -1,0 +1,92 @@
+﻿@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/event.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Event.css" />
+    </environment>
+}
+@model IEnumerable<EventViewModel>
+
+<div class="container">
+    <div class="row events-header">
+        <div class="col-1">
+            <a title="Profile" asp-controller="Profile" asp-action="Company">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+        <div class="col-10 text-center">
+            <h2 class="events-header-text">All Events</h2>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            @{
+                var eventPhoto = "../images/Profile.jpg";
+                if (!string.IsNullOrEmpty(item.PictureSource))
+                {
+                    eventPhoto = item.PictureSource;
+                }
+            }
+            <div class="offset-2 col-8 open-event" data-form-id="@item.Id" style="background-image: url(@eventPhoto);">
+                <input type="hidden" name="eventId" value="@item.Id" />
+                <div class="row event-information">
+                    <div class="col-xl-2 col-lg-3 col-sm-4">
+                        <div class="calendar">
+                            <p id="month">@DateTime.Now.ToString("MMMM")</p>
+                            <p id="day">@DateTime.Now.Day</p>
+                        </div>
+                    </div>
+                    <div class="col-auto absolute-information">
+                        <div class="row">
+                            <div class="col-auto">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-auto">
+                                <p class="text">@item.StartDate.ToString("MMMMM") @item.StartDate.Day - @item.EndDate.ToString("MMMM") @item.EndDate.Day</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-auto">
+                                <p class="text">@item.Country, @item.City, @item.Address</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1 ml-auto p-0">
+                        @{ var popoverId = "MoreMenuPopover" + item.Id; }
+
+                        <div title="menu" class="text-center more-menu" data-popover-id="@popoverId">
+                            <i class="fa fa-ellipsis-v more-menu-image" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="more-menu-popover" id="@popoverId">
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                                <a class="edit-event-button text-center" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <button type="submit" class="delete-event-button text-center">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <p class="event-general-information">@item.PrivacyType - Hosted by @item.HostedByName</p>
+                        <p class="event-title">@item.Title</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section JsFiles {
+    <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/lib/tether.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+    <script src="~/js/Event.js" type="text/javascript"></script>
+}

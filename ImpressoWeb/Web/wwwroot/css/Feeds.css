@@ -1,0 +1,546 @@
+/* colors */
+/* fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+/* media queries */
+/* nav in the top of the page*/
+.feeds-nav {
+  background-color: white;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+.feeds-nav .people-nav-item,
+.feeds-nav .notifications-nav-item {
+  padding: 15px;
+  color: #7E20C8;
+  position: relative;
+}
+.feeds-nav .people-nav-item a,
+.feeds-nav .notifications-nav-item a {
+  padding: 15px 5px;
+}
+.feeds-nav .people-nav-item:hover .people-nav-item-bottom-border,
+.feeds-nav .notifications-nav-item:hover .people-nav-item-bottom-border {
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  background: #7E20C8;
+  bottom: 0px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+.feeds-nav .checked .people-nav-item-bottom-border {
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  background: #7E20C8;
+  bottom: 0px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+/* feed on the people page*/
+.feed {
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 6px;
+}
+.shown {
+  display: flex;
+}
+.closed {
+  display: none;
+}
+.closed-feed .description {
+  padding-left: 0px;
+}
+.closed-feed .undo {
+  margin: 15px 0;
+}
+.closed-feed .undo > button {
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+  font-size: 13px;
+  padding: 3px 18px;
+}
+.closed-feed .undo > button:hover {
+  background-position: right center;
+}
+.closed-feed .undo > button:focus {
+  outline: unset;
+}
+.closed-feed .close-feed-anchor > i {
+  font-size: 1em;
+  cursor: pointer;
+}
+.open-feed {
+  padding: 0px 10px;
+  cursor: pointer;
+}
+.open-feed .person-image {
+  padding: 15px;
+}
+.open-feed .person-image img {
+  width: 48px;
+  height: 48px;
+}
+.open-feed .person-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+.open-feed .person-profession,
+.open-feed .person-location,
+.open-feed .person-job,
+.open-feed .person-experience {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #9E9E9E;
+}
+.open-feed .more-menu {
+  padding: 0px 10px;
+}
+.open-feed .more-menu-image {
+  width: 6px;
+}
+.open-feed .person-invite {
+  margin: 20px 0;
+}
+.open-feed .person-invite .save-for-project-button,
+.open-feed .person-invite .connect-button-person-modal,
+.open-feed .person-invite .connected-button-person-modal {
+  width: 100%;
+  border: 0;
+  border-radius: 20px;
+  padding: 10px;
+}
+.open-feed .person-invite .save-for-project-button,
+.open-feed .person-invite .connect-button-person-modal {
+  color: white;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+.open-feed .person-invite .save-for-project-button:hover,
+.open-feed .person-invite .connect-button-person-modal:hover {
+  background-position: right center;
+}
+.open-feed .person-invite .connected-button-person-modal {
+  color: #080808;
+  border: 2px solid #9E9E9E;
+  background: white;
+}
+.open-feed .more-menu-popover {
+  display: none;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  top: 4px;
+  right: -186px;
+  z-index: 1;
+  width: 330px;
+  position: absolute;
+  margin: 3em;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(158, 158, 158, 0.8);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(158, 158, 158, 0.8);
+  box-shadow: 0px 0px 15px 0px rgba(158, 158, 158, 0.8);
+}
+.open-feed .more-menu-popover ::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin-left: 20px;
+  top: 0;
+  left: 50%;
+  box-sizing: border-box;
+  border: 1em solid black;
+  border-color: transparent transparent white white;
+  transform-origin: 0 0;
+  transform: rotate(135deg);
+  box-shadow: -4px 5px 9px 0 rgba(158, 158, 158, 0.1);
+}
+.open-feed .more-menu-popover .hide-profile-button,
+.open-feed .more-menu-popover .copy-link-button {
+  padding: 12px 90px;
+  border: 0;
+  margin: 0;
+  border-radius: 20px;
+  display: block;
+  text-decoration: none;
+}
+.open-feed .more-menu-popover .hide-profile-button {
+  color: white;
+  margin-bottom: 10px;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+.open-feed .more-menu-popover .hide-profile-button:hover {
+  color: white;
+  background-position: right center;
+}
+.open-feed .more-menu-popover .copy-link-button {
+  color: black;
+  background-color: #EFEFF4;
+}
+/* notification page*/
+.notification {
+  margin-bottom: 12px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 15px 30px;
+  cursor: pointer;
+}
+.notification .description-first-part {
+  padding: 0 5px 0 15px;
+}
+.notification .description-date {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #9E9E9E;
+}
+.notification-date-type-text {
+  margin: 20px 0 10px;
+  font-weight: 600;
+  font-size: 0.8em;
+  color: #9E9E9E;
+}
+.notification-date-type-text:first-child {
+  margin-top: 0px;
+}
+/* person profile */
+.person-profile-header {
+  padding: 40px 0;
+}
+.person-profile-header .profile-header-text {
+  font-weight: 900;
+  font-size: 36px;
+}
+.profile-card {
+  padding: 20px 15px 30px 35px;
+}
+.profile-card .person-image {
+  padding: 10px 25px 0 25px;
+}
+.profile-card .person-image img {
+  width: 100px;
+  height: 100px;
+}
+.profile-card .profile-general-information {
+  padding-top: 10px;
+}
+.profile-card .profile-general-information .person-name {
+  font-size: 17px;
+  font-weight: 700;
+}
+.profile-card .profile-general-information .person-profession {
+  font-size: 14px;
+  color: #9E9E9E;
+}
+.profile-card .profile-general-information .person-status {
+  margin-top: 5px;
+  font-weight: 400;
+}
+.profile-card .profile-general-information .person-location {
+  margin-top: 5px;
+}
+.profile-card .profile-general-information .person-location img {
+  width: 14px;
+}
+.profile-card .profile-general-information .person-location .person-location-text {
+  font-size: 12px;
+  margin-left: 5px;
+}
+.profile-card .profile-general-information .person-connections {
+  margin-top: 5px;
+}
+.profile-card .profile-general-information .person-connections img {
+  width: 22px;
+}
+.profile-card .profile-general-information .person-connections .person-connections-text {
+  font-size: 12px;
+  margin-left: 5px;
+}
+.profile-card .description {
+  margin-top: 10px;
+}
+.profile-card .description .title {
+  font-weight: 800;
+}
+.profile-card .description .last-update {
+  float: right;
+  font-size: 12px;
+  color: #9E9E9E;
+}
+.profile-card .description .text-container {
+  margin-top: 10px;
+  line-height: 26px;
+}
+.profile-card .description .text-container .hideContent {
+  overflow: hidden;
+  height: 52px;
+}
+.profile-card .description .text-container .showContent {
+  height: auto;
+}
+.profile-card .person-rating {
+  padding-top: 10px;
+}
+.profile-card .person-rating .person-rating-image {
+  width: 30px;
+}
+.profile-card .person-invite {
+  margin-top: 25px;
+}
+.profile-card .person-invite .save-for-project-button,
+.profile-card .person-invite .connect-button-person-modal,
+.profile-card .person-invite .connected-button-person-modal {
+  width: 100%;
+  border: 0;
+  border-radius: 20px;
+  padding: 10px;
+}
+.profile-card .person-invite .save-for-project-button,
+.profile-card .person-invite .connect-button-person-modal {
+  color: white;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+.profile-card .person-invite .save-for-project-button:hover,
+.profile-card .person-invite .connect-button-person-modal:hover {
+  background-position: right center;
+}
+.profile-card .person-invite .connected-button-person-modal {
+  color: #080808;
+  border: 2px solid #9E9E9E;
+  background: white;
+}
+/* naviagtion in the bottom of the page */
+.person-profile-full-information {
+  margin-top: 25px;
+  margin-bottom: 45px;
+  background: white;
+  /* navigation tabs */
+  /* tabs content */
+}
+.person-profile-full-information .nav-person-profile {
+  border: 0;
+}
+.person-profile-full-information .nav-person-profile .nav-item {
+  width: 33%;
+}
+.person-profile-full-information .nav-person-profile .nav-item .nav-link {
+  margin: 15px auto;
+  padding: 10px 0;
+  background: transparent;
+  border: 0;
+  width: min-content;
+  font-size: 18px;
+  font-weight: 800;
+  color: #080808;
+}
+.person-profile-full-information .nav-person-profile .nav-item .active {
+  border-bottom: 2px solid #7E20C8;
+  color: #7E20C8;
+}
+.person-profile-full-information .tab-content-person-profile {
+  margin: 40px 0;
+}
+.person-profile-full-information .tab-content-person-profile .professional-item,
+.person-profile-full-information .tab-content-person-profile .experience-item,
+.person-profile-full-information .tab-content-person-profile .recommendation-item,
+.person-profile-full-information .tab-content-person-profile .accomplishment-item {
+  margin-bottom: 15px;
+}
+.person-profile-full-information .tab-content-person-profile .recommendation-item .title,
+.person-profile-full-information .tab-content-person-profile .accomplishment-item .title {
+  display: inline-block;
+}
+.person-profile-full-information .tab-content-person-profile .recommendation-item .content,
+.person-profile-full-information .tab-content-person-profile .accomplishment-item .content {
+  margin-bottom: 15px;
+}
+.person-profile-full-information .tab-content-person-profile .view-all {
+  display: none;
+  float: right;
+  font-weight: 600;
+}
+.person-profile-full-information .tab-content-person-profile .title {
+  color: #9E9E9E;
+  text-transform: uppercase;
+}
+.person-profile-full-information .tab-content-person-profile .content {
+  padding: 12px 25px;
+  margin-bottom: 5px;
+  border: 2px solid silver;
+  border-radius: 15px;
+  font-weight: 600;
+  /* for reccomendation card */
+}
+.person-profile-full-information .tab-content-person-profile .content .profession {
+  font-weight: 900;
+  font-size: 18px;
+}
+.person-profile-full-information .tab-content-person-profile .content .date {
+  float: right;
+  color: #9E9E9E;
+  font-size: 14px;
+  font-weight: lighter;
+}
+.person-profile-full-information .tab-content-person-profile .content .message {
+  margin: 15px 0 30px;
+  font-weight: 500;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify button {
+  width: 20%;
+  border-radius: 9px;
+  padding: 2px 10px;
+  font-size: 14px;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verified-button {
+  color: white;
+  border: 0;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verified-button:hover {
+  background-position: right center;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verify-button {
+  color: #7E20C8;
+  border: 2px solid #7E20C8;
+  background: white;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verify-images {
+  display: inline-block;
+  margin-left: 80px;
+  position: relative;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verify-images img {
+  width: 30px;
+  height: 30px;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verify-images .verify-image-person-2 {
+  position: absolute;
+  right: 38px;
+  top: 0;
+  z-index: 2;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verify-images .verify-image-person-1 {
+  position: absolute;
+  right: 19px;
+  top: 0;
+  z-index: 1;
+}
+.person-profile-full-information .tab-content-person-profile .content .verify .verify-amount-of-people {
+  margin-left: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #9E9E9E;
+}
+.person-profile-full-information .tab-content-person-profile .accomplishment-item .accomplishment-text {
+  font-weight: 500;
+  font-size: 15px;
+}
+/* media queries */
+@media (max-width: 480.9px) {
+  .open-feed .person-invite .save-for-project-button {
+    margin-top: 10px;
+  }
+  .person-invite .row {
+    justify-content: unset!important;
+  }
+  .profile-card .last-update {
+    display: none;
+  }
+  .nav-person-profile .nav-item .nav-link {
+    font-size: 14px!important;
+  }
+  .person-profile-full-information .tab-content-person-profile .content .verify button {
+    width: 100%;
+    padding: 5px;
+  }
+  .person-profile-full-information .tab-content-person-profile .content .verify .verify-images {
+    display: none;
+  }
+  .person-profile-full-information .tab-content-person-profile .content .verify .verify-amount-of-people {
+    display: block;
+    margin-top: 7px;
+  }
+}
+@media (max-width: 575.9px) {
+  .profile-card {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .profile-card .person-image {
+    padding-left: 0;
+    padding-right: 15px;
+  }
+  .profile-card .profile-general-information {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .profile-card .person-rating-container {
+    padding-left: 0;
+  }
+  .profile-card .save-for-project-button {
+    margin-top: 15px;
+  }
+  .person-profile-full-information-row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+@media (min-width: 481px) and (max-width: 575.9px) {
+  .open-feed .person-invite .save-for-project-button {
+    margin-top: 10px;
+  }
+  .person-invite .row {
+    justify-content: unset !important;
+  }
+  .person-profile-full-information .tab-content-person-profile .content .verify button {
+    width: 25%;
+  }
+  .person-profile-full-information .tab-content-person-profile .content .verify .verify-images {
+    margin-left: 40px;
+  }
+  .person-profile-full-information .tab-content-person-profile .content .verify .verify-amount-of-people {
+    margin-left: 5px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 767.9px) {
+  .closed-feed .description {
+    padding-right: unset;
+    font-size: 14px;
+  }
+}
+@media (min-width: 992px) {
+  .profile-card .description {
+    padding-left: 40px;
+  }
+}
+@media (max-width: 991.9px) {
+  .person-profile-full-information .tab-content-person-profile .content .date {
+    float: unset;
+    display: block;
+  }
+}
