@@ -1,0 +1,260 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0FFFC6A3-7A77-413D-BBCF-8BE09807C36A}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ImpressoApp.Droid</RootNamespace>
+    <AssemblyName>ImpressoApp.Android</AssemblyName>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.3.840</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.4.3.840</Version>
+    </PackageReference>
+    <PackageReference Include="CarouselView.FormsPlugin">
+      <Version>5.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="BottomNavigationBar">
+      <Version>1.4.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Design">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v4">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.3.0.967583</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac">
+      <Version>4.8.1</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>2.5.13</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Compat">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Facebook.Android">
+      <Version>4.34.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\GradientStackRenderer.cs" />
+    <Compile Include="Renderers\GradientFrameRenderer.cs" />
+    <Compile Include="Renderers\RoundedViewRenderer.cs" />
+    <Compile Include="Utils\AndroidUtils.cs" />
+    <Compile Include="Renderers\GradientButtonRenderer.cs" />
+    <Compile Include="Renderers\CustomEntryRenderer.cs" />
+    <Compile Include="SplashActivity.cs" />
+    <Compile Include="Renderers\BaseTabbedPageRenderer.cs" />
+    <Compile Include="Renderers\CustomViewCellRenderer.cs" />
+    <Compile Include="Renderers\CustomDialog\MenuContainerPageDroidRenderer.cs" />
+    <Compile Include="Renderers\CustomDialog\SlideMenuDroidRenderer.cs" />
+    <Compile Include="FormsElementWrapper.cs" />
+    <Compile Include="Renderers\FitImageButtonRenderer.cs" />
+    <Compile Include="LayoutUtils.cs" />
+    <Compile Include="Renderers\CustomEntryPickerRenderer.cs" />
+    <Compile Include="Services\FacebookService.cs" />
+    <Compile Include="Services\ImageProcessService.cs" />
+    <Compile Include="Renderers\ButtonRenderer.cs" />
+    <Compile Include="Services\PlatformService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tabbar.axml" />
+    <AndroidResource Include="Resources\layout\Toolbar.axml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\drawable\defaultUserLogo.png" />
+    <AndroidResource Include="Resources\drawable\welcomeTopLogo.png" />
+    <AndroidResource Include="Resources\drawable\walkthrought1.png" />
+    <AndroidResource Include="Resources\drawable\walkthrought2.png" />
+    <AndroidResource Include="Resources\drawable\walkthrought3.png" />
+    <AndroidResource Include="Resources\drawable\walkthrought4.png" />
+    <AndroidResource Include="Resources\drawable\FacebookIcon.png" />
+    <AndroidResource Include="Resources\drawable\LinkedInIcon.png" />
+    <AndroidResource Include="Resources\drawable\SignUpInBig.png" />
+    <AndroidResource Include="Resources\drawable\cameraIcon.png" />
+    <AndroidResource Include="Resources\xml\file_paths.xml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\feedsOutline.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\feedsSolid.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\messageFill.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\messageOutline.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\profileFill.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\profileOutline.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\searchOutline.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\searchSolid.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\feedsOutline.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\feedsSolid.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\messageFill.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\messageOutline.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\profileFill.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\profileOutline.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\searchOutline.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\searchSolid.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\calendarWhite.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\pinWhite.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\calendarWhite.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pinWhite.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\moreMenuWhite.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\moreMenuWhite.png" />
+    <AndroidResource Include="Resources\drawable\event.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\calendar.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\pin.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\calendar.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pin.png" />
+    <AndroidResource Include="Resources\drawable\star.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\people.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\people.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\defaultProfileImageColor.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\defaultProfileImageColor.png" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\checkWhite.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\checkWhite.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tagColor.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tagColor.png" />
+    <AndroidResource Include="Resources\drawable\dialogBorder.xml" />
+    <AndroidResource Include="Resources\drawable\filter.png" />
+    <AndroidResource Include="Resources\drawable\search.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\arrowDown.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\arrowUp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\arrowDown.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\arrowUp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hamb.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\hamb.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\writeColor.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\writeColor.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\checkColor.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\checkColor.png" />
+    <AndroidResource Include="Resources\drawable\arrowRight.png" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\drawable\plus.png" />
+    <AndroidResource Include="Resources\drawable\notWorking.jpg" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\StarColor.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\StarOutline.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tag.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Write.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\StarColor.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\StarOutline.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tag.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Write.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\moreMenu.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\moreMenu.png" />
+    <AndroidResource Include="Resources\drawable\transparentForeground.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\FacebookIcon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\welcomeTopLogo.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\welcomeTopLogo.png" />
+    <AndroidResource Include="Resources\drawable\loading.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\walkthrought0.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\walkthrought0.png" />
+    <AndroidResource Include="Resources\drawable\splash_background.xml" />
+    <AndroidResource Include="Resources\drawable\SplashLogo.png" />
+    <AndroidResource Include="Resources\drawable\Splash.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Splash.png" />
+    <AndroidResource Include="Resources\drawable\splash_new.xml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\LoadingBack.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\SplashLogo.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\SplashLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Renderers\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Resources\xml\" />
+    <Folder Include="Renderers\CustomDialog\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImpressoApp\ImpressoApp.csproj">
+      <Project>{3E306C36-9F8C-44C0-962D-91506F29FF1A}</Project>
+      <Name>ImpressoApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseMvvmToolkit\BaseMvvmToolkit\BaseMvvmToolkit.csproj">
+      <Project>{BE05AA22-5672-4D7A-86AA-27C30DFAE485}</Project>
+      <Name>BaseMvvmToolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImpressoApp.CustomControls.CustomButton"
+             xmlns:controls="clr-namespace:ImpressoApp.Controls">
+            <controls:RoundedView x:Name="Layout"
+                                  VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  HeightRequest="45">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                    <Image x:Name="ImageIcon" 
+                           MinimumWidthRequest="25"
+                           MinimumHeightRequest="25"
+                           Aspect="AspectFill"/>
+                    <Label x:Name="TextLabel" 
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </controls:RoundedView>
+</ContentView>

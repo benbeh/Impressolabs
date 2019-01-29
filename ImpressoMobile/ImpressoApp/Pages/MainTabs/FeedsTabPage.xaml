@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:MenuContainerPage xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+               xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="ImpressoApp.Pages.MainTabs.FeedsTabPage"
+               xmlns:controls="clr-namespace:ImpressoApp.Controls"
+               xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+               xmlns:dataTemplates="clr-namespace:ImpressoApp.DataTemplateSelectors"
+               xmlns:templates="clr-namespace:ImpressoApp.UserControls.Feeds"
+               xmlns:behaviors="clr-namespace:ImpressoApp.Behaviors"
+               BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.Resources>
+      <ResourceDictionary>
+            <DataTemplate x:Key="peopleTemplate">
+                <templates:ConnectPeopleItemView TapCommand="{Binding BindingContext.PeopleItemTapCommand, Source={x:Reference ConnectListView}}" 
+                                                 ConnectTapCommand="{Binding BindingContext.ConnectTapCommand, Source={x:Reference ConnectListView}}"
+                                                 BookmarkTapCommand="{Binding BindingContext.PeopleBookmarkCommand, Source={x:Reference ConnectListView}}"
+                                                 RecommendTapCommand="{Binding BindingContext.RecommandPeopleCommand, Source={x:Reference ConnectListView}}"/>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="eventTemplate">
+                <templates:ConnectEventItemView TapCommand="{Binding BindingContext.EventTapCommand, Source={x:Reference ConnectListView}}"
+                                                InterestedTapCommand="{Binding BindingContext.InterestedEventCommand, Source={x:Reference ConnectListView}}"
+                                                ShareTapCommand="{Binding BindingContext.ShareEventCommand, Source={x:Reference ConnectListView}}"/>
+            </DataTemplate>
+            
+            <dataTemplates:ConnectListTemplateSelector x:Key="ConnectTypeSelector"
+                                                               ConnectPeopleViewTemplate="{StaticResource peopleTemplate}"
+                                                               ConnectEventViewTemplate="{StaticResource eventTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <controls:TabViewIndicator 
+                Grid.Row="0"
+                HeightRequest="40"
+                TabSelectedCommand="{Binding TabChangedCommand}"
+                TabItemsSource="{Binding Tabs}"
+                TabTextColor="{StaticResource GrayColor}"
+                TabSelectedTextColor="{StaticResource MagentaColor}"
+                TabBackgroundColor="White"
+                IsVisible="{Binding IsCompany, Converter={StaticResource BoolReverseConverter}}"/>
+            <Grid x:Name="FirstTab" 
+                  Grid.Row="1" 
+                  IsVisible="{Binding FirstTabActive}"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Fill">
+                <ListView
+                        x:Name="JobsListView"
+                        BackgroundColor="Transparent"
+                        Footer=" "                        
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding JobsList}"
+                        SelectedItem="{Binding SelectedJob, Mode=TwoWay}"
+                        SeparatorVisibility="None"
+                        Margin="0,5,0,0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:CustomViewCell SelectedBackgroundColor="Transparent">
+                                    <controls:RoundedView
+                                        Margin="10,5"
+                                        Padding="20"
+                                        BackgroundColor="White"
+                                        BorderRadius="5"
+                                        HorizontalOptions="Fill">
+                                        <Grid Padding="0"
+                                              VerticalOptions="FillAndExpand"
+                                              HorizontalOptions="Fill"
+                                              RowSpacing="5"
+                                              ColumnSpacing="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:GradientButton 
+                                            Grid.Row="0" 
+                                            Grid.Column="0"
+                                            Text="Top skils match"
+                                            Style="{StaticResource TopSkillsMatchButtonStyle}"
+                                            IsEnabled="{Binding TopSkilsMatch}">
+                                            <controls:GradientButton.Behaviors>
+                                                <behaviors:TopSkillsMatchButtonBehavior/>
+                                            </controls:GradientButton.Behaviors>
+                                        </controls:GradientButton>
+                                        <StackLayout
+                                                Grid.Column="1" 
+                                                Orientation="Horizontal"
+                                                HorizontalOptions="End">
+                                            <Button 
+                                                Image="{Binding IsBookmarked, Converter={StaticResource BoolToTagImageConverter}}"
+                                                Style="{StaticResource ListImageButtonStyle}"
+                                                Command="{Binding BindingContext.JobBookmarkCommand, Source={x:Reference JobsListView}}"
+                                                CommandParameter="{Binding}"/>
+                                            <Button 
+                                                Image="moreMenu.png"
+                                                Style="{StaticResource ListImageButtonStyle}"/>
+                                        </StackLayout>
+
+
+                                        <Label Grid.Row="1"
+                                               Grid.ColumnSpan="2"
+                                               Text="{Binding Title}"
+                                               TextColor="Black"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               Margin="0,10,0,0"/>
+                                        <StackLayout Grid.Row="2" 
+                                                     Grid.ColumnSpan="2"
+                                                     Orientation="Horizontal">
+                                            <Label Text="{Binding Location}"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="-"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="{Binding TypeOfWork, Converter={StaticResource EnumToStringConverter}}"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="-"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="{Binding Level}"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Row="3" 
+                                                     Grid.ColumnSpan="2"
+                                                     Orientation="Horizontal">
+                                            <Image HeightRequest="15"
+                                                   WidthRequest="15"
+                                                   Source="{Binding CompanyLogoSource, Converter={StaticResource Base64ToFFImageSourceConverter}}}"/>
+                                            <Label Text="{Binding CompanyName}"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="|"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="{Binding ApplicantsCount, StringFormat='{0:N0} Applicant(s)'}"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="|"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                            <Label Text="{Binding PostedTime, Converter={StaticResource TimeAgoConverter}}"
+                                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                                        </StackLayout>
+
+                                        <Label Grid.Row="4"
+                                               Grid.ColumnSpan="2"
+                                               Text="{Binding Description}"
+                                               FontSize="16"
+                                               TextColor="Black"
+                                               Margin="0,10"/>
+
+                                        <Button Grid.Row="5" 
+                                                Text="Apply"
+                                                Style="{StaticResource RoundedButtonStyle}"
+                                                Command="{Binding BindingContext.ApplyJobCommand, Source={x:Reference JobsListView}}" 
+                                                CommandParameter="{Binding}"/>
+                                        <Button Grid.Row="5"
+                                                Grid.Column="1"
+                                                Text="Recommend"
+                                                Style="{StaticResource BorderedButtonStyle}"
+                                                Command="{Binding BindingContext.RecommendJobCommand, Source={x:Reference JobsListView}}" 
+                                                CommandParameter="{Binding}"/>
+                                                
+                                        </Grid>
+                                        <controls:RoundedView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.JobsItemSelectedCommand, Source={x:Reference JobsListView}}" CommandParameter="{Binding}" />
+                                        </controls:RoundedView.GestureRecognizers>
+                                    </controls:RoundedView>
+                                </controls:CustomViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
+                <Grid Grid.Row="1" 
+                      x:Name="SecondTab" 
+                      IsVisible="{Binding SecondTabActive}"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill">
+                <ListView
+                        x:Name="ConnectListView"
+                        BackgroundColor="Transparent"
+                        Footer=" "
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding ConnectsList}"
+                        ItemTemplate="{StaticResource ConnectTypeSelector}"
+                        SeparatorVisibility="None"
+                        Margin="0,5,0,0"/>
+                </Grid>
+                <userControls:BusyIndicator IsActive="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="2"/>
+            </Grid>
+    </ContentPage.Content>
+</base:MenuContainerPage>

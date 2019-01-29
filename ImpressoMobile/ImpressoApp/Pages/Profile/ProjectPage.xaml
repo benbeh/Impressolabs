@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:MenuContainerPage xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ImpressoApp.Pages.Profile.ProjectPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding Name}" TextColor="Black" FontSize="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+            <Image Source="notWorking.jpg" Aspect="AspectFit" Grid.Row="1" />
+        </Grid>
+    </ContentPage.Content>
+</base:MenuContainerPage>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:SlideCustomDialog 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Profile.MenuDialog"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    HeightRequest="550"
+    x:Name="MenuDialogView">
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView
+                x:Name="MenuItemsListView"
+                Grid.Row="1"
+                BackgroundColor="Transparent"
+                Footer=" "
+                HasUnevenRows="True"
+                ItemsSource="{Binding MenuItems}"
+                SeparatorVisibility="None"
+                Margin="50,5,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CustomViewCell SelectedBackgroundColor="Transparent">
+                            <Grid HeightRequest="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Title}"
+                                       FontSize="16"
+                                       VerticalOptions="CenterAndExpand"/>
+                                <Frame Grid.Column="1" 
+                                       HeightRequest="20"
+                                       CornerRadius="2"
+                                       BackgroundColor="{StaticResource MagentaColor}"
+                                       IsVisible="{Binding NotificationsCount, Converter={StaticResource CountToBoolConverter}}">
+                                    <Label Text="{Binding NotificationsCount}"
+                                           TextColor="White"
+                                           FontSize="12"
+                                           Margin="5,5"/>
+                                </Frame>
+                                <BoxView Grid.ColumnSpan="2"
+                                         HeightRequest="1"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="End"
+                                         BackgroundColor="{StaticResource LightGrayColor}"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.MenuItemTapCommand, Source={x:Reference MenuItemsListView}}" CommandParameter="{Binding}" />
+                                </Grid.GestureRecognizers>
+                                         
+                            </Grid>
+                        </controls:CustomViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentView.Content>
+</base:SlideCustomDialog>

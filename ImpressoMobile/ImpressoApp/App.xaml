@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+             x:Class="ImpressoApp.App"
+             xmlns:converters="clr-namespace:ImpressoApp.Converters"
+             xmlns:controls="clr-namespace:ImpressoApp.Controls">
+    <Application.Resources>
+        <Color x:Key="ImpressoPageBackColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#ffffff</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="ImpressoDarkBlueColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#3f7fc4</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="ImpressoBlueColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#4b88c8</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="ImpressoMagentaStartColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#9e3fa8</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="ImpressoMagentaEndColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#8039c9</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="ImpressoMagentaDarkColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#7936c4</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="ImpressoLightBlueColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#a9cff7</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="FacebookColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#4867ad</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="LinkedInColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#2e76af</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="BackgroundGrayColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#ecebf3</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="LightGrayColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#EFEFF4</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="GrayColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#9E9E9E</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="DarkGrayColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#68686F</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="BlackColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#080808</x:String>
+            </x:Arguments>
+        </Color>
+        <Color x:Key="MagentaColor" x:FactoryMethod="FromHex">
+            <x:Arguments>
+                <x:String>#7E20C8</x:String>
+            </x:Arguments>
+        </Color>
+        <Style TargetType="base:BaseNavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource MagentaColor}" />
+                <Setter Property="BarTextColor" Value="White" />
+        </Style>
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource ImpressoDarkBlueColor}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="DescriptionLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{StaticResource ImpressoBlueColor}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SmallDescriptionLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextColor" Value="{StaticResource GrayColor}" />
+        </Style>
+        <Style x:Key="CapsItemLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="{StaticResource GrayColor}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0,20,0,5" />
+        </Style>
+        <Style x:Key="ListImageButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="HeightRequest" Value="15" />
+            <Setter Property="WidthRequest" Value="15" />
+        </Style>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{StaticResource MagentaColor}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+        <Style x:Key="BorderedButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="BorderColor" Value="{StaticResource DarkGrayColor}" />
+            <Setter Property="BorderWidth" Value="2" />
+        </Style>
+
+        <Style x:Key="FacebookButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{StaticResource FacebookColor}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="ContentLayout" Value="Left,20" />
+            <Setter Property="Image" Value="FacebookIcon.png" />
+            <Setter Property="Padding" Value="20,0" />
+        </Style>
+
+        <Style x:Key="TopSkillsMatchButtonStyle" TargetType="controls:GradientButton">
+            <Setter Property="BackgroundColor" Value="{StaticResource MagentaColor}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="HeightRequest" Value="30" />
+            <Setter Property="WidthRequest" Value="120" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="BorderWidth" Value="1" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+
+        <Style x:Key="SettingsButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="BorderColor" Value="{StaticResource ImpressoMagentaStartColor}" />
+            <Setter Property="BorderWidth" Value="2" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HeightRequest" Value="50" />
+        </Style>
+
+        <Style x:Key="SettingsItemFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BorderColor" Value="{StaticResource GrayColor}" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="HasShadow" Value="false" />
+            <Setter Property="Padding" Value="10,0" />
+        </Style>
+
+        <converters:IntToBoolConverter x:Key="IntToBoolConverter"/>
+        <converters:UserTypeToBoolConverter x:Key="UserTypeToBoolConverter"/>
+        <converters:Base64ToFFImageSourceConverter x:Key="Base64ToFFImageSourceConverter"/>
+        <converters:BoolReverseConverter x:Key="BoolReverseConverter"/>
+        <converters:BoolToTagImageConverter x:Key="BoolToTagImageConverter"/>
+        <converters:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
+        <converters:IdToBoolConverter x:Key="IdToBoolConverter"/>
+        <converters:IdToBoolConverterMultiple x:Key="IdToBoolConverterMultiple"/>
+        <converters:BoolToExpandableArrowConverter x:Key="BoolToExpandableArrowConverter"/>
+        <converters:CountToBoolConverter x:Key="CountToBoolConverter"/>
+        <converters:BoolToTopSkillImageConverter x:Key="BoolToTopSkillImageConverter"/>
+        <converters:BoolToVerifiedColorConverter x:Key="BoolToVerifiedColorConverter"/>
+        <converters:BoolToVerifiedTextColorConverter x:Key="BoolToVerifiedTextColorConverter"/>
+        <converters:StringLenghtToBoolConverter x:Key="StringLenghtToBoolConverter"/>
+        <converters:EnumToStringConverter x:Key="EnumToStringConverter"/>
+        <converters:TimeAgoConverter x:Key="TimeAgoConverter"/>
+        <converters:EnumToDescriptionConverter x:Key="EnumToDescriptionConverter"/>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Authentication.LoginPage"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="Gray">
+    <ContentPage.Content>
+       <Grid VerticalOptions="Fill"
+             HorizontalOptions="Fill"
+             Padding="0" 
+             BackgroundColor="{StaticResource LightGrayColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <controls:GradientStack VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    StartColor="{StaticResource ImpressoMagentaEndColor}"
+                                    EndColor="{StaticResource ImpressoMagentaStartColor}"
+                                    Orientation="Vertical"
+                                    Padding="20"/>
+            <Image Grid.Row="0"
+                   Aspect="Fill"
+                   Source="welcomeTopLogo.png"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"/>
+            
+            <StackLayout Grid.Row="0" 
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         Orientation="Vertical"
+                         Padding="20">
+                <Label Text="Log In"
+                       TextColor="White"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,20"/>
+                <controls:CustomEntry Placeholder="Email"
+                                      PlaceholderColor="Gray"
+                                      Text="{Binding Email}"
+                                      Keyboard="Email"
+                                      EntryBackgroundColor="White"
+                                      BorderRadius="10"
+                                      HeightRequest="50"/>
+                <controls:CustomEntry Placeholder="Password"
+                                      PlaceholderColor="Gray"
+                                      EntryBackgroundColor="White"
+                                      Text="{Binding Password}"
+                                      IsPassword="true"
+                                      BorderRadius="10"
+                                      HeightRequest="50"/>
+                <Button Text="Log In"
+                        TextColor="{StaticResource ImpressoMagentaDarkColor}"
+                        Command="{Binding LogInCommand}"
+                        BackgroundColor="White"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        WidthRequest="150"
+                        Margin="0,40,0,0"
+                        HorizontalOptions="Center"/>
+                <Button Text="Sign Up"
+                        Command="{Binding SignUpCommand}"
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        WidthRequest="150"
+                        HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1"
+                         VerticalOptions="StartAndExpand"
+                         HorizontalOptions="Fill"
+                         Padding="20,15"
+                         Spacing="5">
+                <!--<Button Text="Login with LinkedIn"
+                        TextColor="White"
+                        BackgroundColor="{StaticResource LinkedInColor}"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        Image="LinkedInIcon.png"/>-->
+                <Button Text="Login with Facebook"
+                        Command="{Binding FacebookLogInCommand}"
+                        Style="{StaticResource FacebookButtonStyle}"/>
+                
+            </StackLayout>
+            <userControls:BusyIndicator IsActive="{Binding IsBusy}"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"/>
+        </Grid>
+    </ContentPage.Content>
+</base:BasePage>

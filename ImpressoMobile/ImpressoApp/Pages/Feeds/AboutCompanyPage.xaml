@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Feeds.AboutCompanyPage"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+    BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid IsVisible="{Binding IsLoaded}"
+                        Padding="20,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Frame
+                        BackgroundColor="White"
+                        CornerRadius="5"
+                        HasShadow="false"
+                        Padding="20,10"
+                        HorizontalOptions="FillAndExpand">
+                        <Grid 
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <cashedImage:CachedImage
+                                Grid.ColumnSpan="2"
+                                HeightRequest="100"
+                                HorizontalOptions="Center"
+                                Source="{Binding CompanyModel.CompanyLogoSource, Converter={StaticResource Base64ToFFImageSourceConverter}}}"
+                                VerticalOptions="Center"/>
+                            <Label 
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding CompanyModel.CompanyName}"
+                                FontSize="16"
+                                TextColor="Black"
+                                HorizontalOptions="Center"/>
+                            <Label 
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding CompanyModel.CompanyArea, Converter={StaticResource EnumToStringConverter}}"
+                                FontSize="14"
+                                TextColor="Black"
+                                Margin="0,5,0,10"
+                                HorizontalOptions="Center"/>
+                            <StackLayout 
+                                Grid.Row="3"
+                                Orientation="Horizontal"
+                                HorizontalOptions="CenterAndExpand"
+                                Spacing="5">
+                                <Image
+                                    HeightRequest="20"
+                                    WidthRequest="20"
+                                    Source="pin.png"/>
+                                <Label 
+                                   TextColor="Black"
+                                   FontSize="12"
+                                   VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                   Text="{Binding CompanyModel.Location}"/>
+                            </StackLayout>
+                            <StackLayout 
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalOptions="CenterAndExpand">
+                                <Image
+                                    HeightRequest="20"
+                                    WidthRequest="20"
+                                    Source="people.png"/>
+                                <Label 
+                                   TextColor="Black"
+                                   FontSize="12"
+                                   VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                   Text="{Binding CompanyModel.EmployeesCount}"/>
+                            </StackLayout>
+                            <Label
+                                Grid.Row="4"
+                                Text="Who we are"
+                                TextColor="Black"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Margin="0,20,0,0"/>
+
+                            <Label 
+                                Grid.Row="5"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding CompanyModel.WhoWeAreText}"
+                                TextColor="Black"
+                                FontSize="16"/>
+                        </Grid>
+                    </Frame>
+                    <Label 
+                        Grid.Row="1"
+                        Text="Open jobs opportunities"
+                        TextColor="Black"
+                        FontSize="18"
+                        Margin="0,30,0,20"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <controls:GridView
+                        x:Name="VacanciesListView"
+                        Grid.Row="2"
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding CompanyModel.Vacancies}"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="5"
+                        Margin="0,0,0,20">
+                            <controls:GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:RoundedView
+                                            Padding="20"
+                                            BackgroundColor="White"
+                                            BorderRadius="5"
+                                            HorizontalOptions="Fill">
+                                            <Grid Padding="0"
+                                                  VerticalOptions="FillAndExpand"
+                                                  HorizontalOptions="Fill"
+                                                  RowSpacing="5"
+                                                  ColumnSpacing="10">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label 
+                                                Text="{Binding Title}"
+                                                FontSize="16"
+                                                TextColor="Black"
+                                                HorizontalOptions="Start"/> 
+                                            <Label 
+                                                Grid.Row="1"
+                                                Text="{Binding ApplicantsCount, StringFormat='{0} Applicants'}"
+                                                FontSize="12"
+                                                TextColor="Black"
+                                                HorizontalOptions="Start"/> 
+                                            <Label 
+                                                Grid.Column="1"
+                                                Text="{Binding PostedTime, Converter={StaticResource TimeAgoConverter}}"
+                                                FontSize="12"
+                                                TextColor="Black"
+                                                HorizontalOptions="End"/> 
+                                            </Grid>
+                                            <controls:RoundedView.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.VacancyTapCommand, Source={x:Reference VacanciesListView}}" CommandParameter="{Binding}" />
+                                            </controls:RoundedView.GestureRecognizers>
+                                        </controls:RoundedView>
+                                </DataTemplate>
+                            </controls:GridView.ItemTemplate>
+                        </controls:GridView>
+                </Grid>
+                <userControls:BusyIndicator IsActive="{Binding IsBusy}"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</base:BasePage>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Testimonials.AllTestimonialsPage"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+    xmlns:behaviors="clr-namespace:ImpressoApp.Behaviors"
+    BackgroundColor="{StaticResource LightGrayColor}"
+    x:Name="Root">
+    <ContentPage.Content>
+        <ListView
+            x:Name="TestimonialsListView"
+            BackgroundColor="Transparent"
+            Footer=" "
+            HasUnevenRows="true"
+            SeparatorVisibility="None"
+            ItemsSource="{Binding Testimonials}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:CustomViewCell SelectedBackgroundColor="Transparent">
+                        <Frame Style="{StaticResource SettingsItemFrameStyle}"
+                               BorderColor="Transparent"
+                               VerticalOptions="Fill"
+                               HeightRequest="300"
+                               Padding="10"
+                               Margin="10">
+                            <Grid Padding="10"
+                                  RowSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <controls:GradientButton  
+                                        Text="{Binding VerifyText}"
+                                        FontSize="12"
+                                        Style="{StaticResource TopSkillsMatchButtonStyle}"
+                                        CornerRadius="5"
+                                        HeightRequest="20"
+                                        WidthRequest="70"
+                                        Command="{Binding BindingContext.VerifyTestimonialCommand, Source={x:Reference Root}}"
+                                        IsEnabled="{Binding IsVerified}">
+                                    <controls:GradientButton.Behaviors>
+                                        <behaviors:TopSkillsMatchButtonBehavior/>
+                                    </controls:GradientButton.Behaviors>
+                                </controls:GradientButton>
+                                <Label Grid.Row="1" 
+                                       Grid.ColumnSpan="3" 
+                                       Text="{Binding Creator}"
+                                       TextColor="Black"
+                                       FontSize="18"
+                                       FontAttributes="Bold"/>
+                                <Label Grid.Row="2" 
+                                       Grid.ColumnSpan="3"
+                                       Text="{Binding Content}"
+                                       TextColor="Black"
+                                       FontSize="16"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="3"  
+                                       Text="{Binding DateOfPost, StringFormat='{0:dd-mm-yyyy}'}"
+                                       TextColor="{StaticResource GrayColor}"
+                                       FontSize="16"
+                                       HorizontalOptions="End"/>
+                                <Label Grid.Row="3" 
+                                       Grid.Column="2"
+                                       IsVisible="{Binding HasAnyVerifies}"
+                                       Text="{Binding VerifiersCount, StringFormat='Verified by {0} people'}"
+                                       TextColor="{StaticResource GrayColor}"
+                                       FontSize="12"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectTestimonialCommand, Source={x:Reference TestimonialsListView}}" 
+                                                          CommandParameter="{Binding}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Frame>
+                    </controls:CustomViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</base:BasePage>

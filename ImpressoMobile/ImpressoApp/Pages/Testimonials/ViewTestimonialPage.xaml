@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Testimonials.ViewTestimonialPage"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+    xmlns:behaviors="clr-namespace:ImpressoApp.Behaviors">
+    <ContentPage.Content>
+        <ScrollView Padding="10">
+            <Grid Padding="10"
+                  RowSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <controls:GradientButton  
+                        Text="{Binding Testimonial.VerifyText}"
+                        FontSize="12"
+                        Style="{StaticResource TopSkillsMatchButtonStyle}"
+                        CornerRadius="5"
+                        HeightRequest="20"
+                        WidthRequest="70"
+                        Command="{Binding VerifyTestimonialCommand}"
+                        IsEnabled="{Binding CanVerify}">
+                    <controls:GradientButton.Behaviors>
+                        <behaviors:TopSkillsMatchButtonBehavior/>
+                    </controls:GradientButton.Behaviors>
+                </controls:GradientButton>
+                <Label Grid.Row="1" 
+                       Grid.ColumnSpan="3" 
+                       Text="{Binding Testimonial.Creator}"
+                       TextColor="Black"
+                       FontSize="18"
+                       FontAttributes="Bold"/>
+                <Label Grid.Row="2" 
+                       Grid.ColumnSpan="3"
+                       Text="{Binding Testimonial.Content}"
+                       TextColor="Black"
+                       FontSize="16"
+                       VerticalOptions="Center"/>
+                <Label Grid.Row="3"  
+                       Text="{Binding Testimonial.DateOfPost, StringFormat='{0:dd-mm-yyyy}'}"
+                       TextColor="{StaticResource GrayColor}"
+                       FontSize="16"
+                       HorizontalOptions="End"/>
+                <Label Grid.Row="3" 
+                       Grid.Column="2"
+                       IsVisible="{Binding Testimonial.HasAnyVerifies}"
+                       Text="{Binding Testimonial.VerifiersCount, StringFormat='Verified by {0} people'}"
+                       TextColor="{StaticResource GrayColor}"
+                       FontSize="14"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</base:BasePage>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:MenuContainerPage xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+               xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="ImpressoApp.Pages.MainTabs.SearchTabPage"
+               xmlns:controls="clr-namespace:ImpressoApp.Controls"
+               xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+               xmlns:dataTemplates="clr-namespace:ImpressoApp.DataTemplateSelectors"
+               xmlns:templates="clr-namespace:ImpressoApp.UserControls.Feeds"
+               xmlns:effects="clr-namespace:ImpressoApp.Effects"
+               xmlns:behaviors="clr-namespace:BaseMvvmToolkit.Behavior;assembly=BaseMvvmToolkit"
+               xmlns:cells="clr-namespace:ImpressoApp.UserControls.Cell"
+               xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+               xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+               BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <controls:TabViewIndicator 
+                Grid.Row="0"
+                HeightRequest = "40"
+                HorizontalOptions="FillAndExpand"
+                TabSelectedCommand="{Binding TabChangedCommand}"
+                TabItemsSource="{Binding Tabs}"
+                TabTextColor="{StaticResource GrayColor}"
+                TabSelectedTextColor="{StaticResource MagentaColor}"
+                TabBackgroundColor="White" IsVisible="{Binding IsCompany, Converter={StaticResource BoolReverseConverter}}"/>
+            <!-- SEARCH ENTRY -->
+            <controls:RoundedView
+                                    Grid.Row="1"
+                                    Margin="10,10,10,5"
+                                    Padding="5,2,5,2"
+                                    BackgroundColor="White"
+                                    BorderRadius="5"
+                                    HorizontalOptions="Fill">
+                
+                <Grid                        
+                    Padding="0"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="Fill"
+                    RowSpacing="0"
+                    ColumnSpacing="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <controls:FitImageButton WidthRequest="25" Image="search.png" Style="{StaticResource ListImageButtonStyle}" Grid.Column="0" />                            
+                    <Entry Text="{Binding SearchText}" Grid.Column="1" Placeholder="{Binding SearchPlaceholder}">
+                        <Entry.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="Completed" Command="{Binding SearchCompletedCommand}" />   
+                            <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchTextChangedCommand}" />   
+                        </Entry.Behaviors>
+                    </Entry>
+                    <controls:FitImageButton WidthRequest="25" Image="filter.png" Style="{StaticResource ListImageButtonStyle}" Grid.Column="2" Command="{Binding ShowFiltersCommand}"/>
+                    
+                </Grid>
+            </controls:RoundedView>
+            <!-- SEARCH ENTRY -->       
+            <Grid x:Name="FirstTab" 
+                  Grid.Row="2" 
+                  IsVisible="{Binding FirstTabActive}"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Fill">                
+                               
+                <ListView
+                        x:Name="JobsListView"
+                        BackgroundColor="Transparent"
+                        Footer=" "
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding JobsList}"
+                        SeparatorVisibility="None"                        
+                        Margin="0,5,0,0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>                            
+                                <cells:SmallIconInfoCell MainText="{Binding Title}" SecondaryText="Full Time" DetailText="{Binding CompanyName}" ImageSource="{Binding CompanyLogoSource, Converter={StaticResource Base64ToFFImageSourceConverter}}" >
+                                    <cells:SmallIconInfoCell.GestureRecognizer>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.JobsItemSelectedCommand, Source={x:Reference FirstTab}}" CommandParameter="{Binding}" />
+                                    </cells:SmallIconInfoCell.GestureRecognizer>
+                                </cells:SmallIconInfoCell>                            
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
+
+                <Grid x:Name="SecondTab" 
+                  Grid.Row="2" 
+                  IsVisible="{Binding SecondTabActive}"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Fill">                
+                               
+                <ListView
+                        x:Name="CompaniesListView"
+                        BackgroundColor="Transparent"
+                        Footer=" "
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding CompanyList}"
+                        SeparatorVisibility="None"
+                        Margin="0,5,0,0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <cells:SmallIconInfoCell MainText="{Binding CompanyName}" SecondaryText="{Binding CompanyArea}" DetailText="{Binding Location}" ImageSource="{Binding CompanyLogoSource, Converter={StaticResource Base64ToFFImageSourceConverter}}" >
+                                    <cells:SmallIconInfoCell.GestureRecognizer>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.CompanyItemSelectedCommand, Source={x:Reference SecondTab}}" CommandParameter="{Binding}" />
+                                    </cells:SmallIconInfoCell.GestureRecognizer>
+                                </cells:SmallIconInfoCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>            
+
+                <Grid x:Name="ThirdTab" 
+                      Grid.Row="2" 
+                      IsVisible="{Binding ThirdTabActive}"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill">                
+                                   
+                    <ListView
+                            x:Name="PeopleListView"
+                            BackgroundColor="Transparent"
+                            Footer=" "
+                            HasUnevenRows="True"
+                            ItemsSource="{Binding PeopleList}"
+                            SeparatorVisibility="None"
+                            Margin="0,5,0,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CustomViewCell SelectedBackgroundColor="Transparent">
+                                        <controls:RoundedView
+                                            Padding="10"
+                                            Margin="10,5"
+                                            BackgroundColor="White"
+                                            BorderRadius="5"
+                                            HorizontalOptions="Fill">
+                                            <Grid Padding="0"
+                                                  VerticalOptions="FillAndExpand"
+                                                  HorizontalOptions="Fill"
+                                                  RowSpacing="5"
+                                                  ColumnSpacing="10">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="90"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!--<Image Source="{Binding Photo, Converter={StaticResource Base64ToFFImageSourceConverter}}" 
+                                                       Aspect="AspectFit" 
+                                                       Grid.Column="0"/>-->
+                                                <cashedImage:CachedImage
+                                                    HeightRequest="60"
+                                                    HorizontalOptions="Center"
+                                                    Source="{Binding Photo, Converter={StaticResource Base64ToFFImageSourceConverter}}"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    WidthRequest="60">
+                                                    <cashedImage:CachedImage.Transformations>
+                                                        <cITranform:CircleTransformation BorderSize="0" />
+                                                    </cashedImage:CachedImage.Transformations>
+                                                </cashedImage:CachedImage>
+                                        
+                                                <StackLayout Orientation="Vertical" VerticalOptions="Center" Spacing="7" Grid.Column="1">
+                                                    <Label Text="{Binding UserName}" FontSize="15" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                                                    <Label Text="{Binding Location}" FontSize="13"/>   
+                                                </StackLayout>
+                                        
+                                                <Button Grid.Row="0" 
+                                                        Grid.Column="2"
+                                                        Text="Connect"
+                                                        TextColor="White"
+                                                        FontSize="13"
+                                                        BackgroundColor="{StaticResource MagentaColor}"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        CornerRadius="20"
+                                                        HeightRequest="40"
+                                                        WidthRequest="90"
+                                                        Command="{Binding BindingContext.PeopleItemSelectedCommand, Source={x:Reference PeopleListView}}" 
+                                                        CommandParameter="{Binding}" />
+                                                                                                       
+                                            </Grid>
+                                            <controls:RoundedView.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.PeopleItemSelectedCommand, Source={x:Reference PeopleListView}}" 
+                                                                      CommandParameter="{Binding}" />
+                                            </controls:RoundedView.GestureRecognizers>
+                                        </controls:RoundedView>
+                                    </controls:CustomViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>     
+
+                <userControls:BusyIndicator Grid.Row="0" 
+                                        Grid.RowSpan="3" 
+                                        IsActive="{Binding IsBusy}"/>
+            </Grid>
+    </ContentPage.Content>
+</base:MenuContainerPage>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:MenuContainerPage xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+               xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="ImpressoApp.Pages.MainTabs.ProfileTabPage"
+               xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+               xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+               xmlns:controls="clr-namespace:ImpressoApp.Controls"
+               BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.ToolbarItems>
+      <ToolbarItem Name="Menu" Icon="hamb.png" Command="{Binding MenuCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <controls:FitImageButton
+                    IsVisible="{Binding AddJobVisible}"
+                    Command="{Binding AddJobCommand}"
+                    Grid.Row="0"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    HorizontalOptions="End"                   
+                    Image="plus.png"
+                    VerticalOptions="Start"
+                    BackgroundColor="Transparent"
+                    Margin="0, 15, 15, 0">
+                </controls:FitImageButton>
+                <cashedImage:CachedImage                    
+                    Grid.Row="0"
+                    HeightRequest="120"
+                    HorizontalOptions="Center"
+                    Source="{Binding UserProfileImagePath, Converter={StaticResource Base64ToFFImageSourceConverter}}"
+                    VerticalOptions="Center"
+                    WidthRequest="120"
+                    Margin="0,30,0,20">
+                    <cashedImage:CachedImage.Transformations>
+                        <cITranform:CircleTransformation BorderSize="0" />
+                    </cashedImage:CachedImage.Transformations>
+                </cashedImage:CachedImage>
+
+                <Label Grid.Row="1" 
+                       Text="{Binding UserName}"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="40"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
+
+                <Label Grid.Row="2" 
+                       Text="{Binding UserPosition}"
+                       TextColor="{StaticResource GrayColor}"
+                       FontAttributes="Bold"
+                       FontSize="16"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
+
+                <controls:TabViewIndicator 
+                    Grid.Row="3"
+                    HeightRequest="40"
+                    TabSelectedCommand="{Binding TabChangedCommand}"
+                    TabItemsSource="{Binding Tabs}"
+                    TabTextColor="{StaticResource GrayColor}"
+                    TabSelectedTextColor="{StaticResource MagentaColor}"
+                    TabBackgroundColor="{StaticResource LightGrayColor}"
+                    HorizontalOptions="CenterAndExpand"/>
+                <Grid Grid.Row="4" 
+                      IsVisible="{Binding FirstTabActiveUser}">
+                    <Label Text="You don't have any tags yet."
+                           TextColor="{StaticResource GrayColor}"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding HasTags, Converter={StaticResource BoolReverseConverter}}"/>
+                    <controls:GridView
+                        x:Name="TagsListView"
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding TagsList}"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="2"
+                        Margin="0,0,0,20">
+                            <controls:GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:RoundedView
+                                        Margin="10,5"
+                                        Padding="10"
+                                        BackgroundColor="White"
+                                        BorderRadius="5"
+                                        HorizontalOptions="Fill">
+                                        <Grid Padding="5"
+                                              VerticalOptions="FillAndExpand"
+                                              HorizontalOptions="Fill"
+                                              RowSpacing="3"
+                                              ColumnSpacing="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <cashedImage:CachedImage
+                                            Grid.RowSpan="3"
+                                            HeightRequest="40"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding LogoSource, Converter={StaticResource Base64ToFFImageSourceConverter}}"
+                                            VerticalOptions="Start"
+                                            WidthRequest="40"
+                                            Margin="0,10,0,0">
+                                            <cashedImage:CachedImage.Transformations>
+                                                <cITranform:CircleTransformation BorderSize="0" />
+                                            </cashedImage:CachedImage.Transformations>
+                                        </cashedImage:CachedImage>
+                                        
+                                        <Label 
+                                            Grid.Column="1"
+                                            Text="{Binding Name}"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Start"/> 
+                                        <Label 
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding Area}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="Start"/> 
+                                        <Label 
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding BookmarkedData, Converter={StaticResource TimeAgoConverter}}"
+                                            FontSize="12"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="Start"/> 
+                                        <Button 
+                                            Grid.Column="2"
+                                            Image="moreMenu.png"
+                                            Command="{Binding BindingContext.MoreTagMenuCommand, Source={x:Reference TagsListView}}"
+                                            CommandParameter="{Binding}"
+                                            Style="{StaticResource ListImageButtonStyle}"/>
+                                        </Grid>
+                                        <controls:RoundedView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.TagTapCommand, Source={x:Reference TagsListView}}" CommandParameter="{Binding}" />
+                                        </controls:RoundedView.GestureRecognizers>
+                                    </controls:RoundedView>
+                                </DataTemplate>
+                            </controls:GridView.ItemTemplate>
+                        </controls:GridView>
+                </Grid>
+
+
+
+
+                 <Grid Grid.Row="4" 
+                      IsVisible="{Binding FirstTabActiveCompany}">
+                    <Label Text="No Projects"
+                           TextColor="{StaticResource GrayColor}"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding HasProjects, Converter={StaticResource BoolReverseConverter}}"/>
+                    <controls:GridView
+                        x:Name="ProjectsListView"
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding ProjectList}"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="2"
+                        Margin="0,0,0,20">
+                            <controls:GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:RoundedView
+                                        Margin="10,5"
+                                        Padding="10"
+                                        BackgroundColor="White"
+                                        BorderRadius="5"
+                                        HorizontalOptions="Fill">
+                                        <Grid Padding="5"
+                                              VerticalOptions="FillAndExpand"
+                                              HorizontalOptions="Fill"
+                                              RowSpacing="3"
+                                              ColumnSpacing="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                       <Image Aspect="AspectFit" Source="arrowRight" HeightRequest="30" WidthRequest="30" Margin="10" Grid.Column="2" Grid.RowSpan="3" VerticalOptions="Center" />
+                                        
+                                        <Label                   
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Name}"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Start"/> 
+                                        <Label 
+                                            Margin="0,2,0,4"
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Description}"
+                                            FontAttributes="Bold"
+                                            FontSize="15"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="Start"/> 
+                                        <Label 
+                                            Grid.Row="2"
+                                            Text="{Binding StartDate, StringFormat='{0:MM:dd:HH:mm}'}"
+                                            FontSize="12"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="Start"/>           
+                                        <Label 
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="{Binding AmountOfCandidates, StringFormat='{0} candidates connected'}"
+                                            FontSize="12"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="End"/>          
+                                        </Grid>
+                                        <controls:RoundedView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.ProjectTapCommand, Source={x:Reference ProjectsListView}}" CommandParameter="{Binding}" />
+                                        </controls:RoundedView.GestureRecognizers>
+                                    </controls:RoundedView>
+                                </DataTemplate>
+                            </controls:GridView.ItemTemplate>
+                        </controls:GridView>
+                </Grid>
+
+
+                <Grid Grid.Row="4" 
+                      IsVisible="{Binding SecondTabActive}">
+                    <Label Text="You don't have applied jobs yet."
+                           TextColor="{StaticResource GrayColor}"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding HasJobs, Converter={StaticResource BoolReverseConverter}}"/>
+                    <controls:GridView
+                        x:Name="JobsListView"
+                        BackgroundColor="Transparent"
+                        ItemsSource="{Binding JobsList}"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="2"
+                        Margin="0,0,0,20">
+                            <controls:GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:RoundedView
+                                        Margin="10,5"
+                                        Padding="5"
+                                        BackgroundColor="White"
+                                        BorderRadius="10"
+                                        HorizontalOptions="Fill">
+                                        <Grid Padding="5"
+                                              VerticalOptions="Start"
+                                              HorizontalOptions="Fill"
+                                              RowSpacing="3"
+                                              ColumnSpacing="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Label 
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Title}"
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            HorizontalOptions="Start"/> 
+                                        <Label 
+                                            Grid.Row="1"
+                                            Text="{Binding ProjectName}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="Start"/> 
+                                        <Label 
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding ApplicantsCount, StringFormat='{0} Applicants'}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="Start"/> 
+                                        <Label 
+                                            Grid.Column="2"
+                                            Text="{Binding PostedTime, Converter={StaticResource TimeAgoConverter}}"
+                                            FontSize="12"
+                                            TextColor="{StaticResource GrayColor}"
+                                            HorizontalOptions="Start"/> 
+                                        </Grid>
+                                        <controls:RoundedView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.JobTapCommand, Source={x:Reference JobsListView}}" CommandParameter="{Binding}" />
+                                        </controls:RoundedView.GestureRecognizers>
+                                    </controls:RoundedView>
+                                </DataTemplate>
+                            </controls:GridView.ItemTemplate>
+                        </controls:GridView>
+                </Grid>
+                
+                <Grid Grid.Row="4" 
+                      IsVisible="{Binding ThirdTabActive}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="30"
+                           Margin="10"
+                           HasShadow="false">
+                        <StackLayout HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand">
+                            <Label Text="Total" 
+                                   TextColor="Black"
+                                   FontSize="14"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding TotalAmountOfTokens, StringFormat='XIM {0:F1}'}"
+                                   TextColor="Black"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    <controls:GridView
+                        Grid.Row="1"
+                        x:Name="TokensListView"
+                        ItemsSource="{Binding TokensList}"
+                        Margin="0,0,0,20">
+                            <controls:GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:RoundedView
+                                        Margin="10,5"
+                                        Padding="15"
+                                        BackgroundColor="White"
+                                        BorderRadius="10"
+                                        HorizontalOptions="Fill">
+                                        <Grid Padding="0"
+                                              VerticalOptions="FillAndExpand"
+                                              HorizontalOptions="Fill"
+                                              ColumnSpacing="15">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label 
+                                                Text="{Binding DepartureDate, StringFormat='{0:yyyy/MM/dd}'}"
+                                                FontSize="12"
+                                                TextColor="{StaticResource GrayColor}"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="CenterAndExpand"/> 
+                                            <Label 
+                                                Grid.Column="1"
+                                                Text="{Binding Title}"
+                                                FontSize="16"
+                                                TextColor="Black"
+                                                VerticalOptions="CenterAndExpand"
+                                                HorizontalOptions="Start"/> 
+                                            <Label 
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Text="{Binding Message}"
+                                                FontSize="12"
+                                                TextColor="Black"
+                                                HorizontalOptions="Start"
+                                                Margin="0,10,0,0"
+                                                IsVisible="{Binding IsExpanded}"/> 
+                                            <Button Grid.Column="2"
+                                                    HeightRequest="20"
+                                                    WidthRequest="20"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    Image="{Binding IsExpanded, Converter={StaticResource BoolToExpandableArrowConverter}}"
+                                                    BackgroundColor="Transparent"
+                                                    Command="{Binding BindingContext.ExpandTokenItemCommand, Source={x:Reference TokensListView}}"
+                                                    CommandParameter="{Binding}"/>
+                                        </Grid>
+                                        <controls:RoundedView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.TokenTapCommand, Source={x:Reference TokensListView}}" CommandParameter="{Binding}" />
+                                        </controls:RoundedView.GestureRecognizers>
+                                    </controls:RoundedView>
+                                </DataTemplate>
+                            </controls:GridView.ItemTemplate>
+                        </controls:GridView>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</base:MenuContainerPage>

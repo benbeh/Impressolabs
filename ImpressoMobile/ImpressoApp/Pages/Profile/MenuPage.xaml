@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:MenuContainerPage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Profile.MenuPage"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls">
+    <ContentPage.Content>
+        <Grid RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <cashedImage:CachedImage
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Source="{Binding UserProfileImagePath, Converter={StaticResource Base64ToFFImageSourceConverter}}"
+                    VerticalOptions="Center"
+                    WidthRequest="100"
+                    Margin="0,20,0,0">
+                    <cashedImage:CachedImage.Transformations>
+                        <cITranform:CircleTransformation BorderSize="0" />
+                    </cashedImage:CachedImage.Transformations>
+                </cashedImage:CachedImage>
+
+            <Frame HeightRequest="30"
+                   WidthRequest="30"
+                   CornerRadius="15"
+                   BackgroundColor="White"
+                   Margin="0,0,0,-15"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="Center"
+                   Padding="0">
+                <Button
+                    BackgroundColor="White"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    CornerRadius="15"
+                    Image="Write.png"
+                    Command="{Binding EditCommand}"/>
+            </Frame>
+
+                <Label Grid.Row="1" 
+                       Text="{Binding UserName}"
+                       TextColor="Black"
+                       FontSize="18"
+                       Margin="0,20,0,0"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
+
+                <Label Grid.Row="2" 
+                       Text="{Binding UserPosition}"
+                       TextColor="{StaticResource GrayColor}"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
+            
+            <ListView
+                x:Name="MenuItemsListView"
+                Grid.Row="3"
+                BackgroundColor="Transparent"
+                Footer=" "
+                HasUnevenRows="True"
+                ItemsSource="{Binding MenuItems}"
+                SeparatorVisibility="None"
+                Margin="50,20,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CustomViewCell SelectedBackgroundColor="Transparent">
+                            <Grid HeightRequest="40"
+                                  HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Title}"
+                                       FontSize="16"
+                                       VerticalOptions="CenterAndExpand"/>
+                                <Frame Grid.Column="1" 
+                                       HeightRequest="20"
+                                       CornerRadius="2"
+                                       BackgroundColor="{StaticResource MagentaColor}"
+                                       IsVisible="{Binding NotificationsCount, Converter={StaticResource CountToBoolConverter}}">
+                                    <Label Text="{Binding NotificationsCount}"
+                                           TextColor="White"
+                                           FontSize="12"
+                                           Margin="5,5"/>
+                                </Frame>
+                                <BoxView Grid.ColumnSpan="2"
+                                         HeightRequest="1"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="End"
+                                         BackgroundColor="{StaticResource LightGrayColor}"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.MenuItemTapCommand, Source={x:Reference MenuItemsListView}}" CommandParameter="{Binding}" />
+                                </Grid.GestureRecognizers>
+                                         
+                            </Grid>
+                        </controls:CustomViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</base:MenuContainerPage >

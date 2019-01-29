@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:SlideCustomDialog 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.ConnectToPersonDialog"
+    HeightRequest="550"
+    xmlns:behaviors="clr-namespace:BaseMvvmToolkit.Behavior;assembly=BaseMvvmToolkit"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Name="RootView">
+    <ContentView.Content>
+        <Grid Padding="10,20"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill"
+              RowSpacing="3"
+              ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <cashedImage:CachedImage
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                HeightRequest="80"
+                Source="{Binding UserModel.Photo, Converter={StaticResource Base64ToFFImageSourceConverter}}"
+                VerticalOptions="Center"
+                WidthRequest="80">
+                <cashedImage:CachedImage.Transformations>
+                    <cITranform:CircleTransformation BorderSize="0" />
+                </cashedImage:CachedImage.Transformations>
+            </cashedImage:CachedImage>
+            
+           <Label 
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Text="{Binding UserModel.UserName}"
+                FontSize="18"
+                TextColor="Black"
+                FontAttributes="Bold"
+                VerticalOptions="End"
+                VerticalTextAlignment="End"/> 
+            <Label 
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding UserModel.CompanyPosition}"
+                FontSize="14"
+                TextColor="{StaticResource GrayColor}"
+                HorizontalOptions="Start"/> 
+            <Label 
+                Grid.Row="1"
+                Grid.Column="2"
+                Text="{Binding UserModel.Location}"
+                FontSize="14"
+                TextColor="{StaticResource GrayColor}"
+                HorizontalOptions="Start"/> 
+            <Label Grid.Row="2" 
+                   Grid.ColumnSpan="3"
+                   Text="{Binding UserModel.FirstName, StringFormat='Hi, {0}! I want to connect with you because of:'}"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   Margin="0,20,0,10"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"/>
+
+            <ScrollView 
+                Grid.Row="3"
+                Grid.ColumnSpan="3" x:Name="scrollView">
+            <StackLayout >
+                <controls:GridView
+                    x:Name="ConnectOptionsGridView"
+                    BackgroundColor="Transparent"
+                    ItemsSource="{Binding RequestOptions}"
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <controls:GridView.ItemTemplate>
+                        <DataTemplate>
+                                <Grid>
+                                    <Label Text="{Binding Name}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           Margin="0,10,25,0"/>
+                                    <Image Source="checkColor"
+                                           HeightRequest="20"
+                                           WidthRequest="20"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="End"
+                                           Opacity="{Binding IsSelected, Converter={StaticResource BoolToOpacityConverter}}"
+                                           Margin="10"/>
+                                    <BoxView HeightRequest="1"
+                                             VerticalOptions="EndAndExpand"
+                                             HorizontalOptions="Fill"
+                                             BackgroundColor="{StaticResource LightGrayColor}"/>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectRequestOptionCommand, Source={x:Reference ConnectOptionsGridView}}" 
+                                                              CommandParameter="{Binding}" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                        </DataTemplate>
+                    </controls:GridView.ItemTemplate>
+                </controls:GridView>
+                 <Frame Style="{StaticResource SettingsItemFrameStyle}"
+                        HeightRequest="35">
+                    <controls:CustomEntry 
+                            x:Name="customEntry"
+                            IsFocused="{Binding IsEntryFocused}"
+                            Placeholder="Type some text..."
+                            HorizontalTextAlignment="Center"
+                            VerticalOptions="Center"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="35"/>
+                </Frame>
+                <BoxView HeightRequest="{Binding Path=HeightForKeyboard, Mode=TwoWay}" />
+            </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="4" 
+                    Grid.ColumnSpan="3"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    Text="Connect"
+                    Command="{Binding BindingContext.ConnectToPersonCommand, Source={x:Reference RootView}}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource MagentaColor}"
+                    HorizontalOptions="Fill"
+                    Margin="0,20,0,5"/>
+            <Button Grid.Row="5" 
+                    Grid.ColumnSpan="3"
+                    Text="Cancel"
+                    HeightRequest="40"
+                    Style="{StaticResource BorderedButtonStyle}"
+                    Command="{Binding BindingContext.CancelCommand, Source={x:Reference RootView}}"/>
+        </Grid>
+    </ContentView.Content>
+</base:SlideCustomDialog>

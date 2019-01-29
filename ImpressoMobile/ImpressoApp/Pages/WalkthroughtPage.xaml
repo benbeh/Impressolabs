@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.WalkthroughtPage"
+    xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+    xmlns:dataTemplates="clr-namespace:ImpressoApp.DataTemplateSelectors"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <dataTemplates:WalkthroughtCarouselViewTemplateSelector x:Key="TemplateSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid VerticalOptions="Fill"
+              HorizontalOptions="Fill"
+              Padding="0">
+            <carousel:CarouselViewControl 
+                Grid.Row="0"
+                ItemTemplate="{StaticResource TemplateSelector}"
+                ItemsSource="{Binding ViewList}"
+                IndicatorsTintColor="{StaticResource ImpressoLightBlueColor}"
+                CurrentPageIndicatorTintColor="{StaticResource ImpressoDarkBlueColor}"
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill"
+                Position="{Binding CurrentPosition}"
+                ShowIndicators="true"/>
+            <StackLayout HorizontalOptions="Fill"
+                         VerticalOptions="EndAndExpand"
+                         Margin="20"
+                         Spacing="2">
+                <Button CornerRadius="20"
+                         HeightRequest="40"
+                         Text="{Binding ContinueButtonText}"
+                         Command="{Binding ContinueCommand}"
+                         TextColor="White"
+                         BackgroundColor="{StaticResource MagentaColor}"
+                         HorizontalOptions="Fill"/>
+                <Button Text="Skip"
+                        Command="{Binding SkipCommand}"
+                        HorizontalOptions="Fill"
+                        TextColor="White"
+                        BackgroundColor="Transparent"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</base:BasePage>

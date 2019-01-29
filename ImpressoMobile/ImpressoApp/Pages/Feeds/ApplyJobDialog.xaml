@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:SlideCustomDialog 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Feeds.ApplyJobDialog"
+    HeightRequest="450"
+    Padding="10,20"
+    x:Name="ApplyJobDialogView">
+    <ContentView.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Text="Apply for job opportunity"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="36"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"/>
+            <Label Grid.Row="1" 
+                   Text="{Binding ApplyFor}"
+                   TextColor="Black"
+                   FontSize="16"
+                   Margin="10,20"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   LineBreakMode="WordWrap"/>
+            <Button Grid.Row="2" 
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    Text="Easy apply with your profile"
+                    Command="{Binding BindingContext.ApplyWithYourProfileCommand, Source={x:Reference ApplyJobDialogView}}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource MagentaColor}"
+                    HorizontalOptions="Fill"
+                    Margin="0,20,0,10"/>
+            <Button Grid.Row="3" 
+                    Text="Cancel"
+                    HeightRequest="40"
+                    Style="{StaticResource BorderedButtonStyle}"
+                    Command="{Binding BindingContext.CancelCommand, Source={x:Reference ApplyJobDialogView}}"/>
+        </Grid>
+    </ContentView.Content>
+</base:SlideCustomDialog>

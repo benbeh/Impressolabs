@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:MenuContainerPage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Feeds.EventPostPage"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:behaviors="clr-namespace:ImpressoApp.Behaviors"
+    BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid RowSpacing="30"
+                      BackgroundColor="White"
+                      Padding="30,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding EventModel.Title}"
+                           FontSize="24"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+                    <StackLayout Grid.Row="1" 
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Label Text=" {Binding EventModel.PrivacyType}"
+                               FontSize="12"
+                               TextColor="Black"/>
+                        <Label Text=" - "
+                               FontSize="12"
+                               TextColor="Black"/>
+                        <Label Text="{Binding EventModel.HostedByName}"
+                               FontSize="12"
+                               TextColor="Black"/>
+                    </StackLayout>
+                    <Grid Grid.Row="2" 
+                          HorizontalOptions="Fill" 
+                          RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid 
+                            Grid.RowSpan="2"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="StartAndExpand"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            RowSpacing="2">
+                            <Frame
+                               BackgroundColor="White"
+                               CornerRadius="10"
+                                Padding="0"
+                               HeightRequest="50"
+                               WidthRequest="50">
+                                <StackLayout Orientation="Vertical"
+                                             VerticalOptions="Center"
+                                             Spacing="0">
+                                    <Label Text="{Binding EventModel.DateNow, StringFormat='{0:MMM}'}"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalOptions="End"/>
+                                    <Label 
+                                           Text="{Binding EventModel.DateNow, StringFormat='{0:dd}'}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalOptions="Start"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        <Image Grid.Column="1" 
+                               HeightRequest="15"
+                               WidthRequest="15"
+                               Source="calendar.png"
+                               VerticalOptions="End"
+                               Margin="5,0,0,0"/>
+                        <Image Grid.Row="1" 
+                               Grid.Column="1" 
+                               HeightRequest="15"
+                               WidthRequest="15"
+                               Source="pin.png"
+                               VerticalOptions="Start"
+                               Margin="5,0,0,0"/>
+                        <Label Grid.Column="2" 
+                               TextColor="Black"
+                               FontSize="12"
+                               Text="{Binding EventModel.Dates}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="End"/>
+                        <Label Grid.Row="1" 
+                               Grid.Column="2" 
+                               TextColor="Black"
+                               FontSize="12"
+                               Text="{Binding EventModel.Location}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="Start"/>
+                    </Grid>
+                    <StackLayout 
+                        Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        Spacing="10">
+                        <Button
+                            Text="Interested"
+                            WidthRequest="150"
+                            Style="{StaticResource RoundedButtonStyle}"
+                            Command="{Binding InterestedCommand}"
+                            BorderWidth="1"
+                            BorderColor="{StaticResource MagentaColor}"
+                            IsEnabled="{Binding EventModel.IsInterested, Converter={StaticResource BoolReverseConverter}}">
+                            <Button.Behaviors>
+                                <behaviors:TopSkillsMatchButtonBehavior/>
+                            </Button.Behaviors>
+                        </Button>
+                        <Button 
+                            Text="Share"
+                            WidthRequest="150"
+                            Style="{StaticResource BorderedButtonStyle}"
+                            Command="{Binding ShareCommand}"/>
+                    </StackLayout>
+                </Grid>
+                <cashedImage:CachedImage
+                    Grid.Row="1"
+                    Source="{Binding EventModel.PictureSource, Converter={StaticResource Base64ToFFImageSourceConverter}}}"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill"
+                    Aspect="AspectFit"/>
+
+                <Label Grid.Row="2" 
+                       Text="{Binding EventModel.Description}"
+                       FontSize="16"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Start"
+                       Margin="20"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</base:MenuContainerPage>

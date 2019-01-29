@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="ImpressoApp.UserControls.BusyIndicator"
+      BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"
+      IsVisible="False"
+      RowSpacing="5"
+      VerticalOptions="FillAndExpand">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <BoxView       
+        BackgroundColor="Black"
+        Opacity="0.1" Grid.RowSpan="2"/>
+    <ActivityIndicator
+        x:Name="Indicator"
+        Grid.Row="0"
+        HeightRequest="50"
+        IsRunning="true"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="EndAndExpand"
+        WidthRequest="50"
+        Color="{StaticResource ImpressoMagentaDarkColor}" />
+    <Label
+        x:Name="DescriptionLabel"
+        Grid.Row="1"
+        FontSize="18"
+        HorizontalOptions="CenterAndExpand"
+        TextColor="White"
+        VerticalOptions="StartAndExpand" />
+</Grid>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:SlideCustomDialog 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Profile.DeleteTagDialog"
+    HeightRequest="350"
+    Padding="10,20"
+    x:Name="DeleteTagDialogView">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <Label Text="Delete Tag"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"/>
+            <Button CornerRadius="20"
+                    HeightRequest="40"
+                    Text="Yes"
+                    Command="{Binding YesCommand}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource MagentaColor}"
+                    HorizontalOptions="Fill"
+                    Margin="0,40"/>
+            <Button Text="No"
+                    HeightRequest="40"
+                    Style="{StaticResource BorderedButtonStyle}"
+                    Command="{Binding NoCommand}"/>
+        </StackLayout>
+    </ContentView.Content>
+</base:SlideCustomDialog>

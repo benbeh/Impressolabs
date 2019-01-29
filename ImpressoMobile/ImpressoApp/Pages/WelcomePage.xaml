@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.WelcomePage"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+    BackgroundColor="{StaticResource ImpressoPageBackColor}">
+    <ContentPage.Content>
+        <Grid VerticalOptions="Fill"
+              HorizontalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0"
+                   Aspect="Fill"
+                   Source="welcomeTopLogo.png"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"/>
+                   
+            <Label Grid.Row="1" 
+                   Style="{StaticResource HeaderLabelStyle}"
+                   TextColor="Black"
+                   FontSize="32" 
+                   Text="Hi! Welcome&#10;to Impresso"/>
+            
+            <StackLayout Grid.Row="2" 
+                         Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Center"
+                         Spacing="2"
+                         IsVisible="{Binding EnableQuickLogin}">
+                <cashedImage:CachedImage
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        Source="{Binding UserInfoModel.UserProfileImage, Converter={StaticResource Base64ToFFImageSourceConverter}}}"
+                        VerticalOptions="Center"
+                        WidthRequest="100">
+                        <cashedImage:CachedImage.Transformations>
+                            <cITranform:CircleTransformation BorderSize="0" />
+                        </cashedImage:CachedImage.Transformations>
+                    </cashedImage:CachedImage>
+                <Label Text="{Binding UserInfoModel.UserName}" 
+                       FontSize="14" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="Black"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding QuickLoginCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <ActivityIndicator IsEnabled="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               Grid.Row="2"
+                               HeightRequest="20"
+                               WidthRequest="20"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"/>
+            
+            <StackLayout Grid.Row="3" 
+                         HorizontalOptions="Fill"
+                         VerticalOptions="StartAndExpand"
+                         Spacing="0"
+                         Padding="20,10">
+                
+                <Button CornerRadius="20"
+                         HeightRequest="40"
+                         Text="Sign in to another account"
+                         Command="{Binding SignInToAnotherAccountCommand}"
+                         TextColor="White"
+                         BackgroundColor="{StaticResource MagentaColor}"
+                         HorizontalOptions="Fill"
+                         Margin="0,40,0,0"/>
+                
+                <Button Text="Sign up"
+                        Command="{Binding SignUpTpLogotypeCommand}"
+                        FontSize="16"
+                        TextColor="Gray"
+                        BackgroundColor="Transparent"/>
+            </StackLayout>
+             <Label Grid.Row="4"
+                    Text="Far far away, behind the world mountains, far from the countries Vokalia and Consonantia"
+                    TextColor="Black"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="EndAndExpand"
+                    Margin="40,20"/>
+        </Grid>
+    </ContentPage.Content>
+</base:BasePage>

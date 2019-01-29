@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImpressoApp.UserControls.Walktrought.BrandingView"
+             xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentView.Content>
+        <Grid HorizontalOptions="Fill"
+              VerticalOptions="Fill">
+            <cashedImage:CachedImage
+                        HorizontalOptions="Fill"
+                        Source="walkthrought1.png"
+                        VerticalOptions="Fill"
+                        Aspect="AspectFill"/>
+            <StackLayout HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="StartAndExpand"
+                         Spacing="10"
+                         Margin="0,60,0,0">
+                <Label Style="{StaticResource HeaderLabelStyle}"
+                       Text="Branding You"
+                       TextColor="White"/>
+                <Label Style="{StaticResource DescriptionLabelStyle}"
+                       Text="&quot;It's About You - The next step of&#10;Professional Networking&quot;"
+                       TextColor="White"/>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

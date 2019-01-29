@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ImpressoApp.Pages.Profile.CreateJobPage" xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:controls="clr-namespace:ImpressoApp.Controls" xmlns:userControls="clr-namespace:ImpressoApp.UserControls" xmlns:converters="clr-namespace:ImpressoApp.Converters">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="saveButton" Text="Save" Priority="0" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>    
+        <ScrollView>
+            <StackLayout Padding="10,0,10,0">
+                <Label FontSize="20" FontFamily="Bold" Text="{Binding JobModel.Title}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="80" />
+                <Label FontSize="16" TextColor="Gray" Text="DESCRIPTION" HeightRequest="30" />
+                <Editor HorizontalOptions="FillAndExpand" Text="{Binding JobModel.Description}" HeightRequest="100" />
+                <!--=======SKILLS======== -->
+                <Label Text="SKILLS" Style="{StaticResource CapsItemLabelStyle}" />
+                <controls:SpecialGridView x:Name="SkillsGridView" BackgroundColor="Transparent" ItemsSource="{Binding JobModel.Skills}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" RowSpacing="2">
+                    <controls:SpecialGridView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                <Grid>
+                                    <Label Text="{Binding .}" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </controls:SpecialGridView.ItemTemplate>
+                </controls:SpecialGridView>
+                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                    <controls:CustomEntry Text="{Binding NewSkillText, Mode=TwoWay}" Placeholder="Add Skill" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="50" />
+                </Frame>
+                <Button Text="Add" Command="{Binding AddSkillCommand}" Style="{StaticResource SettingsButtonStyle}" />
+                <!--=============== -->
+                <Label Text="LOCATION" Style="{StaticResource CapsItemLabelStyle}" />
+                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                    <controls:CustomEntry Text="{Binding JobModel.Location, Mode=TwoWay}" Placeholder="Location" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="50" />
+                </Frame>
+                <Label Text="JOB TYPE" Style="{StaticResource CapsItemLabelStyle}" />
+                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                    <controls:CustomEntryPicker Title="Choose Job Type" ItemsSource="{Binding JobTypes, Converter={StaticResource EnumToDescriptionConverter}}" SelectedItem="{Binding JobModel.TypeOfWork}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="50" />
+                </Frame>
+                <Label Text="EXPERIENCE" Style="{StaticResource CapsItemLabelStyle}" />
+                <Frame Style="{StaticResource SettingsItemFrameStyle}" Margin="0,0,0,20">
+                    <controls:CustomEntryPicker Title="Choose Experience" ItemsSource="{Binding JobLevels, Converter={StaticResource EnumToDescriptionConverter}}" SelectedItem="{Binding JobModel.Level}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="50" />
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</base:BasePage>
