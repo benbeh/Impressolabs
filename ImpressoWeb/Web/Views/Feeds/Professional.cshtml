@@ -1,0 +1,91 @@
+﻿@model PersonProfileViewModel
+
+<div class="row">
+    <div class="offset-1 col-10">
+
+        @{ bool isProfessionalInformationEmpty = true; }
+        @*@if (!string.IsNullOrEmpty(Model.Education))
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="education professional-item">
+                <h6 class="title">Education</h6>
+                <p class="content">@Model.Education</p>
+            </div>
+        }*@
+
+        @if (!string.IsNullOrEmpty(Model.Passion))
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="passion professional-item">
+                <h6 class="title">Passion</h6>
+                <p class="content">@Model.Passion</p>
+            </div>
+        }
+
+        @if (Model.Salary != null)
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="current-salary professional-item">
+                <h6 class="title">Current salary</h6>
+                <p class="content">@String.Format("{0:0.00}", Model.Salary)</p>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.PersonalityMatch))
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="personality-match professional-item">
+                <h6 class="title">Personality match</h6>
+                <p class="content">@Model.PersonalityMatch</p>
+            </div>
+        }
+
+        @if (Model.Skills != null && Model.Skills.Count != 0)
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="skills professional-item">
+                <h6 class="title">Skills</h6>
+                @foreach (var skill in Model.Skills)
+                {
+                    <p class="content">@skill.Name</p>
+                }
+            </div>
+        }
+
+        @if (Model.Certificates != null && Model.Certificates.Count != 0)
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="certifications professional-item">
+                <h6 class="title">Certifications</h6>
+                @foreach (var certificate in Model.Certificates)
+                {
+                    <p class="content">@certificate</p>
+                }
+            </div>
+        }
+
+        @if (Model.JobType != JobTypeEnum.None)
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="job-type professional-item">
+                <h6 class="title">Job type</h6>
+                <p class="content">@Model.JobType.GetDescription()</p>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.CV))
+        {
+            isProfessionalInformationEmpty = false;
+            <div class="cv professional-item">
+                <h6 class="title">CV</h6>
+                <p class="content">@Model.CV</p>
+            </div>
+        }
+
+        @if (isProfessionalInformationEmpty)
+        {
+            <h4 class="text-center">User doesn't have information about his proffession</h4>
+        }
+
+    </div>
+</div>

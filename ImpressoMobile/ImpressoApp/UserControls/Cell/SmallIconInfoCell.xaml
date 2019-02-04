@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<controls:CustomViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.UserControls.Cell.SmallIconInfoCell"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Name="RootItem"
+    SelectedBackgroundColor="Transparent"
+    Height="90">
+    <Frame CornerRadius="5"
+           BackgroundColor="White"
+           HorizontalOptions="Fill"
+           VerticalOptions="Fill"
+           IsClippedToBounds="true"          
+           Margin="10,5"
+           Padding="0">
+        <Grid ColumnSpacing="25" Padding="20,5,15,5" RowSpacing="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="{Binding ImageSource, Source={x:Reference RootItem}}" 
+                   Aspect="AspectFit" 
+                   Grid.RowSpan="3"/>
+            <Label Text="{Binding MainText, Source={x:Reference RootItem}}" 
+                   FontSize="18"
+                   FontAttributes="Bold" 
+                   Grid.Column="1"
+                   MaxLines="1"
+                   LineBreakMode="TailTruncation"
+                   Grid.Row="0"/>
+            <Label Text="{Binding SecondaryText, Source={x:Reference RootItem}}" 
+                   FontSize="14" 
+                   MaxLines="1"
+                   LineBreakMode="TailTruncation"
+                   Grid.Column="1" 
+                   Grid.Row="1"/>
+            <Label Text="{Binding DetailText, Source={x:Reference RootItem}}" 
+                   FontSize="13" 
+                   MaxLines="1"
+                   LineBreakMode="TailTruncation"
+                   Grid.Column="1" 
+                   Grid.Row="2"/>
+
+        </Grid>
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding TapCommand, Source={x:Reference RootItem}}" CommandParameter="{Binding}" />
+        </Frame.GestureRecognizers>
+    </Frame>
+</controls:CustomViewCell>

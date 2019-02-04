@@ -1,0 +1,403 @@
+﻿@import "Variables.less";
+
+.events-header {
+    padding: 40px 0 25px;
+
+    .events-header-text {
+        font-weight: 900;
+        font-size: 36px;
+    }
+}
+.open-event {
+    background-size: 760px 335px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    background-position: center;
+
+    .event-information {
+        margin-top: 25px;
+
+        .calendar {
+            background: @white-color;
+            border-radius: 9px;
+            text-align: center;
+            margin: 0px 0px 0px 35px;
+
+            #month {
+                margin: 0px;
+            }
+
+            #day {
+                margin: 0px;
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+
+        .absolute-information {
+            margin: 0px 0px 0px 25px;
+
+            .text {
+                margin-left: 8px;
+                color: @white-color;
+            }
+
+            i {
+                color: @white-color;
+            }
+        }
+
+        .more-menu {
+            padding: 0px 10px;
+        }
+
+        .more-menu-image {
+            color: @white-color;
+            font-size: 25px;
+        }
+
+        .more-menu-popover {
+            display: none;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            top: 4px;
+            right: -186px;
+            z-index: 1;
+            width: 330px;
+            position: absolute;
+            margin: 3em;
+            box-sizing: border-box;
+            -webkit-box-shadow: 0px 0px 15px 0px rgba(158,158,158,0.8);
+            -moz-box-shadow: 0px 0px 15px 0px rgba(158,158,158,0.8);
+            box-shadow: 0px 0px 15px 0px rgba(158,158,158, 0.8);
+
+            ::after {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                margin-left: 20px;
+                top: 0;
+                left: 50%;
+                box-sizing: border-box;
+                border: 1em solid black;
+                border-color: transparent transparent @white-color @white-color;
+                transform-origin: 0 0;
+                transform: rotate(135deg);
+                box-shadow: -4px 5px 9px 0 rgba(158, 158, 158, 0.1);
+            }
+
+            .edit-event-button, .delete-event-button {
+                padding: 12px 90px;
+                border: 0;
+                margin: 0;
+                border-radius: 20px;
+                display: block;
+                text-decoration: none;
+            }
+
+            .edit-event-button {
+                color: white;
+                margin-bottom: 10px;
+                background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 51%, @start-gradient-color 100%);
+                background-size: 180% auto;
+                transition: .8s;
+                background-color: transparent;
+
+                &:hover {
+                    color: white;
+                    background-position: right center;
+                }
+            }
+
+            .delete-event-button {
+                color: black;
+                width: 100%;
+                background-color: @main-background-color;
+            }
+        }
+    }
+}
+
+.event-general-information {
+    margin-top: 155px;
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
+}
+.event-title {
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 29px;
+    margin-bottom: 0px;
+}
+.event-description {
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    margin-bottom: 38px;
+}
+
+
+/*Edit*/
+
+.edit-event-information {
+    background: @white-color;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+
+        &::placeholder {
+            color: @black-color;
+        }
+    }
+
+    .edit-event-desctiption {
+        margin-top:50px;
+
+        textarea {
+            border: 0;
+            outline: 0;
+            width: 100%;
+
+            &::placeholder {
+                color: @black-color;
+            }
+        }
+    }
+
+
+
+    .name-label {
+        margin: 0px;
+        color: @light-gray-color;
+        text-transform: uppercase;
+    }
+}
+
+.edit-location {
+    margin-top: 40px;
+
+    .location-label {
+        margin: 0px;
+        color: @light-gray-color;
+    }
+
+    input {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        border-radius: 22px;
+        height: 37px;
+        padding: 20px;
+    }
+}
+
+.edit-times {
+    margin-top: 22px;
+
+    p {
+        margin: 0px;
+        color: @light-gray-color;
+        text-transform: uppercase;
+        margin-left: 4px;
+    }
+
+    .mdy {
+        border-radius: 7px 7px 0px 0px;
+        border: 0px;
+    }
+
+    .time {
+        border-radius: 0px 0px 7px 7px;
+        border: 0px;
+    }
+}
+
+.edit-type {
+    margin-top: 22px;
+
+    p {
+        margin: 0px;
+        color: @light-gray-color;
+        text-transform: uppercase;
+        margin-left: 4px;
+    }
+
+    label {
+        display: block;
+        margin: 0px;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        height: 37px;
+        padding: 8px;
+        background: @white-color;
+        display: block;
+
+        &:first-of-type {
+            border-radius: 8px 8px 0 0;
+        }
+
+        &:last-of-type {
+            border-radius: 0 0 8px 8px;
+        }
+    }
+
+    input {
+        display: none;
+
+        &:checked + label {
+            background-image: linear-gradient(to right, @start-gradient-color 0%, @finish-gradient-color 100%);
+            color: @white-color;
+        }
+    }
+}
+
+.edit-image {
+    margin-top: 22px;
+
+    p {
+        margin: 0px;
+        color: @light-gray-color;
+        text-transform: uppercase;
+    }
+
+    label {
+        width: 100%;
+
+        #NameEventPhoto {
+            margin-top: 5px;
+            margin-bottom: 12px;
+            border: 0;
+            outline: 0;
+            width: 100%;
+            border-radius: 22px;
+            height: 37px;
+            padding: 8px;
+            background: @white-color;
+            display: block;
+        }
+
+        .uploat-photo-button {
+            border-radius: 20px;
+            padding: 8px 25px 8px 25px;
+            color: white;
+            background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+            font-size: 13px;
+        }
+    }
+}
+
+
+.control-buttons {
+    .update-button, .delete-button {
+        color: white;
+        border: 0;
+        border-radius: 20px;
+        background-size: 180% auto;
+        transition: .8s;
+        background-color: transparent;
+        font-size: 18px;
+        padding: 10px 0;
+        display: block;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:hover {
+            background-position: right center;
+        }
+    }
+
+    .update-button {
+        margin-top: 30px;
+        background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+    }
+
+    .delete-button {
+        margin-top: 20px;
+        border: 1px solid @black-color;
+        color: @black-color;
+        margin-bottom: 40px;
+    }
+
+    .create-button {
+        margin-bottom: 40px;
+    }
+}
+
+/*EventDetails*/
+.calendar {
+    background: @white-color;
+    border-radius: 9px;
+    text-align: center;
+    box-shadow: 2px 2px 24px grey;
+
+    #month {
+        margin: 0px;
+    }
+
+    #day {
+        margin: 0px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+.event-company {
+    margin-top: 20px;
+
+    p {
+        color: @light-gray-color;
+        font-size: 25px;
+    }
+}
+.current-event-info {
+    p {
+        display: inline;
+        color: @light-gray-color;
+    }
+
+    i {
+        color: @light-gray-color;
+    }
+}
+
+.edit-current-event-button {
+    margin-top: 35px;
+    a {
+        border: 1px solid black;
+        border-radius: 22px;
+        padding: 10px 50px;
+    }
+}
+
+.event-photo {
+    width: 100%;
+    margin-top: 35px;
+}
+.current-event-description {
+    margin: 30px 0px 30px 0px;
+
+    p {
+        font-weight: 600;
+    }
+}
+
+@media (max-width: @screen-sm-min){
+    .calendar{
+        display: none;
+
+    }
+}

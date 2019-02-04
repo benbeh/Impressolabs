@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>messageFill</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="1.02962428%" y1="48.9703757%" x2="98.9703757%" y2="48.9703757%" id="linearGradient-1">
+            <stop stop-color="#AC34AB" offset="0%"></stop>
+            <stop stop-color="#8A13D2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Styleguide" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-2191.000000, -307.000000)" fill="url(#linearGradient-1)">
+            <path d="M2202,307 C2195.92525,307 2191,311.309937 2191,316.625 C2191,319.663062 2192.61219,322.368375 2195.125,324.131812 L2195.125,329 L2199.94369,326.076063 C2200.61056,326.186062 2201.29669,326.25 2202,326.25 C2208.07475,326.25 2213,321.94075 2213,316.625 C2213,311.309937 2208.07475,307 2202,307" id="messageFill"></path>
+        </g>
+    </g>
+</svg>

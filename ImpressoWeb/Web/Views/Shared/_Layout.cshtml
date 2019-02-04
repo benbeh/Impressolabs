@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Impresso</title>
+    <meta name="viewport" content="width=device-width"/>
+    
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/lib/font-awesome.min.css" />
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/layout.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/lib/font-awesome.min.css" />
+        <link type="text/css" rel="stylesheet" href="~/lib/bootstrap.css" />
+        <link type="text/css" rel="stylesheet" href="~/css/Layout.css" />
+    </environment>
+
+    <!-- add css files from partial views -->
+    @RenderSection("CssFiles", required: false)
+    
+</head>
+
+<body>
+
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/layout.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/jquery.js" type="text/javascript"></script>
+        <script src="~/js/Layout.js" type="text/javascript"></script>
+    </environment>
+
+    @Html.Partial("Header")
+
+    <div class="side-menu container">
+
+        <div class="row">
+            <div class="col-2">
+                <img alt="close menu" src="~/images/Black/arrowRight.svg" class="close-menu-image" />
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-12 side-menu-items">
+
+                <div class="side-menu-company">
+
+                    <div class="company-photo text-center">
+                        <img src="" class="rounded-circle company-photo-image" />
+                        <div class="image-upload">
+                            <i class="fa fa-camera" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="company-information text-center">
+                        <div>
+                            <p class="name"></p>
+                        </div>
+                        <div>
+                            <p class="industry"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <ul class="side-menu-items-list">
+                    <li><a href="/Profile/EditCompanyProfile">Change profile</a></li>
+                    <li><a href="/NotImplemented">Applicants</a></li>
+                    <li><a href="/Referrals/Index">Referrals</a></li>
+                    <li><a href="/NotImplemented">Settings</a></li>
+                    <li><a href="/NotImplemented">Privacy</a></li>
+                    <li><a href="/NotImplemented">Buy tokens</a></li>
+                    <li><a href="/Event/Index">Events</a></li>
+                    <li><a href="/Account/Logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    @RenderBody()
+
+    @Html.Partial("Footer")
+
+    <!-- add js files from partial views -->
+    @RenderSection("JsFiles", required: false)
+
+</body>
+
+</html>

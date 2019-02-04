@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Impresso</string>
+    <string name="facebook_app_id">158749204928657</string>
+    <string name="fb_login_protocol_scheme">fb158749204928657</string>
+</resources>

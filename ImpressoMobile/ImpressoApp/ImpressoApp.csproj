@@ -1,0 +1,120 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="PropertyChanged.Fody" Version="2.5.13" />
+    <PackageReference Include="SkiaSharp" Version="1.60.3" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseMvvmToolkit\BaseMvvmToolkit\BaseMvvmToolkit.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="DataTemplateSelectors\" />
+    <Folder Include="Enums\" />
+    <Folder Include="UserControls\" />
+    <Folder Include="UserControls\Walktrought\" />
+    <Folder Include="Pages\Authentication\" />
+    <Folder Include="ViewModels\Authentication\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Services\RequestProvider\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Services\AuthenticationService\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Models\Authentication\" />
+    <Folder Include="CustomControls\" />
+    <Folder Include="ViewModels\MainTabs\" />
+    <Folder Include="Pages\MainTabs\" />
+    <Folder Include="Services\Media\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Services\Feeds\" />
+    <Folder Include="Models\Feeds\" />
+    <Folder Include="UserControls\Feeds\" />
+    <Folder Include="Pages\Feeds\" />
+    <Folder Include="ViewModels\Feeds\" />
+    <Folder Include="Services\User\" />
+    <Folder Include="Models\User\" />
+    <Folder Include="Models\Profile\" />
+    <Folder Include="Services\Profile\" />
+    <Folder Include="ViewModels\Profile\" />
+    <Folder Include="Pages\Profile\" />
+    <Folder Include="Services\Job\" />
+    <Folder Include="Models\Job\" />
+    <Folder Include="UserControls\Cell\" />
+    <Folder Include="Services\Company\" />
+    <Folder Include="Models\Company\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Services\Search\" />
+    <Folder Include="Models\Connect\" />
+    <Folder Include="Services\Event\" />
+    <Folder Include="Models\Token\" />
+    <Folder Include="Services\Token\" />
+    <Folder Include="Services\People\" />
+    <Folder Include="Models\People\" />
+    <Folder Include="Models\Testimonial\" />
+    <Folder Include="SharedViews\" />
+    <Folder Include="Services\Testimonials\" />
+    <Folder Include="ViewModels\Testimonials\" />
+    <Folder Include="Pages\Testimonials\" />
+    <Folder Include="Services\Facebook\" />
+    <Folder Include="Models\Search\" />
+    <Folder Include="Pages\Search\" />
+    <Folder Include="ViewModels\Search\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Services\Connect\" />
+    <Folder Include="Models\Event\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="UserControls\Walktrought\QualityNetworkingView.cs" />
+    <Compile Remove="Pages\MainTabs\MessagesTabPage.cs" />
+    <Compile Remove="Services\Media.cs" />
+    <Compile Remove="Controls\CustomDialog\Gesture\DragGestureFactory.cs" />
+    <Compile Remove="Controls\CustomDialog\TestDialog.xaml.cs" />
+    <Compile Remove="ViewModels\SlideCustomDialogViewModel.cs" />
+    <Compile Remove="Pages\JobCongratulationDialog.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Controls\CustomDialog\Gesture\IDialogDrawer.cs~" />
+    <None Remove="Controls\CustomDialog\Gesture\IDragGesture.cs~" />
+    <None Remove="Controls\CustomDialog\Gesture\VerticalDrawer.cs~" />
+    <None Remove="Controls\CustomDialog\Gesture\VerticalGestures.cs~" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\Feeds\JobPostPage.xaml.cs">
+      <DependentUpon>JobPostPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Feeds\AboutCompanyPage.xaml.cs">
+      <DependentUpon>AboutCompanyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\CongratulationDialog.xaml.cs">
+      <DependentUpon>CongratulationDialog.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\JobCongratulationDialog.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pages\JobCongratulationDialog.xaml" />
+  </ItemGroup>
+</Project>

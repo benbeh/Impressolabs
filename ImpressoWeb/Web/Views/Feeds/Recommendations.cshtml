@@ -1,0 +1,84 @@
+﻿@using Microsoft.EntityFrameworkCore.Internal
+@model PersonProfileViewModel
+
+<div class="row">
+    <div class="offset-1 col-10">
+
+        @{ bool isRecommendationsEmpty = true; }
+        @if (Model.Testimonials != null && Model.Testimonials.Count != 0)
+        {
+            isRecommendationsEmpty = false;
+            <div class="Testimonials recommendation-item">
+
+                <h6 class="title">Testimonials</h6>
+                <span class="view-all">View All</span>
+
+                @foreach (var testimonial in Model.Testimonials)
+                {
+                    <div class="content">
+                        @{
+                            var recommenderPositionAndCompany = "";
+                            if (!String.IsNullOrEmpty(testimonial.RecommenderCompanyPosition))
+                            {
+                                recommenderPositionAndCompany = ", " + testimonial.RecommenderCompanyPosition;
+                                if (!String.IsNullOrEmpty(testimonial.RecommenderCompanyName))
+                                {
+                                    recommenderPositionAndCompany += " of " + testimonial.RecommenderCompanyName;
+                                }
+                            }
+                        }
+                        <span class="profession">@testimonial.RecommenderName@recommenderPositionAndCompany</span>
+                        <span class="date">@testimonial.DateOfPost</span>
+                        <div class="message">@testimonial.Content</div>
+                        <div class="verify">
+                            @{
+                                var verifyText = "verify";
+                                if (testimonial.IsVerified)
+                                {
+                                    verifyText = "verified";
+                                }
+                            }
+                            <button class="@verifyText-button" data-testimonial-id="@testimonial.Id">@verifyText</button>
+                            <div class="verify-images">
+                                @{
+                                    for (int i = 0; i < 3 && i < testimonial.Verificators.Count; i++)
+                                    {
+                                        var verificator = testimonial.Verificators.ElementAt(i);
+                                        var userPhoto = "../images/Profile.jpg";
+                                        if (!string.IsNullOrEmpty(verificator.AppUserPhoto))
+                                        {
+                                            userPhoto = verificator.AppUserPhoto;
+                                        }
+                                        <img src="@userPhoto" alt="user image" class="rounded-circle verify-image-person-@i"/>
+                                    }
+                                }
+                            </div>
+                            <span class="verify-amount-of-people">Verified by <span class="verify-amount-of-people-number">@testimonial.Verificators.Count()</span> people</span>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        }
+
+        @if (Model.Accomplishments != null && Model.Accomplishments.Count != 0)
+        {
+            isRecommendationsEmpty = false;
+            <div class="accomplishment-item">
+                <h6 class="title">Recent accomplishments</h6>
+                @foreach (var accomplishment in Model.Accomplishments)
+                {
+                    <div class="content">
+                        <p class="accomplishment-text">@accomplishment</p>
+                    </div>
+                }
+            </div>
+        }
+
+        @if (isRecommendationsEmpty)
+        {
+            <h4 class="text-center">User doesn't have recommendations</h4>
+        }
+
+    </div>
+</div>

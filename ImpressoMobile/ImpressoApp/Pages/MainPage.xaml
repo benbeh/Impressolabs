@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseTabbedPage xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+                     xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     x:Class="ImpressoApp.Pages.MainPage"
+                     xmlns:local="clr-namespace:ImpressoApp.Pages.MainTabs"
+                     TintColor="Purple">
+
+    <NavigationPage>
+        <x:Arguments>
+            <local:FeedsTabPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage >
+        <x:Arguments>
+            <local:SearchTabPage/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage>
+        <x:Arguments>
+            <local:MessagesTabPage/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage>
+        <x:Arguments>
+            <local:ProfileTabPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+                        
+</base:BaseTabbedPage>

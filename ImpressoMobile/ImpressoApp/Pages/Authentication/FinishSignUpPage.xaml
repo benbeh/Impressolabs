@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit" 
+               xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="ImpressoApp.Pages.Authentication.FinishSignUpPage"
+               xmlns:controls="clr-namespace:ImpressoApp.Controls"
+               xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+               NavigationPage.HasNavigationBar="False"
+               BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.Content>
+       <Grid VerticalOptions="Fill"
+             HorizontalOptions="Fill"
+             Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <controls:GradientStack Grid.Row="0" 
+                                    Grid.RowSpan="2"
+                                    VerticalOptions="Fill"
+                                    HorizontalOptions="FillAndExpand"
+                                    StartColor="{StaticResource ImpressoMagentaEndColor}"
+                                    EndColor="{StaticResource ImpressoMagentaStartColor}"
+                                    Orientation="Vertical"
+                                    Padding="20"/>
+            <Image Grid.Row="0"
+                   Grid.RowSpan="2"
+                   Aspect="Fill"
+                   Source="SignUpInBig.png"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"/>
+
+            <Label Grid.Row="1" 
+                   Text="Thank you for&#10;Sign Up!"
+                   TextColor="White"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,40"/>
+
+            <StackLayout Grid.Row="2"
+                         VerticalOptions="StartAndExpand"
+                         HorizontalOptions="Fill"
+                         Padding="20,30"
+                         Spacing="40">
+
+                <Label HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"
+                       Text="Please check your mail for confirmation before&#10;you can use the app"
+                       FontSize="14"
+                       TextColor="Gray"/>
+                <Button CornerRadius="20"
+                         HeightRequest="40"
+                         Text="Go to inbox"
+                         Command="{Binding GoToInboxCommand}"
+                         TextColor="White"
+                        BackgroundColor="{StaticResource MagentaColor}"
+                         HorizontalOptions="Fill"/>
+                
+
+            </StackLayout>
+            <userControls:BusyIndicator IsActive="{Binding IsBusy}"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="3"/>
+        </Grid>
+    </ContentPage.Content>
+</base:BasePage>

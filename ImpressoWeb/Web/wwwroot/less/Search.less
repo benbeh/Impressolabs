@@ -1,0 +1,138 @@
+﻿@import "Variables.less";
+
+.search-nav {
+    background-color: @white-color;
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 20px 0;
+
+    .filter {
+        input {
+            position: relative;
+            width: 100%;
+            border-radius: 25px;
+            border: 0;
+            padding: 10px 15px 10px 40px;
+            background-color: @main-background-color;
+
+            &:focus {
+                outline: unset;
+            }
+        }
+
+        img {
+            position: absolute;
+            opacity: 0.4;
+            height: 16px;
+            top: 15px;
+        }
+
+        .search-image {
+            left: 30px;
+        }
+
+        .filter-image {
+            right: 35px;
+            cursor: pointer;
+        }
+    }
+}
+
+.person-card {
+    padding: 10px 10px;
+
+    .row {
+        background-color: white;
+        margin: 0;
+        border-radius: 10px;
+    }
+
+    .person-image {
+        padding: 15px;
+
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    .person-name {
+        font-weight: bold;
+        font-size: 15px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .person-profession {
+        font-weight: 400;
+        font-size: 12px;
+        color: @light-gray-color;
+        margin: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .more-menu-image {
+        width: 6px;
+    }
+
+    .connect, .connected {
+        margin: 15px 0;
+
+        > button {
+            width: 100%;
+            border-radius: 20px;
+            font-size: 12px;
+            padding: 5px 0;
+        }
+    }
+
+    .connect {
+        > button {
+            color: @white-color;
+            border: 0;
+            background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+            background-size: 180% auto;
+            transition: .8s;
+            background-color: transparent;
+
+            &:hover {
+                background-position: right center;
+            }
+
+            &:focus {
+                outline: unset;
+            }
+        }
+    }
+
+    .connected {
+        > button {
+            color: @black-color;
+            margin-top: 15px;
+            border: 2px solid @light-gray-color;
+            background: @white-color;
+        }
+    }
+}
+
+/* media queries */
+@media (max-width: @screen-exs-max) {
+    .person-card .person-information {
+        padding-left: 25px;
+    }
+}
+
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    .person-card .person-information {
+        padding-left: 0px;
+    }
+}
+
+@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+    .person-card .person-information {
+        padding-left: 25px;
+    }
+}

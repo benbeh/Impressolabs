@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImpressoApp.SharedViews.ProfileView"
+             xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:controls="clr-namespace:ImpressoApp.Controls"
+             xmlns:behaviors="clr-namespace:ImpressoApp.Behaviors"
+             xmlns:userControls="clr-namespace:ImpressoApp.UserControls">
+    <ContentView.Content>
+        <Grid>
+            <ScrollView>
+                <Grid BackgroundColor="White">
+                    <StackLayout IsVisible="{Binding IsLoaded}">
+                        <Grid 
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="10"
+                            Padding="20,10,20,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button 
+                                Image="{Binding UserModel.IsBookmarked, Converter={StaticResource BoolToTagImageConverter}}"
+                                Style="{StaticResource ListImageButtonStyle}"
+                                HorizontalOptions="StartAndExpand"
+                                Command="{Binding BookmarkCommand}"
+                                VerticalOptions="Start"/>
+                            <Grid VerticalOptions="Start"
+                                  HorizontalOptions="CenterAndExpand"
+                                  Grid.ColumnSpan="2"
+                                  Margin="0,0,0,15">
+                               <cashedImage:CachedImage
+                                    Grid.Row="0"
+                                    HeightRequest="100"
+                                    HorizontalOptions="Center"
+                                    Source="{Binding UserModel.Photo, Converter={StaticResource Base64ToFFImageSourceConverter}}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="100">
+                                    <cashedImage:CachedImage.Transformations>
+                                        <cITranform:CircleTransformation BorderSize="0" />
+                                    </cashedImage:CachedImage.Transformations>
+                                </cashedImage:CachedImage>
+                                <Frame HeightRequest="30"
+                                       WidthRequest="30"
+                                       CornerRadius="15"
+                                       BackgroundColor="White"
+                                       Margin="0,0,0,-15"
+                                       VerticalOptions="EndAndExpand"
+                                       HorizontalOptions="Center"
+                                       Padding="0"
+                                       IsVisible="{Binding IsEditMode}">
+                                    <Button
+                                        BackgroundColor="White"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        CornerRadius="15"
+                                        Image="cameraIcon.png"
+                                        Command="{Binding ChangePhotoCommand}"/>
+                                </Frame>
+
+                            </Grid>
+                            <!--<cashedImage:CachedImage
+                                Grid.ColumnSpan="2"
+                                HeightRequest="100"
+                                HorizontalOptions="Center"
+                                Source="{Binding UserModel.Photo, Converter={StaticResource Base64ToFFImageSourceConverter}}}"
+                                VerticalOptions="Center"/>-->
+                            <Label 
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding UserModel.FullName}"
+                                FontSize="16"
+                                TextColor="Black"
+                                HorizontalOptions="Center"/>
+                            <Label 
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding UserModel.CompanyPosition}"
+                                FontSize="14"
+                                TextColor="{StaticResource GrayColor}"
+                                HorizontalOptions="Center"/>
+
+                            <Label 
+                                Grid.Row="3"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding UserModel.StatusItem}"
+                                FontSize="14"
+                                TextColor="Black"
+                                HorizontalOptions="Center"/>
+
+                            <Button Grid.Row="4" 
+                                    Grid.ColumnSpan="2"
+                                    Margin="0,20"
+                                    Style="{StaticResource BorderedButtonStyle}"
+                                    HorizontalOptions="Fill"
+                                    Text="View my profile as other see it"
+                                    Command="{Binding ViewProfileCommand}"
+                                    IsVisible="{Binding IsEditMode}"/>
+
+                            <StackLayout Grid.Row="4" 
+                                         Grid.ColumnSpan="2"
+                                         Orientation="Horizontal"
+                                         HorizontalOptions="Center"
+                                         Margin="0,20"
+                                         Spacing="10">
+                                <Button
+                                    Text="Connect"
+                                    WidthRequest="150"
+                                    Style="{StaticResource RoundedButtonStyle}"
+                                    Command="{Binding ConnectCommand}"
+                                    IsVisible="{Binding UserModel.IsConnected, Converter={StaticResource BoolReverseConverter}}"/>
+                                <Button
+                                    Text="Disconnect"
+                                    WidthRequest="150"
+                                    Style="{StaticResource RoundedButtonStyle}"
+                                    Command="{Binding DisconnectCommand}"
+                                    IsVisible="{Binding UserModel.IsConnected}"/>
+                                <Button 
+                                    Text="Recommend"
+                                    WidthRequest="150"
+                                    Style="{StaticResource BorderedButtonStyle}"
+                                    Command="{Binding RecommendCommand}"/>
+                            </StackLayout>
+                        
+                            <StackLayout 
+                                Grid.Row="5"
+                                Orientation="Horizontal"
+                                HorizontalOptions="CenterAndExpand"
+                                Spacing="5">
+                                <Image
+                                    HeightRequest="20"
+                                    WidthRequest="20"
+                                    Source="pin.png"/>
+                                <Label 
+                                   TextColor="Black"
+                                   FontSize="12"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                   Text="{Binding UserModel.Location}"/>
+                            </StackLayout>
+                            <StackLayout 
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalOptions="CenterAndExpand">
+                                <Image
+                                    HeightRequest="20"
+                                    WidthRequest="20"
+                                    Source="people.png"/>
+                                <Label 
+                                   TextColor="Black"
+                                   FontSize="12"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                   Text="{Binding UserModel.Connections, StringFormat='{0} connection(s)'}"/>
+                            </StackLayout>
+                            <Label
+                                Grid.Row="6"
+                                Grid.ColumnSpan="2"
+                                Text="Who we are"
+                                TextColor="Black"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Margin="20,20,20,0"/>
+                            <Label 
+                                Grid.Row="7"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding UserModel.Intro}"
+                                TextColor="Black"
+                                FontSize="16"
+                                Margin="20,10,20,0"/>
+                            <Label 
+                                Grid.Row="8"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding UserModel.LastUpdate, StringFormat='Last update on {0:MMMM yyyy}'}"
+                                TextColor="{StaticResource GrayColor}"
+                                FontSize="12"
+                                HorizontalOptions="Center"/>
+                        
+                        <controls:TabViewIndicator 
+                            Grid.Row="10"
+                            Grid.ColumnSpan="2"
+                            HeightRequest="40"
+                            TabSelectedCommand="{Binding TabChangedCommand}"
+                            TabItemsSource="{Binding Tabs}"
+                            TabTextColor="{StaticResource GrayColor}"
+                            TabSelectedTextColor="{StaticResource MagentaColor}"
+                            TabBackgroundColor="White"
+                            HorizontalOptions="Fill"
+                            Margin="-20,0"
+                            Padding="0"/>    
+                    </Grid>
+                    <Grid Grid.Row="2"
+                          BackgroundColor="{StaticResource LightGrayColor}"
+                          Padding="10">
+
+                    <!-- Professional Tab -->
+                            
+                      <Grid IsVisible="{Binding FirstTabActive}">
+                            <StackLayout>
+                                <Label Text="EDUCATION"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                <controls:GridView
+                                        BackgroundColor="Transparent"
+                                        ItemsSource="{Binding UserModel.Educations}"
+                                        VerticalOptions="StartAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        RowSpacing="2"
+                                        Margin="0,0,0,5"
+                                        IsEnabled="false">
+                                    <controls:GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                                <Label Text="{Binding}"
+                                                       TextColor="Black"
+                                                       FontSize="16"
+                                                       VerticalOptions="Center"/>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:GridView.ItemTemplate>
+                                </controls:GridView>
+
+                                <Label Text="PASSION"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                 <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                    <Label Text="{Binding UserModel.Passion}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           LineBreakMode="WordWrap"
+                                           VerticalOptions="Center"/>
+                                </Frame>
+
+                                <!--<Label Text="CURRENT SALARY"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                <Frame Style="{StaticResource SettingsItemFrameStyle}"
+                                       HeightRequest="75">
+                                        <StackLayout VerticalOptions="Center"
+                                                     Spacing="2">
+                                            <Label Text="Not available if you are not recruit"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   VerticalOptions="Center"/>
+                                            <Label Text="Only available for regretters"
+                                                   TextColor="{StaticResource GrayColor}"
+                                                   FontSize="12"
+                                                   VerticalOptions="Center"/>
+                                        </StackLayout>
+                                </Frame>-->
+
+                                <Label Text="PERSONALITY MATCH"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                    <Label Text="{Binding UserModel.PersonalityMatch}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           LineBreakMode="WordWrap"
+                                           VerticalOptions="Center"/>
+                                </Frame>
+                                    
+                                <Label Text="SKILLS"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                <controls:GridView
+                                    x:Name="SkillsGridView"
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding UserModel.Skills}"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowSpacing="2"
+                                    IsEnabled="false">
+                                    <controls:GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                                <Grid>
+                                                    <Label Text="{Binding Name}"
+                                                           TextColor="Black"
+                                                           FontSize="16"
+                                                           VerticalOptions="Center"/>
+                                                    <Image Source="{Binding IsTop, Converter={StaticResource BoolToTopSkillImageConverter}}"
+                                                           HeightRequest="20"
+                                                           WidthRequest="20"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="End"/>
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectTopSkillCommand, Source={x:Reference SkillsGridView}}" 
+                                                                              CommandParameter="{Binding}" />
+                                                    </Grid.GestureRecognizers>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:GridView.ItemTemplate>
+                                </controls:GridView>
+
+                                <Label Text="CERTIFICATIONS"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                <controls:GridView
+                                    x:Name="CertificationsGridView"
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding UserModel.Certificates}"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowSpacing="2"
+                                    IsEnabled="false">
+                                    <controls:GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Style="{StaticResource SettingsItemFrameStyle}"
+                                                   HeightRequest="75">
+                                                <Grid VerticalOptions="Center">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding}"
+                                                           TextColor="Black"
+                                                           FontSize="16"
+                                                           LineBreakMode="WordWrap"
+                                                           VerticalOptions="Center"/>
+                                                    <Label Grid.Column="1" 
+                                                           Text="Verified"
+                                                           TextColor="{StaticResource MagentaColor}"
+                                                           FontSize="12"
+                                                           VerticalOptions="Start"/>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:GridView.ItemTemplate>
+                                </controls:GridView>
+
+                                <Label Text="JOB TYPE"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                
+                                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                    <Label Text="{Binding UserModel.JobType}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           LineBreakMode="WordWrap"
+                                           VerticalOptions="Center"/>
+                                </Frame>
+
+                                <Label Text="CV"
+                                       Style="{StaticResource CapsItemLabelStyle}"/>
+                                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                    <Label Text="{Binding UserModel.Cv}"
+                                           TextColor="Blue"
+                                           FontSize="14"
+                                           LineBreakMode="WordWrap"
+                                           VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenCVLinkCommand}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Frame>
+                            </StackLayout>
+                        </Grid>
+
+                        <!-- Experience Tab -->
+                        
+                        <Grid IsVisible="{Binding SecondTabActive}">
+                            <StackLayout>
+                                <Label Text="EXPERIENCE"
+                                               Style="{StaticResource CapsItemLabelStyle}"/>
+                                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                    <Label Text="{Binding UserModel.Experience}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           LineBreakMode="WordWrap"
+                                           VerticalOptions="Center"/>
+                                </Frame>
+                                    
+                                <Label Text="PAST COMPANIES"
+                                               Style="{StaticResource CapsItemLabelStyle}"/>
+                                <controls:GridView
+                                    x:Name="PastCompaniesGridView"
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding UserModel.PastCompanies}"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowSpacing="2"
+                                    IsEnabled="false">
+                                    <controls:GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                                <Grid>
+                                                    <Label Text="{Binding}"
+                                                           TextColor="Black"
+                                                           FontSize="16"
+                                                           VerticalOptions="Center"/>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:GridView.ItemTemplate>
+                                </controls:GridView>
+
+                                <Label Text="CONNECTED WITH"
+                                               Style="{StaticResource CapsItemLabelStyle}"/>
+                                <controls:GridView
+                                    x:Name="ConnectedWithGridView"
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding UserModel.PresentCompanies}"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowSpacing="2"
+                                    IsEnabled="false">
+                                    <controls:GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                                <Grid>
+                                                    <Label Text="{Binding}"
+                                                           TextColor="Black"
+                                                           FontSize="16"
+                                                           VerticalOptions="Center"/>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:GridView.ItemTemplate>
+                                </controls:GridView>
+
+                                <Label Text="INDUSTRY"
+                                           Style="{StaticResource CapsItemLabelStyle}"/>  
+                                <Frame Style="{StaticResource SettingsItemFrameStyle}">
+                                    <Label Text="{Binding UserModel.Industry, Converter={StaticResource EnumToStringConverter}}"
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           LineBreakMode="WordWrap"
+                                           VerticalOptions="Center"/>
+                                </Frame>    
+                            </StackLayout>
+                        </Grid>
+
+                        <!-- Recomendations Tab -->
+
+                        <Grid IsVisible="{Binding ThirdTabActive}">
+                            <StackLayout>
+                                <Grid>
+                                    <Label Text="TESTIMONIALS"
+                                           Style="{StaticResource CapsItemLabelStyle}"
+                                           Margin="0"/>
+                                    <Button HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            TextColor="{StaticResource MagentaColor}"
+                                            Text="View All"
+                                            Command="{Binding ViewAllTestimonialsCommand}"/>
+                                </Grid>
+                                 <controls:GridView
+                                    x:Name="TestimonialsGridView"
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding UserModel.LastTestimonials}"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowSpacing="2">
+                                    <controls:GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Style="{StaticResource SettingsItemFrameStyle}" 
+                                                   HeightRequest="150">
+                                                <Grid HeightRequest="150" 
+                                                      Padding="10">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.ColumnSpan="2" 
+                                                           Text="{Binding Creator}"
+                                                           TextColor="Black"
+                                                           FontSize="12"
+                                                           LineBreakMode="TailTruncation"/>
+                                                    <Label Grid.Column="2" 
+                                                           Text="{Binding DateOfPost, StringFormat='{0:dd-mm-yyyy}'}"
+                                                           TextColor="{StaticResource GrayColor}"
+                                                           FontAttributes="Bold"
+                                                           FontSize="12"
+                                                           HorizontalOptions="End"/>
+                                                           
+                                                    <Label Grid.Row="1" 
+                                                           Grid.ColumnSpan="3"
+                                                           Text="{Binding Content}"
+                                                           TextColor="Black"
+                                                           FontSize="16"
+                                                           VerticalOptions="Center"/>
+                                                    <controls:GradientButton  
+                                                            Grid.Row="2"
+                                                            Text="{Binding VerifyText}"
+                                                            FontSize="12"
+                                                            Style="{StaticResource TopSkillsMatchButtonStyle}"
+                                                            CornerRadius="5"
+                                                            HeightRequest="20"
+                                                            WidthRequest="70"
+                                                            IsEnabled="{Binding IsVerified}">
+                                                        <controls:GradientButton.Behaviors>
+                                                            <behaviors:TopSkillsMatchButtonBehavior/>
+                                                        </controls:GradientButton.Behaviors>
+                                                    </controls:GradientButton>
+                                                    <Label Grid.Row="2" 
+                                                           Grid.Column="2"
+                                                           IsVisible="{Binding HasAnyVerifies}"
+                                                           Text="{Binding VerifiersCount, StringFormat='Verified by {0} people'}"
+                                                           TextColor="{StaticResource LightGrayColor}"
+                                                           FontSize="12"/>
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectTestimonialCommand, Source={x:Reference SkillsGridView}}" 
+                                                                              CommandParameter="{Binding}" />
+                                                    </Grid.GestureRecognizers>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:GridView.ItemTemplate>
+                                </controls:GridView>
+
+                                <Label Text="RECENT ACCOMPLISHMENTS"
+                                           Style="{StaticResource CapsItemLabelStyle}"/>
+                                <controls:GridView
+                                    x:Name="AccomplishmentsGridView"
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding UserModel.Accomplishments}"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowSpacing="2">
+                                    <controls:GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Style="{StaticResource SettingsItemFrameStyle}"
+                                                   HeightRequest="75">
+                                                <Grid>
+                                                    <Label Text="{Binding}"
+                                                           TextColor="Black"
+                                                           FontSize="16"
+                                                           VerticalOptions="Center"/>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:GridView.ItemTemplate>
+                                </controls:GridView>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+            <userControls:BusyIndicator IsActive="{Binding IsBusy}"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

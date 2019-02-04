@@ -1,0 +1,140 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model PersonFilterValuesViewModel
+
+<environment include="Staging, Production">
+    <link type="text/css" rel="stylesheet" href="~/css/bundles/filter.min.css" />
+</environment>
+
+<environment include="Development">
+    <link href="~/css/Filter.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/lib/ExtraLibraries/jquery-ui.1.10.4.css">
+    <link href="~/lib/jquery.tagit.css" rel="stylesheet" type="text/css">
+</environment>
+
+<div class="modal fade" id="FilterModal" role="dialog">
+    <div class="modal-dialog">
+
+        <form action="@Context.Request.Path" method="get">
+            
+            <input type="hidden" asp-for="JobId" />
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <img src="~/images/Black/arrow left.svg" alt="close modal"/>
+                    </button>
+                    <h4 class="modal-title">People filter</h4>
+                    <button type="submit" class="confirm">confirm</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="offset-1 col-10">
+
+                            <div class="filter-item">
+                                <h6 class="title">Location</h6>
+                                <input type="text" asp-for="@Model.Location" placeholder="London, UK" class="content location"/>
+                            </div>
+
+                            <div class="filter-item">
+                                <h6 class="title">Industry</h6>
+                                <ul class="content" id="IndustryTags">
+                                    @if (Model.Industries != null)
+                                    {
+                                        foreach (var industry in Model.Industries)
+                                        {
+                                            <li>@industry</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="filter-item">
+                                <h6 class="title">Job type</h6>
+                                <ul class="content" id="JobTypeTags">
+                                    @if (Model.JobTypes != null)
+                                    {
+                                        foreach (var jobType in Model.JobTypes)
+                                        {
+                                            <li>@jobType</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="filter-item">
+                                <h6 class="title">Skills</h6>
+                                <ul class="content" id="SkillsTags">
+                                    @if (Model.Skills != null)
+                                    {
+                                        foreach (var skill in Model.Skills)
+                                        {
+                                            <li>@skill</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="filter-item">
+                                <h6 class="title">Experience</h6>
+                                <ul class="content" id="ExperienceTags">
+                                    @if (Model.Experience != null)
+                                    {
+                                        foreach (var experience in Model.Experience)
+                                        {
+                                            <li>@experience</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="filter-item">
+                                <h6 class="title">Certificates</h6>
+                                <ul class="content" id="CertificatesTags">
+                                    @if (Model.Certificates != null)
+                                    {
+                                        foreach (var certificate in Model.Certificates)
+                                        {
+                                            <li>@certificate</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="filter-item">
+                                <h6 class="title">Worked at</h6>
+                                <ul class="content" id="CompanyTags">
+                                    @if (Model.CompanyNames != null)
+                                    {
+                                        foreach (var companyName in Model.CompanyNames)
+                                        {
+                                            <li>@companyName</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<environment include="Staging, Production">
+    <script src="~/js/bundles/searchFilter.min.js" type="text/javascript"></script>
+</environment>
+
+<environment include="Development">
+    <script src="~/lib/ExtraLibraries/jquery.1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/lib/ExtraLibraries/jquery-ui.1.8.12.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/lib/tag-it.js" type="text/javascript"></script>
+    <script src="~/js/PersonFilter.js" type="text/javascript"></script>
+</environment>

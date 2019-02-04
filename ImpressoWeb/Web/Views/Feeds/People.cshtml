@@ -1,0 +1,158 @@
+﻿@using System.Security.Claims
+@using Core.Entities
+@model IEnumerable<AppUser>
+@{
+    ViewBag.Page = "Feeds";
+    AppUser currentUser = ViewBag.CurrentUser;
+    var jobs = ((ConnectPersonCompanyViewModel)ViewBag.ConnectPerson).Jobs.ToList();
+    var projects = ((SavePersonForProjectViewModel)ViewBag.SavePersonForProject).Projects.ToList();
+}
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/feeds.min.css"/>
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Feeds.css" />
+    </environment>
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-12">
+            @Html.Partial("Menu", "People")
+        </div>
+
+        <!-- Connect modal -->
+        @Html.Partial("ConnectPerson", (ConnectPersonCompanyViewModel)ViewBag.ConnectPerson)
+
+        <!-- Save person for project modal -->
+        @Html.Partial("SavePersonForProject", (SavePersonForProjectViewModel)ViewBag.SavePersonForProject)
+
+        <div class="offset-1 col-10 offset-sm-2 col-sm-8">
+
+            @foreach (var user in Model)
+            {
+                if (currentUser.BlockedUsers.Any(blockedUser => blockedUser.BlockedAppUserId == user.Id) || currentUser == user)
+                {
+                    continue;
+                }
+
+                var closedFeedId = "ClosedFeed" + user.Id;
+                var openFeedId = "OpenFeed" + user.Id;
+
+                <div class="feed closed-feed row align-items-center closed" id="@closedFeedId">
+                    <a title="close feed" class="col-auto col-lg-1 close-feed-anchor text-center" data-user-id="@user.Id" data-closed-feed-id="@closedFeedId">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                    <span class="col col-lg-9 description">You won't see this event in Feeds</span>
+                    <div class="col-auto col-lg-2 undo text-center">
+                        <button class="undo-hiding-feed-button" data-user-id="@user.Id" data-open-feed-id="@openFeedId" data-closed-feed-id="@closedFeedId">UNDO</button>
+                    </div>
+                </div>
+
+                var formId = "FormId" + user.Id;
+                using (Html.BeginForm("Person", "Feeds", FormMethod.Get, new { Id = formId }))
+                {
+                    <div class="feed open-feed row align-items-center shown" id="@openFeedId" data-form-id="@formId">
+
+
+                        <input type="hidden" name="userId" value="@user.Id" />
+
+                        <div class="col-auto person-image">
+                            @{
+                                var userPhoto = "../images/Profile.jpg";
+                                if (!string.IsNullOrEmpty(user.Photo))
+                                {
+                                    userPhoto = user.Photo;
+                                }
+                            }
+                            <img src="@userPhoto" alt="proflie" class="rounded-circle" />
+                        </div>
+
+                        <div class="col-auto">
+                            <div class="person-name">@user.UserName</div>
+                            <div class="person-profession">@user.Profession</div>
+                            <div class="person-location">@user.Location</div>
+                        </div>
+
+                        <div class="col-1 ml-auto p-0">
+                            @{ var popoverId = "MoreMenuPopover" + user.Id; }
+
+                            <div title="menu" class="text-center more-menu" data-popover-id="@popoverId">
+                                <img src="~/images/Black/moreMenu.svg" alt="moreMenu" class="more-menu-image" />
+                            </div>
+
+                            <div class="more-menu-popover" id="@popoverId">
+                                <a data-user-id="@user.Id" data-open-feed-id="@openFeedId" data-closed-feed-id="@closedFeedId" class="hide-profile-button text-center">Hide profile</a>
+                                <a class="copy-link-button text-center">Copy link</a>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div>@user.AdditionalInformation</div>
+                            @{
+                                var companyNameString = "";
+                                var company = user.CompanyAppUsers.FirstOrDefault();
+                                if (company != null)
+                                {
+                                    companyNameString = "at " + company.Company.Name;
+                                }
+                                var userExperience = "";
+                                if (user.Experience != ExperienceEnum.None)
+                                {
+                                    userExperience = " - " + user.Experience.GetDescription();
+                                }
+                            }
+                            <span class="person-job">@user.CompanyPosition @companyNameString</span>
+                            <span class="person-experience">@userExperience</span>
+                        </div>
+
+                        <div class="person-invite col-12">
+                            <div class="row justify-content-center">
+                                <div class="offset-1 col-10 offset-sm-0 col-sm-6 col-md-5 col-lg-4">
+                                    @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == user.Id)))
+                                    {
+                                        <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-button-person-modal" data-user-name="@user.UserName" data-user-id="@user.Id">Connect</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="connected-button-person-modal">Connected</button>
+                                    }
+                                </div>
+                                <div class="offset-1 col-10 offset-sm-0 col-sm-6 col-md-5 col-lg-4">
+                                    @if (!projects.All(project => project.ProjectAppUsers.Any(projectAppUser => projectAppUser.AppUserId == user.Id)))
+                                    {
+                                        <button data-toggle="modal" data-target="#SavePersonForProjectModal" class="save-for-project-button" data-user-name="@user.UserName" data-user-id="@user.Id" data-user-industry="@user.Industry">Save for project</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="connected-button-person-modal">Saved for project</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+
+
+        </div>
+    </div>
+</div>
+
+@section JsFiles {
+    <environment include="Staging, Production">
+        <script src="~/js/bundles/feedsPeople.min.js" type="text/javascript"></script>
+    </environment>
+
+    <environment include="Development">
+        <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="~/lib/tether.js" type="text/javascript"></script>
+        <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+        <script src="~/js/FeedsPeople.js" type="text/javascript"></script>
+    </environment>
+}

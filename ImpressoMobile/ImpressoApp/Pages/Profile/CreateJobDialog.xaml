@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:SlideCustomDialog 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Profile.CreateJobDialog"
+    HeightRequest="420"
+    Padding="10,20"
+    xmlns:behaviors="clr-namespace:BaseMvvmToolkit.Behavior;assembly=BaseMvvmToolkit"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    x:Name="CreateJobDialogView">
+    <ContentView.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="145"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Text="Create Job"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="25"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center" />
+            <Entry Grid.Row="1"   
+                   WidthRequest="200"
+                   FontSize="16"
+                   TextColor="Gray"
+                   Placeholder="Add Job title"
+                   Text="{Binding JobName}"
+                   BackgroundColor="Transparent"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"/>
+            <Label Grid.Row="2" 
+                   Text="Select Project"
+                   TextColor="Gray"
+                   FontSize="14"
+                   Margin="10,15,0,0"
+                   VerticalOptions="Start"
+                   HorizontalTextAlignment="Start"
+                   HorizontalOptions="Start" />
+             <Label x:Name="currentItemLabel" Text="{Binding CurrentItem}" IsVisible = "false"/>
+             <ListView 
+                x:Name="filterList"
+                Grid.Row="3"
+                ItemsSource="{Binding Items}" 
+                HasUnevenRows = "false"
+                Footer=" "
+                SeparatorVisibility="None"
+                BackgroundColor="Transparent"
+                Margin="0,5,0,0"                
+                SelectedItem="{Binding CurrentItem, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding RowSelected}" />   
+                </Entry.Behaviors>                     
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CustomViewCell SelectedBackgroundColor="Transparent">
+                            <controls:RoundedView    
+                                HeightRequest = "40"
+                                Margin="10,5"
+                                Padding="2"
+                                BackgroundColor="White"
+                                BorderRadius="8"
+                                HorizontalOptions="Fill">
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HeightRequest="39">
+                                        <Label Text="{Binding .}" TextColor="Black" FontSize="18" VerticalOptions="Center" Margin="10" HorizontalOptions="StartAndExpand"/>
+                                        <Image Aspect="AspectFit" Source="checkColor" HeightRequest="30" WidthRequest="30" Margin="10" IsVisible="{Binding ., Converter={StaticResource IdToBoolConverter}, ConverterParameter={x:Reference currentItemLabel}}" />
+                                    </StackLayout>
+                                    <BoxView BackgroundColor="Gray" HeightRequest="1" VerticalOptions="FillAndExpand" />
+                                </StackLayout>
+                            </controls:RoundedView>
+                        </controls:CustomViewCell>                    
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button Grid.Row="4" 
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    Text="Continue"
+                    Command="{Binding BindingContext.ContinueCommand, Source={x:Reference CreateJobDialogView}}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource MagentaColor}"
+                    HorizontalOptions="Fill"
+                    Margin="0,10"/>
+            <Button Grid.Row="5" 
+                    Text="Cancel"
+                    HeightRequest="40"
+                    Style="{StaticResource BorderedButtonStyle}"
+                    Command="{Binding BindingContext.CancelCommand, Source={x:Reference CreateJobDialogView}}"/>
+        </Grid>
+    </ContentView.Content>
+</base:SlideCustomDialog>

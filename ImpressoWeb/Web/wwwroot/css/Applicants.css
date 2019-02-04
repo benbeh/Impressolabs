@@ -1,0 +1,110 @@
+/* colors */
+/* fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+/* media queries */
+.applicants-header {
+  padding: 40px 0px;
+}
+.applicants-header .applicants-title {
+  font-weight: 900;
+  font-size: 36px;
+  margin-bottom: 0px;
+}
+.applicants {
+  margin-bottom: 20px;
+}
+.applicants .applicants-list {
+  margin-top: 50px;
+}
+.applicants .applicants-list .title {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #9E9E9E;
+}
+.applicants .applicants-list .person-item {
+  padding: 0px 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: white;
+}
+.applicants .applicants-list .person-item img {
+  margin: 5px;
+  width: 60px;
+  height: 60px;
+}
+.applicants .applicants-list .person-item .connect-button-person-modal,
+.applicants .applicants-list .person-item .connected-button-person-modal {
+  width: 100%;
+  border: 0;
+  border-radius: 20px;
+  padding: 5px 8px;
+}
+.applicants .applicants-list .person-item .connect-button-person-modal {
+  color: white;
+  background-image: linear-gradient(to right, #AC34AB 0%, #8A13D2 51%, #AC34AB 100%);
+  background-size: 180% auto;
+  transition: .8s;
+  background-color: transparent;
+}
+.applicants .applicants-list .person-item .connect-button-person-modal:hover {
+  background-position: right center;
+}
+.applicants .applicants-list .person-item .connected-button-person-modal {
+  color: #080808;
+  border: 2px solid #9E9E9E;
+  background: white;
+}
+.applicants .applicants-list .person-item .user-name {
+  margin: 0;
+  font-weight: 600;
+}
+.applicants .applicants-list .person-item .user-profession {
+  font-size: 14px;
+  color: #9E9E9E;
+}
+.applicants .no-items {
+  margin-top: 20px;
+}
+.applicants .search-nav {
+  border-radius: 8px;
+}
+.applicants .search-nav .filter {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.applicants .search-nav .filter input {
+  position: relative;
+  width: 100%;
+  border-radius: 25px;
+  border: 0;
+  padding: 13px 15px 13px 40px;
+  background-color: white;
+}
+.applicants .search-nav .filter input:focus {
+  outline: unset;
+}
+.applicants .search-nav .filter img {
+  position: absolute;
+  opacity: 0.4;
+  height: 16px;
+  top: 15px;
+}
+.applicants .search-nav .filter .search-image {
+  left: 15px;
+  top: 17px;
+}
+.applicants .search-nav .filter .filter-image {
+  right: 35px;
+  top: 17px;
+  cursor: pointer;
+}
+@media (max-width: 767.9px) {
+  .applicants .applicants-list .person-item .connect-button-person-modal {
+    margin: 15px 0;
+  }
+}

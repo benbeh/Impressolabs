@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:SlideCustomDialog xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit" 
+                        xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        x:Class="ImpressoApp.Pages.JobCongratulationDialog">
+    <ContentView.Content>
+        <StackLayout Orientation="Vertical">
+            <Image Source="star" Margin = "0,25,0,0" Aspect="AspectFit" VerticalOptions="Center" HeightRequest="60"/>
+            <Label
+                Margin = "0,10,0,0"
+                Text="Done"
+                FontAttributes="Bold"
+                TextColor="Black"
+                FontSize="25"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"/>
+            <Label
+                Margin = "0,10,0,0"
+                Text="Continue browsing the application."
+                WidthRequest="200"
+                TextColor="Black"
+                FontSize="14"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"/>
+            <Button
+                Margin = "0,0,0,20"
+                Text="Continue"
+                TextColor="White"
+                FontSize="17"               
+                BackgroundColor="{StaticResource MagentaColor}"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center"
+                CornerRadius="15"
+                HeightRequest="40"
+                WidthRequest="300"/>
+        </StackLayout>
+    </ContentView.Content>
+</base:SlideCustomDialog>

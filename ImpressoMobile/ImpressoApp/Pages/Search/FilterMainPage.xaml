@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ImpressoApp.Pages.Search.FilterMainPage"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    BackgroundColor="{StaticResource LightGrayColor}"
+    xmlns:behaviors="clr-namespace:BaseMvvmToolkit.Behavior;assembly=BaseMvvmToolkit"
+    Title="Filters">
+     <ContentPage.ToolbarItems>
+        <ToolbarItem Name="clearButton" Text="Clear All" Priority="0" Command="{Binding ClearAllCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Filters}" 
+            HasUnevenRows = "true"
+            IsGroupingEnabled="true"
+            Footer=" "
+            SeparatorVisibility="None"
+            BackgroundColor="{StaticResource LightGrayColor}"
+            SeparatorColor="{StaticResource LightGrayColor}"
+            SelectedItem="{Binding SelectedFilter, Mode=TwoWay}"
+            Margin="0,5,0,0">
+            <Entry.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding RowSelected}" />   
+            </Entry.Behaviors>
+            
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" 
+                                     VerticalOptions="Fill" 
+                                     BackgroundColor="{StaticResource LightGrayColor}">
+                            <Label Text="{Binding Heading}" TextColor="Gray" FontSize="18" VerticalOptions="Center" Margin="10" HorizontalOptions="StartAndExpand"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:CustomViewCell SelectedBackgroundColor="Transparent">
+                        <controls:RoundedView    
+                            HeightRequest="40"
+                            Margin="10,5"
+                            Padding="2"
+                            BackgroundColor="White"
+                            BorderRadius="8"
+                            HorizontalOptions="Fill">
+                            <StackLayout Orientation="Horizontal" 
+                                         VerticalOptions="Center"
+                                         Padding="0">
+                                <Label Text="{Binding Name}" 
+                                       TextColor="Black" 
+                                       FontSize="18" 
+                                       VerticalOptions="Center" 
+                                       Margin="10,0" 
+                                       HorizontalOptions="StartAndExpand"/>
+                                <Image Aspect="AspectFit" 
+                                       Source="arrowRight" 
+                                       VerticalOptions="CenterAndExpand"
+                                       HeightRequest="30" 
+                                       WidthRequest="30" 
+                                       Margin="10" />
+                            </StackLayout>
+                        </controls:RoundedView>
+                    </controls:CustomViewCell>                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</base:BasePage>

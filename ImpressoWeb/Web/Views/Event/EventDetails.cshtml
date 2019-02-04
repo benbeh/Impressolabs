@@ -1,0 +1,74 @@
+﻿@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/event.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/Event.css" />
+    </environment>
+}
+
+@model EventViewModel;
+
+@{
+    var eventPhoto = "../images/Profile.jpg";
+    if (!string.IsNullOrEmpty(Model.PictureSource))
+    {
+        eventPhoto = Model.PictureSource;
+    }
+}
+
+<div class="container">
+    <div class="row events-header">
+        <div class="col-1">
+            <a title="Events" asp-controller="Event" asp-action="Index">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+        <div class="col-10 text-center">
+            <h2 class="events-header-text">@Model.Title</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-1">
+            <div class="calendar">
+                <p id="month">@DateTime.Now.ToString("MMMM")</p>
+                <p id="day">@DateTime.Now.Day</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 text-center event-company">
+            <p>@Model.PrivacyType - Hosted by @Model.HostedByName</p>
+        </div>
+        <div class="col-6">
+            <div class="row current-event-info">
+                <div class="col-6 text-center">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <p>@Model.StartDate.ToString("MMMMM") @Model.StartDate.Day - @Model.EndDate.ToString("MMMM") @Model.EndDate.Day</p>
+                </div>
+                <div class="col-6 text-center">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <p class="text">@Model.Country, @Model.City, @Model.Address</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 edit-current-event-button text-center">
+            <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        </div>
+        <div class="col-12">
+            <img class="event-photo" src="@eventPhoto" />
+        </div>
+        <div class="offset-1 col-10 current-event-description">
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</div>
+
+@section JsFiles {
+    <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/lib/tether.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+    <script src="~/js/Event.js" type="text/javascript"></script>
+}

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:MenuContainerPage  
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.Feeds.JobPostPage"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:behaviors="clr-namespace:ImpressoApp.Behaviors"
+    BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Frame
+                    BackgroundColor="White"
+                    CornerRadius="5"
+                    HasShadow="false"
+                    Padding="20,10"
+                    Margin="20,10"
+                    HorizontalOptions="FillAndExpand">
+                    <Grid 
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <cashedImage:CachedImage
+                            Grid.ColumnSpan="2"
+                            HeightRequest="100"
+                            HorizontalOptions="Center"
+                            Source="{Binding JobPostModel.CompanyLogoSource, Converter={StaticResource Base64ToFFImageSourceConverter}}}"
+                            VerticalOptions="Center">
+                            <cashedImage:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AboutCompanyCommand}" />
+                            </cashedImage:CachedImage.GestureRecognizers>
+                        </cashedImage:CachedImage>
+                        
+                        <Label 
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Text="{Binding JobPostModel.CompanyName}"
+                            FontSize="16"
+                            TextColor="Black"
+                            HorizontalOptions="Center"/>
+                        <Label 
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Text="{Binding JobPostModel.Title}"
+                            TextColor="Black"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            Margin="0,20,0,10"
+                            HorizontalOptions="Center"/>
+                        <StackLayout 
+                            Grid.Row="3" 
+                            Grid.ColumnSpan="2"
+                            Orientation="Horizontal"
+                            HorizontalOptions="Center">
+                            <Label Text="{Binding JobPostModel.Location}"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                            <Label Text="-"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                            <Label Text="{Binding JobPostModel.HirePeriodTime}"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                            <Label Text="-"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                            <Label Text="{Binding JobPostModel.Level}"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout 
+                            Grid.Row="4" 
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,20"
+                            Orientation="Horizontal"
+                            HorizontalOptions="Center">
+                            <Label Text="{Binding JobPostModel.ApplicantsCount, StringFormat='{0:N0} Applicant(s)'}"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                            <Label Text="|"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                            <Label Text="{Binding JobPostModel.PostedTime, Converter={StaticResource TimeAgoConverter}}"
+                                   Style="{StaticResource SmallDescriptionLabelStyle}"/>
+                        </StackLayout>
+                        <controls:GradientButton 
+                            Grid.Row="5" 
+                            Text="Top skils match"
+                            Style="{StaticResource TopSkillsMatchButtonStyle}"
+                            IsEnabled="{Binding JobPostModel.TopSkilsMatch}">
+                            <controls:GradientButton.Behaviors>
+                                <behaviors:TopSkillsMatchButtonBehavior/>
+                            </controls:GradientButton.Behaviors>
+                        </controls:GradientButton>
+                        <Button 
+                            Grid.Row="5" 
+                            Grid.Column="1"
+                            Image="{Binding JobPostModel.IsBookmarked, Converter={StaticResource BoolToTagImageConverter}}"
+                            Style="{StaticResource ListImageButtonStyle}"
+                            Command="{Binding BookmarkJobCommand}"/>
+                    </Grid>
+                </Frame>
+                <Grid 
+                    Grid.Row="1"
+                    BackgroundColor="White"
+                    Padding="30,10"
+                    Margin="0,10,0,20">
+                    <Label Text="{Binding JobPostModel.Description}"
+                           TextColor="Black"
+                           FontSize="16"/>
+                </Grid>
+                <Button 
+                    Grid.Row="2"
+                    Text="Apply"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                    IsEnabled="{Binding JobPostModel.IsApplied, Converter={StaticResource BoolReverseConverter}}"
+                    Command="{Binding ApplyJobCommand}">
+                    <Button.Behaviors>
+                        <behaviors:TopSkillsMatchButtonBehavior/>
+                    </Button.Behaviors>
+                </Button>
+                <Frame
+                    Grid.Row="3"
+                    BackgroundColor="White"
+                    CornerRadius="5"
+                    HasShadow="false"
+                    Padding="20,0,20,10"
+                    Margin="20,20,20,-5"
+                    HorizontalOptions="FillAndExpand">
+                    <Button 
+                        Text="Open other positions"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        TextColor="Black"
+                        FontSize="16"
+                        Margin="0"
+                        Command="{Binding OpenOtherPositionsCommand}"/>
+                </Frame>
+                <userControls:BusyIndicator IsActive="{Binding IsBusy}"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</base:MenuContainerPage >

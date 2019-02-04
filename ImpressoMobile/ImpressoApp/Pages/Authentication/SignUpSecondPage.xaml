@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage xmlns:base="clr-namespace:BaseMvvmToolkit.Pages;assembly=BaseMvvmToolkit" 
+               xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="ImpressoApp.Pages.Authentication.SignUpSecondPage"
+               xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+               xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+               xmlns:controls="clr-namespace:ImpressoApp.Controls"
+               xmlns:userControls="clr-namespace:ImpressoApp.UserControls"
+               NavigationPage.HasNavigationBar="False"
+               BackgroundColor="{StaticResource LightGrayColor}">
+    <ContentPage.Content>
+        <Grid VerticalOptions="Fill"
+             HorizontalOptions="Fill"
+             Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="35*"/>
+            </Grid.RowDefinitions>
+            <controls:GradientStack VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    StartColor="{StaticResource ImpressoMagentaEndColor}"
+                                    EndColor="{StaticResource ImpressoMagentaStartColor}"
+                                    Orientation="Vertical"
+                                    Padding="20"/>
+            <Image Grid.Row="0"
+                   Aspect="Fill"
+                   Source="SignUpInBig.png"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"/>
+            
+            <StackLayout Grid.Row="0" 
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         Orientation="Vertical"
+                         Padding="20">
+                <Label Text="Sign Up"
+                       TextColor="White"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,20"/>
+                        
+                <Grid VerticalOptions="Start"
+                      HorizontalOptions="CenterAndExpand"
+                      Margin="0,20,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <cashedImage:CachedImage
+                        Grid.Row="0"
+                        HeightRequest="155"
+                        HorizontalOptions="Center"
+                        Opacity="0.5"
+                        Source="transparentForeground.png"
+                        VerticalOptions="Center"
+                        WidthRequest="155">
+                        <cashedImage:CachedImage.Transformations>
+                            <cITranform:CircleTransformation BorderSize="0" />
+                        </cashedImage:CachedImage.Transformations>
+                    </cashedImage:CachedImage>
+                   <cashedImage:CachedImage
+                        Grid.Row="0"
+                        HeightRequest="140"
+                        HorizontalOptions="Center"
+                        Source="{Binding UserProfileImagePath, Converter={StaticResource Base64ToFFImageSourceConverter}}"
+                        VerticalOptions="Center"
+                        WidthRequest="140">
+                        <cashedImage:CachedImage.Transformations>
+                            <cITranform:CircleTransformation BorderSize="0" />
+                        </cashedImage:CachedImage.Transformations>
+                    </cashedImage:CachedImage>
+                    <Button
+                        BackgroundColor="White"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        CornerRadius="20"
+                        Margin="140,0,0,0"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"
+                        Image="cameraIcon.png"
+                        Command="{Binding UploadPhotoCommand}"/>
+                </Grid>
+                <StackLayout IsVisible="{Binding IsCompany, Converter={StaticResource BoolReverseConverter}}">
+                    <controls:CustomEntry Placeholder="First Name"
+                                          PlaceholderColor="Gray"
+                                          Text="{Binding FirstName}"
+                                          EntryBackgroundColor="White"
+                                          BorderRadius="10"
+                                          HeightRequest="50"/>
+                    <controls:CustomEntry Placeholder="Last Name"
+                                          PlaceholderColor="Gray"
+                                          EntryBackgroundColor="White"
+                                          Text="{Binding LastName}"
+                                          BorderRadius="10"
+                                          HeightRequest="50"
+                                          VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+                <controls:CustomEntry Placeholder="Company Name"
+                                      PlaceholderColor="Gray"
+                                      EntryBackgroundColor="White"
+                                      Text="{Binding CompanyName}"
+                                      BorderRadius="10"
+                                      HeightRequest="50"
+                                      VerticalOptions="EndAndExpand"
+                                      IsVisible="{Binding IsCompany}"/>
+            </StackLayout>
+
+
+            <StackLayout Grid.Row="1"
+                         VerticalOptions="EndAndExpand"
+                         HorizontalOptions="Fill"
+                         Padding="20,0"
+                         Spacing="2">
+                <Button CornerRadius="20"
+                         HeightRequest="40"
+                         Text="Continue"
+                         Command="{Binding ContinueCommand}"
+                         TextColor="White"
+                        BackgroundColor="{StaticResource MagentaColor}"
+                         HorizontalOptions="Fill"
+                         Margin="0,20,0,0"/>
+                
+                <Button Text="Back"
+                        Command="{Binding BackCommand}"
+                        FontSize="16"
+                        TextColor="Gray"
+                        BackgroundColor="Transparent"/>
+            </StackLayout>
+            <userControls:BusyIndicator Grid.Row="0" 
+                                        Grid.RowSpan="2" 
+                                        IsActive="{Binding IsBusy}"/>
+        </Grid>
+    </ContentPage.Content>
+</base:BasePage>

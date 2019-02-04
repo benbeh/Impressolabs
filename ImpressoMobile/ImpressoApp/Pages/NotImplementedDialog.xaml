@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:SlideCustomDialog 
+    xmlns:base="clr-namespace:BaseMvvmToolkit;assembly=BaseMvvmToolkit" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.Pages.NotImplementedDialog"
+    HeightRequest="400"
+    Padding="10,20"
+    xmlns:behaviors="clr-namespace:BaseMvvmToolkit.Behavior;assembly=BaseMvvmToolkit"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls" >
+    <ContentView.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>                
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image Source="notWorking.jpg" Aspect="AspectFit" />
+            <Button Grid.Row="1" 
+                    Text="Close"
+                    HeightRequest="40"
+                    Style="{StaticResource BorderedButtonStyle}"
+                    Command="{Binding CancelCommand}"/>
+        </Grid>
+    </ContentView.Content>
+</base:SlideCustomDialog>

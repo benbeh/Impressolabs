@@ -1,0 +1,213 @@
+﻿@model JobDetailsViewModel
+@{
+    ViewBag.Page = "Profile";
+    var jobs = ((ConnectPersonCompanyViewModel)ViewBag.ConnectPerson).Jobs.ToList();
+}
+
+@section CssFiles {
+    <environment include="Staging, Production">
+        <link type="text/css" rel="stylesheet" href="~/css/bundles/job-details.min.css" />
+    </environment>
+
+    <environment include="Development">
+        <link type="text/css" rel="stylesheet" href="~/css/JobDetails.css" />
+    </environment>
+}
+
+<!-- use scripts without section and before content
+in order to allow filter use own jquery library and do not have conflicts with bootstrap -->
+<environment include="Staging, Production">
+    <script src="~/js/bundles/job-details.min.js" type="text/javascript"></script>
+</environment>
+
+<environment include="Development">
+    <script src="~/lib/ExtraLibraries/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/lib/tether.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap.js" type="text/javascript"></script>
+    <script src="~/js/JobDetails.js" type="text/javascript"></script>
+</environment>
+
+<div class="container">
+
+    <!-- Connect modal -->
+    @Html.Partial("ConnectPerson", (ConnectPersonCompanyViewModel)ViewBag.ConnectPerson)
+    <!-- Filter modal -->
+    @Html.Partial("Filter", (PersonFilterValuesViewModel)ViewBag.Filter)
+
+    <div class="row job-header">
+        <div class="col-2">
+            <a title="Profile" asp-action="Company">
+                <img src="~/images/Black/arrow left.svg" alt="Back" width="40" />
+            </a>
+        </div>
+
+        <div class="col-8 text-center">
+            <h2 class="job-header-name">@Model.Name</h2>
+        </div>
+
+        <div class="col-2">
+            <a title="Edit job" asp-action="EditJob" asp-route-jobId="@Model.Id" class="edit-job">
+                <input type="button" class="edit-job-button" value="Edit" />
+            </a>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <div class="row align-items-center information">
+                <div class="offset-1 col-10">
+                    <p class="name-label">Title</p>
+                    <p class="name">@Model.Name</p>
+                </div>
+                @if (!String.IsNullOrEmpty(Model.Description))
+                {
+                    <div class="offset-1 col-10">
+                        <p class="description-label">Description</p>
+                        <p class="description">@Model.Description</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row job-detailed-information">
+        <div class="offset-2 col-8">
+
+            @if (!String.IsNullOrEmpty(Model.Responsibility))
+            {
+                <div class="job-item">
+                    <h6 class="title">Responsibility</h6>
+                    <p class="content">@Model.Responsibility</p>
+                </div>
+            }
+
+            @if (Model.Salary != null && Model.Salary != 0)
+            {
+                <div class="job-item">
+                    <h6 class="title">Salary</h6>
+                    <p class="content">@String.Format("{0:0.00}", Model.Salary)</p>
+                </div>
+            }
+
+            @if (!String.IsNullOrEmpty(Model.PersonalityMatch))
+            {
+                <div class="job-item">
+                    <h6 class="title">Personality match</h6>
+                    <p class="content">@Model.PersonalityMatch</p>
+                </div>
+            }
+
+            @if (Model.JobType != JobTypeEnum.None)
+            {
+                <div class="job-item">
+                    <h6 class="title">Job type</h6>
+                    <p class="content">@Model.JobType.GetDescription()</p>
+                </div>
+            }
+
+            @if (!String.IsNullOrEmpty(Model.Location))
+            {
+                <div class="job-item">
+                    <h6 class="title">Location</h6>
+                    <p class="content">@Model.Location</p>
+                </div>
+            }
+
+            @if (Model.Skills != null && Model.Skills.Count() != 0)
+            {
+                <div class="job-item">
+                    <h6 class="title">Skills</h6>
+                    @foreach (var skill in Model.Skills)
+                    {
+                        <p class="content">@skill</p>
+                    }
+                </div>
+            }
+
+            @if (Model.Experience != ExperienceEnum.None)
+            {
+                <div class="job-item">
+                    <h6 class="title">Experience</h6>
+                    <p class="content">@Model.Experience.GetDescription()</p>
+                </div>
+            }
+
+            @if (Model.JobCertificates != null && Model.JobCertificates.Count() != 0)
+            {
+                <div class="job-item">
+                    <h6 class="title">Certificates</h6>
+                    @foreach (var certificate in Model.JobCertificates)
+                    {
+                        <p class="content">@certificate</p>
+                    }
+                </div>
+            }
+
+            <div class="job-item">
+                <h6 class="title">No of positions</h6>
+                <p class="content">@Model.ApplicantsCount</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row applicants">
+        <div class="offset-2 col-8">
+
+            <p class="title">Applicants</p>
+
+            <!-- search -->
+            <div class="row search-nav">
+                <div class="col-12 filter">
+                    <input type="text" placeholder="Name" id="FilterNameInput" />
+                    <img class="search-image" src="~/images/Black/search.svg" alt="search" />
+                    <img class="filter-image" src="~/images/Black/filter.svg" alt="filter" data-toggle="modal" data-target="#FilterModal" />
+                </div>
+            </div>
+
+            @if (Model.AppUsers != null && Model.AppUsers.Count != 0)
+            {
+                <!-- applicants -->
+                foreach (var user in Model.AppUsers)
+                {
+                    var userPhoto = "../images/Profile.jpg";
+                    if (!string.IsNullOrEmpty(user.Photo))
+                    {
+                        userPhoto = user.Photo;
+                    }
+
+                    <div class="row person-item align-items-center">
+                        <div class="col-auto">
+                            <img src="@userPhoto" class="rounded-circle" />
+                        </div>
+                        <div class="col">
+                            <p class="user-name">@user.UserName</p>
+                            <span class="user-profession">@user.Profession</span>
+                        </div>
+                        <div class="col-2">
+                            @if (!jobs.All(job => job.AppUserJobs.Any(appUserJob => appUserJob.AppUserId == user.Id)))
+                            {
+                                <button data-toggle="modal" data-target="#ConnectPersonModal" class="connect-button-person-modal" data-user-name="@user.UserName" data-user-id="@user.Id">Connect</button>
+                            }
+                            else
+                            {
+                                <button class="connected-button-person-modal">Connected</button>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h3 class="text-center">This project doesn't have applicants</h3>
+            }
+
+
+        </div>
+    </div>
+
+
+</div>

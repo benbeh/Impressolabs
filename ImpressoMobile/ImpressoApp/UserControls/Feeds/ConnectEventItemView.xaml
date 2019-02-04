@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<controls:CustomViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImpressoApp.UserControls.Feeds.ConnectEventItemView"
+    xmlns:controls="clr-namespace:ImpressoApp.Controls"
+    xmlns:cITranform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:cashedImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Name="RootItem"
+    SelectedBackgroundColor="Transparent"
+    Height="500">
+    <Frame CornerRadius="5"
+           BackgroundColor="{StaticResource GrayColor}"
+           HorizontalOptions="Fill"
+           VerticalOptions="Fill"
+           IsClippedToBounds="true"
+           Margin="10,5"
+           Padding="0">
+        <Grid>
+            <cashedImage:CachedImage
+                Source="{Binding PictureSource, Converter={StaticResource Base64ToFFImageSourceConverter}}}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Aspect="AspectFill"/>
+            <Grid Padding="20"
+                  RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" 
+                      HorizontalOptions="Fill" 
+                      RowSpacing="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid 
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        HeightRequest="50"
+                        WidthRequest="50"
+                        RowSpacing="0"
+                        Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Frame Grid.RowSpan="2" 
+                               BackgroundColor="White"
+                               CornerRadius="10"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               HasShadow="false"/>
+                        <Label Text="{Binding DateNow, StringFormat='{0:MMM}'}"
+                               TextColor="Black"
+                               FontSize="14"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               VerticalOptions="End"/>
+                        <Label Grid.Row="1" 
+                               Text="{Binding DateNow, StringFormat='{0:dd}'}"
+                               TextColor="Black"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               VerticalOptions="Start"/>
+                    </Grid>
+                    
+                    <Image Grid.Column="1" 
+                           HeightRequest="15"
+                           WidthRequest="15"
+                           Source="calendarWhite.png"
+                           VerticalOptions="Center"/>
+                    <Image Grid.Row="1" 
+                           Grid.Column="1" 
+                           HeightRequest="15"
+                           WidthRequest="15"
+                           Source="pinWhite.png"
+                           VerticalOptions="Center"/>
+                    <Label Grid.Column="2" 
+                           TextColor="White"
+                           FontSize="14"
+                           Text="{Binding Dates}"
+                           VerticalOptions="Center"/>
+                    <Label Grid.Row="1" 
+                           Grid.Column="2" 
+                           TextColor="White"
+                           FontSize="14"
+                           Text="{Binding Location}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"/>
+                    <!--<Button 
+                        Grid.Column="3" 
+                        Image="moreMenuWhite.png"
+                        Style="{StaticResource ListImageButtonStyle}"
+                        Opacity="1"/>-->
+                </Grid>
+
+                <Label 
+                    Grid.Row="1"
+                    Text="{Binding Title}"
+                    FontSize="24"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand"/>
+
+                <StackLayout 
+                    Grid.Row="2" 
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand">
+                    <Label Text=" {Binding PrivacyType}"
+                           FontSize="14"
+                           TextColor="White"/>
+                    <Label Text=" - "
+                           FontSize="14"
+                           TextColor="White"/>
+                    <Label Text="{Binding HostedByName}"
+                           FontSize="14"
+                           TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout 
+                    Grid.Row="3" 
+                    Orientation="Horizontal"
+                    HorizontalOptions="Center"
+                    Spacing="10"
+                    Margin="0,20,0,0"
+                    IsVisible="{Binding IsInterested, Converter={StaticResource BoolReverseConverter}}">
+                    <Button
+                        Text="Interested"
+                        WidthRequest="150"
+                        Style="{StaticResource RoundedButtonStyle}"
+                        Command="{Binding InterestedTapCommand, Source={x:Reference RootItem}}" CommandParameter="{Binding}"/>
+                    <Button 
+                        Text="Share"
+                        WidthRequest="150"
+                        Style="{StaticResource BorderedButtonStyle}"
+                        TextColor="White"
+                        BorderColor="{StaticResource LightGrayColor}"
+                        Command="{Binding ShareTapCommand, Source={x:Reference RootItem}}" CommandParameter="{Binding}"/>
+                </StackLayout>
+
+
+                    <Frame Grid.Row="3"
+                           Margin="0,20,0,0"
+                           BackgroundColor="{StaticResource MagentaColor}"
+                           CornerRadius="10"
+                           Padding="2"
+                           VerticalOptions="Fill"
+                           HorizontalOptions="Fill"
+                           IsVisible="{Binding IsInterested}">
+                        <Grid 
+                              HorizontalOptions="Fill"
+                              ColumnSpacing="15"
+                              RowSpacing="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.RowSpan="2" 
+                                   HeightRequest="30"
+                                   WidthRequest="30"
+                                   Margin="10,0,0,0"
+                                   Source="checkWhite.png"/>
+                            <Label Grid.Column="1" 
+                                   Text="Interested"
+                                   TextColor="White"
+                                   FontSize="16"
+                                   Margin="0,7,0,0"
+                                   VerticalOptions="End"/>
+                            <Label Grid.Row="1" 
+                                   Grid.Column="1"
+                                   Text="You will get notification about this event."
+                                   TextColor="White"
+                                   FontSize="12"
+                                   Opacity="0.7"
+                                   Margin="0,0,0,7"
+                                   VerticalOptions="Start"/>
+                        </Grid>
+                    </Frame>
+            </Grid>
+        </Grid>
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding TapCommand, Source={x:Reference RootItem}}" CommandParameter="{Binding}" />
+        </Frame.GestureRecognizers>
+    </Frame>
+</controls:CustomViewCell>
